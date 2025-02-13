@@ -1,6 +1,6 @@
 "use client"
 import Link from 'next/link'
-import { ShoppingCartIcon } from "lucide-react";
+import CartButton from './cart-button';
 // import { signOut, useSession } from 'next-auth/react'
 
 // interface CustomSession {
@@ -21,12 +21,7 @@ const Menu = () => {
         <Link href="/sign-in" className="flex items-center header-button">
           Hello, Sign in!
         </Link>
-        <Link href="/cart" className="header-button">
-          <div className='flex items-end gap-[1px]'>
-            <ShoppingCartIcon className='w-6 h-6' />
-            <span className='text-xs'>Cart</span>
-          </div>
-        </Link>
+        <CartButton />
       </nav>
     </div>
   )
