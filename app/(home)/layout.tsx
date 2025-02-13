@@ -1,5 +1,5 @@
 import Header from "@/components/shared/header"
-import Footer from "@/components/shared/header/footer"
+import Footer from "@/components/shared/footer"
 
 export default async function HomeLayout({
     children,
