@@ -36,7 +36,7 @@ export default async function HomePage() {
       })),
     },
     {
-      title: 'Explore New Arrivals',
+      title: 'New Arrivals',
       items: newArrivals,
       link: {
         text: 'View All',
@@ -47,7 +47,7 @@ export default async function HomePage() {
       title: 'Discover Best Sellers',
       items: bestSellers,
       link: {
-        text: 'View All',
+        text: 'All',
         href: '/search?tag=new-arrival',
       },
     },
