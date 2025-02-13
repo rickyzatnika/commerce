@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Lato } from 'next/font/google'
 import "./globals.css";
 import { APP_DESCRIPTION, APP_NAME, APP_SLOGAN } from '@/lib/constants'
+import ClientProviders from "@/components/shared/client-providers";
 
 
 
@@ -27,10 +28,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${lato.className} antialiased `}
-      >
-        {children}
+      <body className={`${lato.className} antialiased `}>
+        <ClientProviders>
+          {children}
+        </ClientProviders>
       </body>
     </html>
   );

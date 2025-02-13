@@ -17,7 +17,8 @@ export const toSlug = (text: string): string =>
     .toLowerCase()
     .replace(/[^\w\s-]+/g, '')
     .replace(/\s+/g, '-')
-    .replace(/^-+|-+$/g, '');
+    .replace(/^-+|-+$/g, '')
+    .replace(/-+/g, '-')
 
 const CURRENCY_FORMATTER = new Intl.NumberFormat('id-ID', {
   style: 'currency',
