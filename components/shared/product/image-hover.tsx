@@ -15,7 +15,7 @@ const ImageHover = ({
   const [isHovered, setIsHovered] = useState(false)
   let hoverTimeout: any
   const handleMouseEnter = () => {
-    hoverTimeout = setTimeout(() => setIsHovered(true), 1000) // 1 second delay
+    hoverTimeout = setTimeout(() => setIsHovered(true), 100) // 1 second delay
   }
 
   const handleMouseLeave = () => {
