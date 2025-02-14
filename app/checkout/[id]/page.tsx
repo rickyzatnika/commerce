@@ -26,7 +26,7 @@ const CheckoutPaymentPage = async (props: {
     return (
         <PaymentForm
             order={order}
-            midtransClientKey={process.env.MIDTRANS_CLIENT_KEY || 'sb'}
+            midtransClientKey={process.env.MIDTRANS_CLIENT_KEY || ""}
             isAdmin={session?.user?.role === 'Admin' || false}
         />
     )
