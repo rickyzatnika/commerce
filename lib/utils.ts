@@ -6,6 +6,10 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+export function formatId(id: string) {
+  return `..${id.substring(id.length - 6)}`
+}
+
 
 export const formatNumberWithDecimal = (num: number): string => {
   const [int, decimal] = num.toString().split('.')

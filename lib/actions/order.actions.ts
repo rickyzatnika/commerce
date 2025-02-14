@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use server'
 import { Cart, OrderItem, ShippingAddress } from '@/types'
 import { formatError, round2 } from '../utils'
@@ -5,8 +7,10 @@ import { AVAILABLE_DELIVERY_DATES } from '../constants'
 import { connectToDatabase } from '../db'
 import { auth } from '@/auth'
 import { OrderInputSchema } from '../validator'
-import Order from '../db/models/order.model'
-
+import Order, { IOrder } from '../db/models/order.model'
+import { revalidatePath } from 'next/cache'
+import { sendPurchaseReceipt } from '@/emails'
+import midtransClient from 'midtrans-client'
 
 
 // CREATE
@@ -105,5 +109,67 @@ export const calcDeliveryDateAndPrice = async ({
     shippingPrice,
     taxPrice,
     totalPrice,
+  }
+}
+
+export async function getOrderById(orderId: string): Promise<IOrder> {
+  await connectToDatabase()
+  const order = await Order.findById(orderId)
+  return JSON.parse(JSON.stringify(order))
+}
+
+
+// MID_TRANS ENDPOINT
+
+const snap = new midtransClient.Snap({
+  isProduction: false,
+  serverKey: process.env.MIDTRANS_SERVER_KEY as string,
+  clientKey: process.env.MIDTRANS_CLIENT_KEY as string,
+})
+
+export async function createMidtransTransaction(orderId: string) {
+  await connectToDatabase()
+
+  try {
+    const order = await Order.findById(orderId)
+    if (!order) throw new Error('Order not found')
+
+    const midtransOrder = await snap.createTransaction({
+      transaction_details: {
+        order_id: order._id.toString(),
+        gross_amount: order.totalPrice,
+
+      },
+      customer_details: {
+        "first_name": order.shippingAddress?.fullName,
+        "phone": order.shippingAddress?.phone,
+
+      }
+    });
+
+    if (!midtransOrder || !midtransOrder.token) {
+      throw new Error('Midtrans token not found')
+    }
+
+    // ✅ Pastikan token diambil dengan benar
+    const paymentToken = midtransOrder.token || ''
+
+    order.paymentResult = {
+      id: paymentToken,
+      email_address: '',
+      status: 'PENDING',
+      pricePaid: order.totalPrice.toString(),
+    }
+
+    await order.save()
+
+    return {
+      success: true,
+      message: '✅ Midtrans order created successfully',
+      data: { token: paymentToken },
+    }
+  } catch (error) {
+    console.error('Midtrans Error:', error)
+    return { success: false, message: "Error saat membuat transaksi Midtrans" }
   }
 }

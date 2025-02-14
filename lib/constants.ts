@@ -3,8 +3,11 @@ export const APP_SLOGAN = process.env.NEXT_PUBLIC_APP_SLOGAN || 'Spend less, enj
 export const APP_DESCRIPTION = process.env.NEXT_PUBLIC_APP_DESCRIPTION || ''
 
 
-export const SENDER_NAME = process.env.SENDER_NAME || 'support'
+export const SERVER_URL =
+    process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
+
 export const SENDER_EMAIL = process.env.SENDER_EMAIL || 'onboarding@resend.dev'
+export const SENDER_NAME = process.env.SENDER_NAME || APP_NAME
 
 export const USER_ROLES = ['Admin', 'User']
 export const COLORS = ['Gold', 'Green', 'Red']
@@ -18,23 +21,13 @@ export const APP_COPYRIGHT = process.env.NEXT_PUBLIC_APP_COPYRIGHT || `Copyright
 
 export const AVAILABLE_PAYMENT_METHODS = [
     {
-        name: 'PayPal',
+        name: 'MIDTRANS (Payment Gateway) ',
         commission: 0,
         isDefault: true,
     },
-    {
-        name: 'Stripe',
-        commission: 0,
-        isDefault: true,
-    },
-    {
-        name: 'Cash On Delivery',
-        commission: 0,
-        isDefault: true,
-    },
+
 ]
-export const DEFAULT_PAYMENT_METHOD =
-    process.env.DEFAULT_PAYMENT_METHOD || 'PayPal'
+export const DEFAULT_PAYMENT_METHOD = "MIDTRANS (Payment Gateway)"
 
 export const AVAILABLE_DELIVERY_DATES = [
     {
@@ -56,3 +49,7 @@ export const AVAILABLE_DELIVERY_DATES = [
         freeShippingMinPrice: 35,
     },
 ]
+
+
+
+

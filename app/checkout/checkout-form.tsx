@@ -39,7 +39,7 @@ import ProductPrice from '@/components/shared/product/product-price'
 import {
   APP_NAME,
   AVAILABLE_DELIVERY_DATES,
-  AVAILABLE_PAYMENT_METHODS,
+  // AVAILABLE_PAYMENT_METHODS,
   DEFAULT_PAYMENT_METHOD,
 } from '@/lib/constants'
 import { createOrder } from '@/lib/actions/order.actions'
@@ -71,7 +71,7 @@ const CheckoutForm = () => {
       paymentMethod = DEFAULT_PAYMENT_METHOD,
     },
     setShippingAddress,
-    setPaymentMethod,
+    // setPaymentMethod,
     updateItem,
     removeItem,
     setDeliveryDateIndex,
@@ -100,8 +100,7 @@ const CheckoutForm = () => {
   }, [items, isMounted, router, shippingAddress, shippingAddressForm])
 
   const [isAddressSelected, setIsAddressSelected] = useState<boolean>(false)
-  const [isPaymentMethodSelected, setIsPaymentMethodSelected] =
-    useState<boolean>(false)
+
   const [isDeliveryDateSelected, setIsDeliveryDateSelected] =
     useState<boolean>(false)
 
@@ -133,10 +132,10 @@ const CheckoutForm = () => {
       router.push(`/checkout/${res.data?.orderId}`)
     }
   }
-  const handleSelectPaymentMethod = () => {
-    setIsAddressSelected(true)
-    setIsPaymentMethodSelected(true)
-  }
+  // const handleSelectPaymentMethod = () => {
+  //   setIsAddressSelected(true)
+  //   setIsPaymentMethodSelected(true)
+  // }
   const handleSelectShippingAddress = () => {
     shippingAddressForm.handleSubmit(onSubmitShippingAddress)()
   }
@@ -157,7 +156,7 @@ const CheckoutForm = () => {
             </p>
           </div>
         )}
-        {isAddressSelected && !isPaymentMethodSelected && (
+        {/* {isAddressSelected && !isPaymentMethodSelected && (
           <div className=' mb-4'>
             <Button
               className='rounded-full w-full'
@@ -172,8 +171,8 @@ const CheckoutForm = () => {
               final.
             </p>
           </div>
-        )}
-        {isPaymentMethodSelected && isAddressSelected && (
+        )} */}
+        {isAddressSelected && (
           <div>
             <Button onClick={handlePlaceOrder} className='rounded-full w-full'>
               Place Your Order
@@ -253,7 +252,6 @@ const CheckoutForm = () => {
                     variant={'outline'}
                     onClick={() => {
                       setIsAddressSelected(false)
-                      setIsPaymentMethodSelected(true)
                       setIsDeliveryDateSelected(true)
                     }}
                   >
@@ -414,7 +412,7 @@ const CheckoutForm = () => {
             )}
           </div>
           {/* payment method */}
-          <div className='border-y'>
+          {/* <div className='border-y hidden'>
             {isPaymentMethodSelected && paymentMethod ? (
               <div className='grid  grid-cols-1 md:grid-cols-12  my-3 pb-3'>
                 <div className='flex text-lg font-bold  col-span-5'>
@@ -480,13 +478,13 @@ const CheckoutForm = () => {
                 <span>Choose a payment method</span>
               </div>
             )}
-          </div>
+          </div> */}
           {/* items and delivery date */}
           <div>
             {isDeliveryDateSelected && deliveryDateIndex != undefined ? (
               <div className='grid  grid-cols-1 md:grid-cols-12  my-3 pb-3'>
                 <div className='flex text-lg font-bold  col-span-5'>
-                  <span className='w-8'>3 </span>
+                  <span className='w-8'>2 </span>
                   <span>Items and shipping</span>
                 </div>
                 <div className='col-span-5'>
@@ -513,7 +511,7 @@ const CheckoutForm = () => {
                   <Button
                     variant={'outline'}
                     onClick={() => {
-                      setIsPaymentMethodSelected(true)
+                      // setIsPaymentMethodSelected(true)
                       setIsDeliveryDateSelected(false)
                     }}
                   >
@@ -521,10 +519,10 @@ const CheckoutForm = () => {
                   </Button>
                 </div>
               </div>
-            ) : isPaymentMethodSelected && isAddressSelected ? (
+            ) : isAddressSelected ? (
               <>
                 <div className='flex text-primary  text-lg font-bold my-2'>
-                  <span className='w-8'>3 </span>
+                  <span className='w-8'>2 </span>
                   <span>Review items and shipping</span>
                 </div>
                 <Card className='md:ml-8'>
@@ -658,12 +656,12 @@ const CheckoutForm = () => {
               </>
             ) : (
               <div className='flex text-muted-foreground text-lg font-bold my-4 py-3'>
-                <span className='w-8'>3 </span>
+                <span className='w-8'>2 </span>
                 <span>Items and shipping</span>
               </div>
             )}
           </div>
-          {isPaymentMethodSelected && isAddressSelected && (
+          {isAddressSelected && (
             <div className='mt-6'>
               <div className='block md:hidden'>
                 <CheckoutSummary />
