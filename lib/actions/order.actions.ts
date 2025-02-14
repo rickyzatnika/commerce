@@ -176,12 +176,10 @@ export async function createMidtransTransaction(orderId: string) {
     const paymentToken = midtransOrder.token || ''
 
 
-
-
     order.paymentResult = {
       id: paymentToken,
       email_address: userEmail,
-      status: 'pending',
+      status: '',
       pricePaid: '0',
     }
 

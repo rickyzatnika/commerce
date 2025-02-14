@@ -32,6 +32,7 @@ export default function OrderPaymentForm({
     paymentMethod,
     expectedDeliveryDate,
     isPaid,
+
   } = order
 
   if (isPaid) {
@@ -116,10 +117,18 @@ export default function OrderPaymentForm({
               </span>
             </div>
 
-
-            <Button className='w-full rounded-full' onClick={handleMidtransPayment}>
+            <Button className={`${order?.paymentResult ? 'hidden' : 'block'} w-full rounded-full`} onClick={handleMidtransPayment}>
               Pay Now
             </Button>
+            {order?.paymentResult && (
+              <div className='flex gap-2 w-full justify-between'>
+                <Button className='w-full rounded-full' onClick={handleMidtransPayment}>
+                  Pay Now
+                </Button>
+                <Button className='w-full rounded-full' variant='outline' onClick={() => window.location.reload()}>Check</Button>
+              </div>
+            )}
+
 
           </div>
         </div>
