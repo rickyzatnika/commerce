@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 'use server'
 import { Cart, OrderItem, ShippingAddress } from '@/types'
 import { formatError, round2 } from '../utils'
