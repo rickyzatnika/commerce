@@ -131,8 +131,20 @@ export async function createMidtransTransaction(orderId: string) {
   await connectToDatabase()
 
   try {
-    const order = await Order.findById(orderId)
+    const order = await Order.findById(orderId).populate('user', 'email');
+
+
     if (!order) throw new Error('Order not found')
+
+    if (order.paymentResult?.id) {
+      return {
+        success: true,
+        message: 'Midtrans order already exists',
+        data: { token: order.paymentResult.id },
+      };
+    }
+
+    const userEmail = typeof order.user === 'object' && 'email' in order.user ? order.user.email : '';
 
     const midtransOrder = await snap.createTransaction({
       transaction_details: {
@@ -141,9 +153,18 @@ export async function createMidtransTransaction(orderId: string) {
 
       },
       customer_details: {
-        "first_name": order.shippingAddress?.fullName,
-        "phone": order.shippingAddress?.phone,
+        first_name: order.shippingAddress.fullName,
+        phone: order.shippingAddress.phone,
+        email: userEmail,
+        billing_address: {
+          first_name: order.shippingAddress.fullName,
+          email: userEmail,
+          phone: order.shippingAddress.phone,
+          address: order.shippingAddress.street,
+          city: order.shippingAddress.city,
+          postal_code: order.shippingAddress.postalCode,
 
+        },
       }
     });
 
@@ -154,14 +175,19 @@ export async function createMidtransTransaction(orderId: string) {
     // ✅ Pastikan token diambil dengan benar
     const paymentToken = midtransOrder.token || ''
 
+
+
+
     order.paymentResult = {
       id: paymentToken,
-      email_address: '',
-      status: 'PENDING',
-      pricePaid: order.totalPrice.toString(),
+      email_address: userEmail,
+      status: 'pending',
+      pricePaid: '0',
     }
 
     await order.save()
+    await sendPurchaseReceipt({ order })
+    revalidatePath(`/account/orders/${orderId}`)
 
     return {
       success: true,
