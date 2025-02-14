@@ -1,5 +1,7 @@
-import { Data, IProductInput } from '@/types'
+
 import { toSlug } from './utils'
+import { Data, IProductInput, IUserInput } from '@/types'
+import bcrypt from 'bcryptjs'
 
 const products: IProductInput[] = [
   // T-Shirts
@@ -713,8 +715,165 @@ const products: IProductInput[] = [
     reviews: [],
   },
 ]
+const users: IUserInput[] = [
+  {
+    name: 'kalenx',
+    email: 'admin@example.com',
+    password: bcrypt.hashSync('123456', 5),
+    role: 'Admin',
+    address: {
+      fullName: 'kalengs smith',
+      street: 'Jl. Sekeloa Tengah',
+      city: 'Bandung',
+      province: 'Jawa Barat',
+      postalCode: '400123',
+      country: 'Indonesia',
+      phone: '082122666',
+    },
+    paymentMethod: 'Cash On Delivery',
+    emailVerified: false,
+  },
+  {
+    name: 'Ujang',
+    email: 'ujang@example.com',
+    password: bcrypt.hashSync('123456', 5),
+    role: 'User',
+    address: {
+      fullName: 'Ujang Harris',
+      street: 'Jl. Dago Barat No.123',
+      city: 'Bandung',
+      province: 'Jawa Barat',
+      postalCode: '40132',
+      country: 'Indonesia',
+      phone: '082123445677',
+    },
+    paymentMethod: 'Dana',
+    emailVerified: false,
+  },
+  {
+    name: 'Budi',
+    email: 'budi@example.com',
+    password: bcrypt.hashSync('123456', 5),
+    role: 'User',
+    address: {
+      fullName: 'Budi Santoso',
+      street: 'Jl. Sudirman No.45',
+      city: 'Jakarta',
+      province: 'DKI Jakarta',
+      postalCode: '10110',
+      country: 'Indonesia',
+      phone: '081234567890',
+    },
+    paymentMethod: 'Gopay',
+    emailVerified: false,
+  },
+  {
+    name: 'Andi',
+    email: 'andi@example.com',
+    password: bcrypt.hashSync('123456', 5),
+    role: 'User',
+    address: {
+      fullName: 'Andi Wijaya',
+      street: 'Jl. Asia Afrika No.21',
+      city: 'Bandung',
+      province: 'Jawa Barat',
+      postalCode: '40111',
+      country: 'Indonesia',
+      phone: '085678901234',
+    },
+    paymentMethod: 'BCA',
+    emailVerified: false,
+  },
+  {
+    name: 'Rizky',
+    email: 'rizky@example.com',
+    password: bcrypt.hashSync('123456', 5),
+    role: 'User',
+    address: {
+      fullName: 'Rizky Pratama',
+      street: 'Jl. Braga No.10',
+      city: 'Bandung',
+      province: 'Jawa Barat',
+      postalCode: '40115',
+      country: 'Indonesia',
+      phone: '087654321098',
+    },
+    paymentMethod: 'BRI',
+    emailVerified: false,
+  },
+  {
+    name: 'Doni',
+    email: 'doni@example.com',
+    password: bcrypt.hashSync('123456', 5),
+    role: 'User',
+    address: {
+      fullName: 'Doni Saputra',
+      street: 'Jl. Merdeka No.50',
+      city: 'Jakarta',
+      province: 'DKI Jakarta',
+      postalCode: '10220',
+      country: 'Indonesia',
+      phone: '081223344556',
+    },
+    paymentMethod: 'Dana',
+    emailVerified: false,
+  },
+  {
+    name: 'Siti',
+    email: 'siti@example.com',
+    password: bcrypt.hashSync('123456', 5),
+    role: 'User',
+    address: {
+      fullName: 'Siti Aminah',
+      street: 'Jl. Setiabudi No.88',
+      city: 'Bandung',
+      province: 'Jawa Barat',
+      postalCode: '40142',
+      country: 'Indonesia',
+      phone: '085312345678',
+    },
+    paymentMethod: 'Gopay',
+    emailVerified: false,
+  },
+  {
+    name: 'Dewi',
+    email: 'dewi@example.com',
+    password: bcrypt.hashSync('123456', 5),
+    role: 'User',
+    address: {
+      fullName: 'Dewi Lestari',
+      street: 'Jl. Gatot Subroto No.5',
+      city: 'Jakarta',
+      province: 'DKI Jakarta',
+      postalCode: '10350',
+      country: 'Indonesia',
+      phone: '081334455667',
+    },
+    paymentMethod: 'BCA',
+    emailVerified: false,
+  },
+  {
+    name: 'Fitri',
+    email: 'fitri@example.com',
+    password: bcrypt.hashSync('123456', 5),
+    role: 'User',
+    address: {
+      fullName: 'Fitri Handayani',
+      street: 'Jl. Diponegoro No.77',
+      city: 'Bandung',
+      province: 'Jawa Barat',
+      postalCode: '40135',
+      country: 'Indonesia',
+      phone: '081298765432',
+    },
+    paymentMethod: 'BRI',
+    emailVerified: false,
+  }
+
+]
 
 const data: Data = {
+  users,
   products,
   headerMenus: [
     {

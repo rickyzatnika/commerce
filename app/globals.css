@@ -96,3 +96,8 @@ body {
     @apply flex justify-between items-center;
   }
 }
+
+.highlight-link a,
+a.highlight-link {
+  @apply text-sky-700  hover:text-orange-700 hover:underline;
+}
