@@ -61,7 +61,7 @@ export async function POST(req: NextRequest) {
         console.log(`✅ Payment status updated to: ${updatedStatus} for Order ID: ${order_id}`);
 
         // ✅ 6. Response sukses ke Midtrans
-        return NextResponse.json({ success: true, message: "Payment status updated" });
+        return NextResponse.json({ success: true, message: "Payment status updated" }, { status: 200 });
 
     } catch (error) {
         console.error("❌ Webhook processing error:", error);
