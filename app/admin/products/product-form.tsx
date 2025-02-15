@@ -26,48 +26,26 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { toSlug } from '@/lib/utils'
 import { IProductInput } from '@/types'
 
-const productDefaultValues: IProductInput =
-  process.env.NODE_ENV === 'development'
-    ? {
-      name: 'Sample Product',
-      slug: 'sample-product',
-      category: 'Sample Category',
-      images: ['/images/p11-1.jpg'],
-      brand: 'Sample Brand',
-      description: 'This is a sample description of the product.',
-      price: 99.99,
-      listPrice: 0,
-      countInStock: 15,
-      numReviews: 0,
-      avgRating: 0,
-      numSales: 0,
-      isPublished: false,
-      tags: [],
-      sizes: [],
-      colors: [],
-      ratingDistribution: [],
-      reviews: [],
-    }
-    : {
-      name: '',
-      slug: '',
-      category: '',
-      images: [],
-      brand: '',
-      description: '',
-      price: 0,
-      listPrice: 0,
-      countInStock: 0,
-      numReviews: 0,
-      avgRating: 0,
-      numSales: 0,
-      isPublished: false,
-      tags: [],
-      sizes: [],
-      colors: [],
-      ratingDistribution: [],
-      reviews: [],
-    }
+const productDefaultValues: IProductInput = {
+  name: '',
+  slug: '',
+  category: '',
+  images: [],
+  brand: '',
+  description: '',
+  price: 0,
+  listPrice: 0,
+  countInStock: 0,
+  numReviews: 0,
+  avgRating: 0,
+  numSales: 0,
+  isPublished: false,
+  tags: [],
+  sizes: [],
+  colors: [],
+  ratingDistribution: [],
+  reviews: [],
+}
 
 const ProductForm = ({
   type,

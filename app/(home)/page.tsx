@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 import { getAllCategories, getProductsByTag, getProductsForCard } from "@/lib/actions/product.actions";
 import data from "@/lib/data";
-import { toSlug } from "@/lib/utils";
+// import { toSlug } from "@/lib/utils";
 
 export default async function HomePage() {
 
@@ -32,7 +32,7 @@ export default async function HomePage() {
       },
       items: categories.map((category) => ({
         name: category,
-        image: `/images/${toSlug(category)}.jpg`,
+        image: `/images/t.png`,
         href: `/search?category=${category}`,
       })),
     },
