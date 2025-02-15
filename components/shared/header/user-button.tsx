@@ -21,10 +21,16 @@ export default async function UserButton() {
       <DropdownMenu>
         <DropdownMenuTrigger className='header-button' asChild>
           <div className='flex items-center'>
-            <div className='flex flex-col text-xs text-left'>
-              <span>Hi, {session ? session.user.name : 'sign in'}</span>
-              <span className='font-bold'>Account & Orders</span>
-            </div>
+            {session ?
+              <div className='flex flex-col text-xs text-left'>
+                <span>Hi, {session && session.user.name}</span>
+                <span className='font-bold'>Account & Orders</span>
+              </div> :
+              <div className='flex flex-col text-xs text-left'>
+                <span>Hi, Guest!!</span>
+                <span className='font-bold'>SingIn/SignUp</span>
+              </div>
+            }
             <ChevronDown />
           </div>
         </DropdownMenuTrigger>
