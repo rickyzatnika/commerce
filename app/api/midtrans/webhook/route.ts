@@ -37,7 +37,6 @@ export async function POST(req: NextRequest) {
     if (transaction_status === "settlement") {
       updatedStatus = "paid";
       order.isPaid = true;
-      order.isDelivered = true;
       order.paidAt = new Date();
     } else if (transaction_status === "expire") {
       updatedStatus = "expired";
@@ -48,7 +47,6 @@ export async function POST(req: NextRequest) {
     } else if (transaction_status === "capture" && fraud_status === "accept") {
       updatedStatus = "paid";
       order.isPaid = true;
-      order.isDelivered = true;
       order.paidAt = new Date();
     } else if (transaction_status === "capture" && fraud_status !== "accept") {
       updatedStatus = "on-hold";
