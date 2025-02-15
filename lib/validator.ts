@@ -196,3 +196,6 @@ export const UserSignUpSchema = UserSignInSchema.extend({
 
 
 
+export const UserNameSchema = z.object({
+  name: UserName,
+})
