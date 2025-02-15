@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 import Link from 'next/link'
-
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import DeleteDialog from '@/components/shared/delete-dialog'
 import { Button } from '@/components/ui/button'
 import {
@@ -21,7 +21,6 @@ import { IProduct } from '@/lib/db/models/product.model'
 import React, { useEffect, useState, useTransition } from 'react'
 import { Input } from '@/components/ui/input'
 import { formatDateTime, formatId } from '@/lib/utils'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 type ProductListDataProps = {
   products: IProduct[]
