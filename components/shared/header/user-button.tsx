@@ -46,7 +46,7 @@ export default async function UserButton() {
                 </p>
               </div>
             </DropdownMenuLabel>
-            <DropdownMenuGroup>
+            <DropdownMenuGroup className='cursor-pointer'>
               <Link className='w-full' href='/account'>
                 <DropdownMenuItem>Your account</DropdownMenuItem>
               </Link>
@@ -55,7 +55,7 @@ export default async function UserButton() {
               </Link>
 
               {session.user.role === 'Admin' && (
-                <Link className='w-full' href='/admin/overview'>
+                <Link className='w-full' href='/admin'>
                   <DropdownMenuItem>Admin</DropdownMenuItem>
                 </Link>
               )}
