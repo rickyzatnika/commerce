@@ -132,7 +132,7 @@ const ProductList = () => {
                       {product.name}
                     </Link>
                   </TableCell>
-                  <TableCell className='text-right'>${product.price}</TableCell>
+                  <TableCell className='text-right'>Rp{product.price}</TableCell>
                   <TableCell>{product.category}</TableCell>
                   <TableCell>{product.countInStock}</TableCell>
                   <TableCell>{product.avgRating}</TableCell>

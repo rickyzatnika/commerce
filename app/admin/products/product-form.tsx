@@ -262,7 +262,7 @@ const ProductForm = ({
                 <FormLabel>Images</FormLabel>
                 <Card>
                   <CardContent className='space-y-2 mt-2 min-h-48'>
-                    <div className='flex justify-start items-center space-x-3'>
+                    <div className='flex justify-start items-center gap-2 space-x-4'>
                       {images.map((image: string) => (
                         <Image
                           key={image}
@@ -273,7 +273,7 @@ const ProductForm = ({
                           height={100}
                         />
                       ))}
-                      <FormControl className='bg-gray-500/70 rounded-md shadow-md shadow-black/40 text-white w-24 h-20'>
+                      <FormControl >
                         <UploadButton
                           endpoint='imageUploader'
                           onClientUploadComplete={(res: { url: string }[]) => {
