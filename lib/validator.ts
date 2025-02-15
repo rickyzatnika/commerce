@@ -32,6 +32,8 @@ export const ReviewInputSchema = z.object({
     .max(5, 'Rating must be at most 5'),
 })
 
+
+
 export const ProductInputSchema = z.object({
   name: z.string().min(3, 'Name must be at least 3 characters'),
   slug: z.string().min(3, 'Slug must be at least 3 characters'),
@@ -66,6 +68,11 @@ export const ProductInputSchema = z.object({
     .int()
     .nonnegative('Number of sales must be a non-negative number'),
 })
+
+export const ProductUpdateSchema = ProductInputSchema.extend({
+  _id: z.string(),
+})
+
 
 // Order Item
 export const OrderItemSchema = z.object({
@@ -199,3 +206,4 @@ export const UserSignUpSchema = UserSignInSchema.extend({
 export const UserNameSchema = z.object({
   name: UserName,
 })
+
