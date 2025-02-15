@@ -10,14 +10,14 @@ export default function CheckoutLayout({
 }) {
   return (
     <div className='p-4'>
-      <header className='bg-card mb-4 border-b'>
+      <header className='bg-card mb-4 border-b pb-4'>
         <div className='max-w-6xl mx-auto flex justify-between items-center'>
           <Link href='/'>
             <Image
               src='/icons/lg-black.png'
               alt='logo'
-              width={70}
-              height={70}
+              width={50}
+              height={50}
               style={{
                 maxWidth: '100%',
                 height: 'auto',

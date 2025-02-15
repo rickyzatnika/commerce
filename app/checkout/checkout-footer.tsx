@@ -4,12 +4,12 @@ import React from 'react'
 
 export default function CheckoutFooter() {
   return (
-    <div className='border-t-2 space-y-2 my-4 py-4'>
+    <div className='border-t-2 space-y-3 my-4 py-4 text-sm md:text-base '>
       <p>
         Need help? Check our <Link href='/page/help'>Help Center</Link> or{' '}
         <Link href='/page/contact-us'>Contact Us</Link>{' '}
       </p>
-      <p>
+      <p className='antialiased leading-5'>
         For an item ordered from {APP_NAME}: When you click the &apos;Place Your
         Order&apos; button, we will send you an e-mail acknowledging receipt of
         your order. Your contract to purchase an item will not be complete until

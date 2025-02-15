@@ -7,8 +7,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { getAllCategories } from '@/lib/actions/product.actions';
 
-const categories = ["T-shirt", "Hoodie", "Jeans",];
+const categories = await getAllCategories()
 
 const Search = () => {
   return (

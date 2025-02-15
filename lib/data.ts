@@ -972,10 +972,10 @@ const data: Data = {
   products,
 
   headerMenus: [
-    {
-      name: "Today's Deal",
-      href: '/search?tag=todays-deal',
-    },
+    // {
+    //   name: "Today's Deal",
+    //   href: '/search?tag=todays-deal',
+    // },
     {
       name: 'New Arrivals',
       href: '/search?tag=new-arrival',
@@ -988,21 +988,18 @@ const data: Data = {
       name: 'Best Sellers',
       href: '/search?tag=best-seller',
     },
-    {
-      name: 'Browsing History',
-      href: '/#browsing-history',
-    },
+
     {
       name: 'Customer Service',
-      href: '/page/customer-service',
+      href: '/customer-service',
     },
     {
       name: 'About Us',
-      href: '/page/about-us',
+      href: '/about-us',
     },
     {
       name: 'Help',
-      href: '/page/help',
+      href: '/help',
     },
   ],
   carousels: [
