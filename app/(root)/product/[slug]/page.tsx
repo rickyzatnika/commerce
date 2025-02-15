@@ -142,11 +142,14 @@ export default async function ProductDetails(props: {
                 )}
               </CardContent>
             </Card>
-
-
-
           </div>
         </div>
+      </section>
+      <section className='mt-10'>
+        <h2 className='h2-bold mb-2' id='reviews'>
+          Customer Reviews
+        </h2>
+        <ReviewList product={product} userId={session?.user.id} />
       </section>
 
       <section className='mt-10'>
@@ -159,12 +162,7 @@ export default async function ProductDetails(props: {
       <section>
         <BrowsingHistoryList className='mt-10' />
       </section>
-      <section className='mt-10'>
-        <h2 className='h2-bold mb-2' id='reviews'>
-          Customer Reviews
-        </h2>
-        <ReviewList product={product} userId={session?.user.id} />
-      </section>
+
     </div>
   )
 }
