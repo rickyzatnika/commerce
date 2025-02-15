@@ -101,3 +101,7 @@ body {
 a.highlight-link {
   @apply text-sky-700  hover:text-orange-700 hover:underline;
 }
+
+.flex-between {
+  @apply flex justify-between items-center;
+}

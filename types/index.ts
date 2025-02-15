@@ -8,6 +8,7 @@ import {
   UserSignInSchema,
   UserSignUpSchema,
   OrderInputSchema,
+  ReviewInputSchema,
 } from '@/lib/validator'
 
 
@@ -29,6 +30,21 @@ export type Data = {
     buttonCaption: string
     isPublished: boolean
   }[]
+
+  reviews: {
+    title: string
+    rating: number
+    comment: string
+  }[]
+}
+
+export type IReviewInput = z.infer<typeof ReviewInputSchema>
+export type IReviewDetails = IReviewInput & {
+  _id: string
+  createdAt: string
+  user: {
+    name: string
+  }
 }
 
 export type OrderItem = z.infer<typeof OrderItemSchema>
