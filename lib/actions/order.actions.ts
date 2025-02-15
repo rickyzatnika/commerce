@@ -8,7 +8,7 @@ import { auth } from '@/auth'
 import { OrderInputSchema } from '../validator'
 import Order, { IOrder } from '../db/models/order.model'
 import midtransClient from 'midtrans-client'
-
+import { sendPurchaseReceipt } from "@/emails";
 
 
 
@@ -183,7 +183,7 @@ export async function createMidtransTransaction(orderId: string) {
     }
 
     await order.save()
-
+    await sendPurchaseReceipt({ order });
 
     return {
       success: true,

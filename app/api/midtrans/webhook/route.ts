@@ -1,4 +1,4 @@
-import { sendPurchaseReceipt } from "@/emails";
+
 import Order from "@/lib/db/models/order.model";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
     order.paymentResult.status = updatedStatus;
 
     await order.save();
-    await sendPurchaseReceipt({ order });
+
 
     // ✅ 6. Response sukses ke Midtrans
     return NextResponse.json({ success: true, message: "Payment status updated" }, { status: 200 });
