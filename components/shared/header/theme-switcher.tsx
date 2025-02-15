@@ -6,7 +6,6 @@ import * as React from 'react'
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuLabel,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
@@ -37,14 +36,12 @@ export default function ThemeSwitcher() {
           </div>
         )}
       </DropdownMenuTrigger>
-      <DropdownMenuContent className='w-56'>
-        <DropdownMenuLabel>Theme</DropdownMenuLabel>
-
+      <DropdownMenuContent className='w-40'>
         <DropdownMenuRadioGroup value={theme} onValueChange={changeTheme}>
-          <DropdownMenuRadioItem value='dark'>
+          <DropdownMenuRadioItem className='cursor-pointer' value='dark'>
             <Moon className='h-4 w-4 mr-1' /> Dark
           </DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value='light'>
+          <DropdownMenuRadioItem className='cursor-pointer' value='light'>
             <Sun className='h-4 w-4 mr-1' /> Light
           </DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>

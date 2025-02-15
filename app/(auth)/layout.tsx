@@ -1,5 +1,5 @@
-import { APP_COPYRIGHT } from '@/lib/constants'
-import Image from 'next/image'
+
+import { APP_COPYRIGHT, APP_NAME } from '@/lib/constants'
 import Link from 'next/link'
 import React from 'react'
 
@@ -10,20 +10,15 @@ export default async function AuthLayout({
 }) {
   return (
     <div className='flex flex-col items-center min-h-screen highlight-link  '>
-      <header className='mt-8'>
-        <Link href='/'>
-          <Image
-            src='/icons/lg-black.png'
-            alt='logo'
-            width={64}
-            height={64}
-            priority
-            style={{
-              maxWidth: '100%',
-              height: 'auto',
-            }}
-          />
-        </Link>
+      <header className='pt-5'>
+        <div className='space-x-1'>
+          <span>Welcome to</span>
+          <Link href='/'>
+            <span className='text-lg font-bold underline text-black dark:text-white'>
+              {APP_NAME}
+            </span>
+          </Link>
+        </div>
       </header>
       <main className='mx-auto max-w-sm min-w-80 p-4'>{children}</main>
       <footer className=' flex-1 mt-8  bg-gray-800 w-full flex flex-col gap-4 items-center p-8 text-sm'>
