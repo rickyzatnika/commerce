@@ -126,11 +126,9 @@ export default function OrderPaymentForm({
                 <Button className='w-full rounded-full' onClick={handleMidtransPayment}>
                   Pay Now
                 </Button>
-                <Button className='w-full rounded-full' variant='outline' onClick={() => window.location.reload()}>Check</Button>
+                <Button className='w-full rounded-full' variant='outline' onClick={() => router.push(`/account/orders/${order._id}`)}>View Order</Button>
               </div>
             )}
-
-
           </div>
         </div>
       </CardContent>
