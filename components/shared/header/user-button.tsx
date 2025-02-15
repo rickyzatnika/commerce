@@ -46,17 +46,17 @@ export default async function UserButton() {
                 </p>
               </div>
             </DropdownMenuLabel>
-            <DropdownMenuGroup className='cursor-pointer'>
+            <DropdownMenuGroup >
               <Link className='w-full' href='/account'>
-                <DropdownMenuItem>Your account</DropdownMenuItem>
+                <DropdownMenuItem className='cursor-pointer'>Your account</DropdownMenuItem>
               </Link>
               <Link className='w-full' href='/account/orders'>
-                <DropdownMenuItem>Your orders</DropdownMenuItem>
+                <DropdownMenuItem className='cursor-pointer'>Your orders</DropdownMenuItem>
               </Link>
 
               {session.user.role === 'Admin' && (
                 <Link className='w-full' href='/admin'>
-                  <DropdownMenuItem>Admin</DropdownMenuItem>
+                  <DropdownMenuItem className='cursor-pointer'>Admin</DropdownMenuItem>
                 </Link>
               )}
             </DropdownMenuGroup>
@@ -74,7 +74,7 @@ export default async function UserButton() {
         ) : (
           <DropdownMenuContent className='w-56' align='end' forceMount>
             <DropdownMenuGroup>
-              <DropdownMenuItem>
+              <DropdownMenuItem className='cursor-pointer'>
                 <Link
                   className={cn(buttonVariants(), 'w-full')}
                   href='/sign-in'
