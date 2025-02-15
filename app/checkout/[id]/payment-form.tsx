@@ -9,6 +9,7 @@ import CheckoutFooter from '../checkout-footer'
 import { Button } from '@/components/ui/button'
 import ProductPrice from '@/components/shared/product/product-price'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 
 export default function OrderPaymentForm({
@@ -22,7 +23,7 @@ export default function OrderPaymentForm({
 }) {
   const { toast } = useToast();
   const router = useRouter()
-
+  const [loading, setLoading] = useState(false)
   const {
     shippingAddress,
     items,
@@ -41,11 +42,14 @@ export default function OrderPaymentForm({
   }
 
   const handleMidtransPayment = async () => {
+    setLoading(true)
+
     const res = await createMidtransTransaction(order._id)
     if (!res.success)
       return toast({
         description: res.message,
         variant: 'destructive',
+
       })
     const token = res.data?.token
 
@@ -62,6 +66,7 @@ export default function OrderPaymentForm({
     document.body.appendChild(snapScript)
 
     snapScript.onload = () => {
+      setLoading(false)
       window.snap.pay(token, {
         onSuccess: () => {
           toast({ description: 'Payment successful!', variant: 'default' })
@@ -74,6 +79,7 @@ export default function OrderPaymentForm({
           toast({ description: 'Payment failed.', variant: 'destructive' })
         },
       })
+
     }
   }
 
@@ -117,14 +123,14 @@ export default function OrderPaymentForm({
                 <ProductPrice price={totalPrice} plain />
               </span>
             </div>
-
-            <Button className={`${order?.paymentResult ? 'hidden' : 'block'} w-full rounded-full`} onClick={handleMidtransPayment}>
-              Pay Now
+            <Button className={`${order.isPaid == true ? 'hidden' : 'block'} w-full rounded-full mt-4`} onClick={handleMidtransPayment}>
+              {loading ? 'Loading...' : 'Pay Now'}
             </Button>
-            {order?.paymentResult && (
-              <div className='flex gap-2 w-full justify-between'>
+
+            {order.isPaid === true && (
+              <div className='flex gap-2 w-full justify-between pt-4'>
                 <Button className='w-full rounded-full' onClick={handleMidtransPayment}>
-                  Pay Now
+                  {loading ? 'Loading...' : 'Pay Now'}
                 </Button>
                 <Button className='w-full rounded-full' variant='outline' onClick={() => router.push(`/account/orders/${order._id}`)}>View Order</Button>
               </div>

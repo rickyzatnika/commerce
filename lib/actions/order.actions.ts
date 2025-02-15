@@ -2,7 +2,7 @@
 'use server'
 import { Cart, OrderItem, ShippingAddress } from '@/types'
 import { formatError, round2 } from '../utils'
-import { AVAILABLE_DELIVERY_DATES } from '../constants'
+import { AVAILABLE_DELIVERY_DATES, PAGE_SIZE } from '../constants'
 import { connectToDatabase } from '../db'
 import { auth } from '@/auth'
 import { OrderInputSchema } from '../validator'
@@ -119,7 +119,6 @@ export async function getOrderById(orderId: string): Promise<IOrder> {
 
 
 // MID_TRANS ENDPOINT
-
 const snap = new midtransClient.Snap({
   isProduction: false,
   serverKey: process.env.MIDTRANS_SERVER_KEY as string,
@@ -193,5 +192,36 @@ export async function createMidtransTransaction(orderId: string) {
   } catch (error) {
     console.error('Midtrans Error:', error)
     return { success: false, message: "Error saat membuat transaksi Midtrans" }
+  }
+}
+
+
+
+// GET
+export async function getMyOrders({
+  limit,
+  page,
+}: {
+  limit?: number
+  page: number
+}) {
+  limit = limit || PAGE_SIZE
+  await connectToDatabase()
+  const session = await auth()
+  if (!session) {
+    throw new Error('User is not authenticated')
+  }
+  const skipAmount = (Number(page) - 1) * limit
+  const orders = await Order.find({
+    user: session?.user?.id,
+  })
+    .sort({ createdAt: 'desc' })
+    .skip(skipAmount)
+    .limit(limit)
+  const ordersCount = await Order.countDocuments({ user: session?.user?.id })
+
+  return {
+    data: JSON.parse(JSON.stringify(orders)),
+    totalPages: Math.ceil(ordersCount / limit),
   }
 }
