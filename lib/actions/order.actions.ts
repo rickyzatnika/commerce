@@ -7,9 +7,8 @@ import { connectToDatabase } from '../db'
 import { auth } from '@/auth'
 import { OrderInputSchema } from '../validator'
 import Order, { IOrder } from '../db/models/order.model'
-import { revalidatePath } from 'next/cache'
-import { sendPurchaseReceipt } from '@/emails'
 import midtransClient from 'midtrans-client'
+
 
 
 // CREATE
@@ -183,8 +182,6 @@ export async function createMidtransTransaction(orderId: string) {
     }
 
     await order.save()
-    await sendPurchaseReceipt({ order })
-    revalidatePath(`/account/orders/${orderId}`)
 
     return {
       success: true,

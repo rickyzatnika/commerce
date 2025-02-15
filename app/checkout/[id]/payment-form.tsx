@@ -6,9 +6,9 @@ import { createMidtransTransaction } from '@/lib/actions/order.actions'
 import { IOrder } from '@/lib/db/models/order.model'
 import { formatDateTime } from '@/lib/utils'
 import CheckoutFooter from '../checkout-footer'
-import { redirect } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import ProductPrice from '@/components/shared/product/product-price'
+import { useRouter } from 'next/navigation'
 
 
 export default function OrderPaymentForm({
@@ -20,7 +20,8 @@ export default function OrderPaymentForm({
   midtransClientKey: string
   isAdmin: boolean
 }) {
-  const { toast } = useToast()
+  const { toast } = useToast();
+  const router = useRouter()
 
   const {
     shippingAddress,
@@ -36,7 +37,7 @@ export default function OrderPaymentForm({
   } = order
 
   if (isPaid) {
-    redirect(`/account/orders/${order._id}`)
+    router.push(`/account/orders/${order._id}`);
   }
 
   const handleMidtransPayment = async () => {
@@ -64,7 +65,7 @@ export default function OrderPaymentForm({
       window.snap.pay(token, {
         onSuccess: () => {
           toast({ description: 'Payment successful!', variant: 'default' })
-          redirect(`/account/orders/${order._id}`)
+          router.push(`/account/orders/${order._id}`)
         },
         onPending: () => {
           toast({ description: 'Waiting for payment...', variant: 'default' })

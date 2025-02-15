@@ -23,7 +23,7 @@ type OrderInformationProps = {
 
 PurchaseReceiptEmail.PreviewProps = {
   order: {
-    _id: '123',
+    _id: '1234',
     isPaid: true,
     paidAt: new Date(),
     totalPrice: 100,
