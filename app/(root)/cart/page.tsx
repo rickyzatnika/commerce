@@ -11,7 +11,8 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import useCartStore from '@/hooks/use-cart-store'
-import { APP_NAME, FREE_SHIPPING_MIN_PRICE } from '@/lib/constants'
+import { APP_NAME } from '@/lib/constants'
+import { ShoppingCart } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -30,18 +31,19 @@ export default function CartPage() {
         {items.length === 0 ? (
           <Card className='col-span-4 rounded-none'>
             <CardHeader className='text-3xl  '>
-              Your Shopping Cart is empty
+              Keranjang Belanja Anda kosong
             </CardHeader>
             <CardContent>
-              Continue shopping on <Link href='/'>{APP_NAME}</Link>
+              Lanjutkan berbelanja <Link href='/'>{APP_NAME}</Link>
             </CardContent>
           </Card>
         ) : (
           <>
             <div className='col-span-3'>
               <Card className='rounded-none'>
-                <CardHeader className='text-3xl pb-0'>
-                  Shopping Cart
+                <CardHeader className='text-2xl items-center gap-2 pb-0'>
+                  <ShoppingCart className='text-xl w-10 h-10 text-yellow-400' />
+                  <span>Keranjang Belanja</span>
                 </CardHeader>
                 <CardContent className='p-4'>
                   <div className='flex justify-end border-b mb-4'>Price</div>
@@ -147,39 +149,22 @@ export default function CartPage() {
             <div>
               <Card className='rounded-none'>
                 <CardContent className='py-4 space-y-4'>
-                  {itemsPrice < FREE_SHIPPING_MIN_PRICE ? (
-                    <div className='flex-1'>
-                      Add{' '}
-                      <span className='text-green-700'>
-                        <ProductPrice
-                          price={FREE_SHIPPING_MIN_PRICE - itemsPrice}
-                          plain
-                        />
-                      </span>{' '}
-                      of eligible items to your order to qualify for FREE
-                      Shipping
-                    </div>
-                  ) : (
-                    <div className='flex-1'>
-                      <span className='text-green-700'>
-                        Your order qualifies for FREE Shipping
-                      </span>{' '}
-                      Choose this option at checkout
-                    </div>
-                  )}
                   <div className='text-lg'>
-                    Subtotal (
-                    {items.reduce((acc, item) => acc + item.quantity, 0)}{' '}
-                    items):{' '}
-                    <span className='font-bold'>
-                      <ProductPrice price={itemsPrice} plain />
-                    </span>{' '}
+                    <div className='w-full flex gap-4'>
+                      <span>Item: </span>
+                      <span>{items.reduce((acc, item) => acc + item.quantity, 0)}{' '}</span>
+                    </div>
+                    <div className='w-full flex gap-3'>
+                      Total:
+                      <span className='font-bold'>
+                        <ProductPrice price={itemsPrice} plain />
+                      </span>{' '}
+                    </div>
                   </div>
                   <Button
                     onClick={() => router.push('/checkout')}
-                    className='rounded-full w-full'
-                  >
-                    Proceed to Checkout
+                    className='rounded-full w-full'>
+                    Lanjutkan Pembayaran
                   </Button>
                 </CardContent>
               </Card>

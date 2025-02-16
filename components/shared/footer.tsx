@@ -93,7 +93,7 @@ export default function Footer() {
           {/* Metode Pembayaran */}
           <div>
             <h3 className="text-md font-semibold mb-3">Metode Pembayaran</h3>
-            <div className="grid grid-cols-4 md:grid-cols-3 lg:grid-cols-4 gap-2">
+            <div className="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-3 gap-2">
               {data.map((d) => (
                 <Image key={d.id} src={d.src} alt="logo" width={60} height={40} className="object-contain bg-white p-1 shadow" />
               ))}
@@ -105,17 +105,17 @@ export default function Footer() {
             <h3 className="text-md font-semibold mb-3">Partner Kami</h3>
             <div className="space-y-2 flex flex-row md:flex-col items-start gap-3">
               <Image src="/icons/midtrans.png" alt='logo-midtrans' width={100} height={75} priority={true} className='bg-white p-1' />
-              <Image src="/icons/depe.png" alt='logo-midtrans' width={100} height={75} priority={true} className='bg-white p-1' />
+              <Image src="/icons/depe.png" alt='logo-midtrans' width={100} height={75} priority={true} className='bg-white p-1 py-3' />
             </div>
           </div>
 
           {/* Layanan Pelanggan */}
           <div>
             <h3 className="text-md font-semibold mb-3">Layanan Pelanggan</h3>
-            <div className="flex flex-col space-y-2 text-sm">
-              <Link href="/page/help" className="hover:underline">Pusat Bantuan</Link>
-              <Link href="/page/help" className="hover:underline">Customer Service</Link>
-              <Link href="/page/help" className="hover:underline">Hubungi Kami</Link>
+            <div className="flex flex-col space-y-2 text-sm text-gray-700 ">
+              <Link href="/help" className="hover:underline hover:text-black">Pusat Bantuan</Link>
+              <Link href="/customer-service" className="hover:underline hover:text-black">Customer Service</Link>
+              <Link href="/contact-us" className="hover:underline hover:text-black">Hubungi Kami</Link>
             </div>
           </div>
 

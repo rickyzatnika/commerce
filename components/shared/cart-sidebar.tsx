@@ -15,7 +15,7 @@ import {
 } from '../ui/select'
 import { TrashIcon } from 'lucide-react'
 import ProductPrice from './product/product-price'
-import { FREE_SHIPPING_MIN_PRICE } from '@/lib/constants'
+// import { FREE_SHIPPING_MIN_PRICE } from '@/lib/constants'
 
 export default function CartSidebar() {
   const {
@@ -33,11 +33,13 @@ export default function CartSidebar() {
             <div className='font-bold'>
               <ProductPrice price={itemsPrice} plain />
             </div>
-            {itemsPrice > FREE_SHIPPING_MIN_PRICE && (
-              <div className=' text-center text-xs'>
-                Your order qualifies for FREE Shipping
-              </div>
-            )}
+            {/* {itemsPrice > FREE_SHIPPING_MIN_PRICE && (
+                // NOT WORKING
+             )} */}
+            <div className='text-center text-xs'>
+              <span className='text-red-500 font-semibold animate-ping-slow'>GRATIS ONGKIR!</span>
+            </div>
+
 
             <Link
               className={cn(
@@ -46,7 +48,7 @@ export default function CartSidebar() {
               )}
               href='/cart'
             >
-              Go to Cart
+              Lihat Keranjang
             </Link>
             <Separator className='mt-3' />
           </div>

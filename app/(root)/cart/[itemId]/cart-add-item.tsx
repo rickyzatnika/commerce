@@ -8,7 +8,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import useCartStore from '@/hooks/use-cart-store'
-import { FREE_SHIPPING_MIN_PRICE } from '@/lib/constants'
+
 import BrowsingHistoryList from '@/components/shared/browsing-history-list'
 
 export default function CartAddItem({ itemId }: { itemId: string }) {
@@ -27,8 +27,9 @@ export default function CartAddItem({ itemId }: { itemId: string }) {
               <Image
                 src={item.image}
                 alt={item.name}
-                width={80}
-                height={80}
+                width={100}
+                height={75}
+                priority
                 style={{
                   maxWidth: '100%',
                   height: 'auto',
@@ -36,15 +37,15 @@ export default function CartAddItem({ itemId }: { itemId: string }) {
               />
             </Link>
             <div>
-              <h3 className='text-xl font-bold flex gap-2 my-2'>
-                <CheckCircle2Icon className='h-6 w-6 text-green-700' />
-                Added to cart
+              <h3 className='text-sm font-semibold flex gap-2 my-2'>
+                <CheckCircle2Icon className='h-8 w-8 text-green-700' />
+                Ditambahkan ke Keranjang
               </h3>
-              <p className='text-sm'>
-                <span className='font-bold'> Color: </span>{' '}
+              <p className='text-sm uppercase'>
+                <span className='font-bold capitalize'> Color: </span>{' '}
                 {item.color ?? '-'}
               </p>
-              <p className='text-sm'>
+              <p className='text-sm '>
                 <span className='font-bold'> Size: </span>{' '}
                 {item.size ?? '-'}
               </p>
@@ -55,27 +56,7 @@ export default function CartAddItem({ itemId }: { itemId: string }) {
           <CardContent className='p-4 h-full'>
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
               <div className='flex justify-center items-center'>
-                {itemsPrice < FREE_SHIPPING_MIN_PRICE ? (
-                  <div className='text-center '>
-                    Add
-                    <span className='text-green-700'>
-                      <ProductPrice
-                        price={FREE_SHIPPING_MIN_PRICE - itemsPrice}
-                        plain
-                      />
-                    </span> of eligible items to your order to qualify for FREE
-                    Shipping
-                  </div>
-                ) : (
-                  <div className='flex items-center'>
-                    <div>
-                      <span className='text-green-700'>
-                        Your order qualifies for FREE Shipping.
-                      </span>{' '}
-                      Choose this option at checkout.
-                    </div>
-                  </div>
-                )}
+                <p className='text-red-500 txt-xl font-semibold animate-bounce'>GRATIS ONGKIR!</p>
               </div>
               <div className='lg:border-l lg:border-muted lg:pl-3 flex flex-col items-center gap-3  '>
                 <div className='flex gap-3'>
@@ -86,7 +67,7 @@ export default function CartAddItem({ itemId }: { itemId: string }) {
                   href='/checkout'
                   className={cn(buttonVariants(), 'rounded-full w-full')}
                 >
-                  Proceed to checkout (
+                  Lanjutkan Pembayaran (
                   {items.reduce((a, c) => a + c.quantity, 0)} items)
                 </Link>
                 <Link
@@ -96,7 +77,7 @@ export default function CartAddItem({ itemId }: { itemId: string }) {
                     'rounded-full w-full'
                   )}
                 >
-                  Go to Cart
+                  Lihat Keranjang
                 </Link>
               </div>
             </div>

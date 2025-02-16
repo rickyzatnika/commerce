@@ -148,11 +148,11 @@ const CheckoutForm = () => {
               className='rounded-full w-full'
               onClick={handleSelectShippingAddress}
             >
-              Ship to this address
+              Kirim ke alamat ini
             </Button>
             <p className='text-xs text-center py-2'>
-              Choose a shipping address and payment method in order to calculate
-              shipping, handling, and tax.
+              Pilih alamat pengiriman dan metode pembayaran untuk menghitung
+              pengiriman, penanganan, dan pajak.
             </p>
           </div>
         )}
@@ -172,30 +172,19 @@ const CheckoutForm = () => {
             </p>
           </div>
         )} */}
-        {isAddressSelected && (
-          <div>
-            <Button onClick={handlePlaceOrder} className='rounded-full w-full'>
-              Place Your Order
-            </Button>
-            <p className='text-xs text-center py-2'>
-              By placing your order, you agree to {APP_NAME}&apos;s{' '}
-              <Link href='/page/privacy-policy'>privacy notice</Link> and
-              <Link href='/page/conditions-of-use'> conditions of use</Link>.
-            </p>
-          </div>
-        )}
+
 
         <div>
-          <div className='text-lg font-bold'>Order Summary</div>
+          <div className='text-lg font-bold mb-5'>Rincian Pesanan :</div>
           <div className='space-y-2'>
             <div className='flex justify-between'>
-              <span>Items:</span>
+              <span className='text-sm'>Harga Barang :</span>
               <span>
                 <ProductPrice price={itemsPrice} plain />
               </span>
             </div>
             <div className='flex justify-between'>
-              <span>Shipping & Handling:</span>
+              <span className='text-sm'>Pengiriman & Penanganan :</span>
               <span>
                 {shippingPrice === undefined ? (
                   '--'
@@ -207,7 +196,7 @@ const CheckoutForm = () => {
               </span>
             </div>
             <div className='flex justify-between'>
-              <span> Tax:</span>
+              <span className='text-sm'> Pajak 12% :</span>
               <span>
                 {taxPrice === undefined ? (
                   '--'
@@ -217,11 +206,29 @@ const CheckoutForm = () => {
               </span>
             </div>
             <div className='flex justify-between  pt-4 font-bold text-lg'>
-              <span> Order Total:</span>
+              <span> Order Total :</span>
               <span>
                 <ProductPrice price={totalPrice} plain />
               </span>
             </div>
+            {isAddressSelected && (
+              <div>
+                <Button onClick={handlePlaceOrder} className='rounded-full w-full'>
+                  Lanjutkan Pembayaran
+                </Button>
+                <p className='text-xs text-center py-2'>
+                  {' '}
+                  Dengan melakukan pemesanan, Anda menyetujui {' '}<Link href='/privacy-policy'>
+                    Kebijakan Privasi
+                  </Link> dan
+                  <Link href='/conditions-of-use'>
+                    {' '}
+                    ketentuan Penggunaan
+                  </Link>
+                  {' '}{APP_NAME}.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </CardContent>
@@ -238,7 +245,7 @@ const CheckoutForm = () => {
               <div className='grid grid-cols-1 md:grid-cols-12    my-3  pb-3'>
                 <div className='col-span-5 flex text-lg font-bold '>
                   <span className='w-8'>1 </span>
-                  <span>Shipping address</span>
+                  <span>Alamat Pengiriman</span>
                 </div>
                 <div className='col-span-5 '>
                   <p>
@@ -255,7 +262,7 @@ const CheckoutForm = () => {
                       setIsDeliveryDateSelected(true)
                     }}
                   >
-                    Change
+                    Ganti
                   </Button>
                 </div>
               </div>
@@ -263,7 +270,7 @@ const CheckoutForm = () => {
               <>
                 <div className='flex text-primary text-lg font-bold my-2'>
                   <span className='w-8'>1 </span>
-                  <span>Enter shipping address</span>
+                  <span>Masukkan Alamat Pengiriman</span>
                 </div>
                 <Form {...shippingAddressForm}>
                   <form
@@ -276,7 +283,7 @@ const CheckoutForm = () => {
                     <Card className='md:ml-8 my-4'>
                       <CardContent className='p-4 space-y-2'>
                         <div className='text-lg font-bold mb-2'>
-                          Your address
+                          Alamat Anda
                         </div>
 
                         <div className='flex flex-col gap-5 md:flex-row'>
@@ -285,7 +292,7 @@ const CheckoutForm = () => {
                             name='fullName'
                             render={({ field }) => (
                               <FormItem className='w-full'>
-                                <FormLabel>Full Name</FormLabel>
+                                <FormLabel>Nama Lengkap</FormLabel>
                                 <FormControl>
                                   <Input
                                     placeholder='Enter full name'
@@ -303,7 +310,7 @@ const CheckoutForm = () => {
                             name='street'
                             render={({ field }) => (
                               <FormItem className='w-full'>
-                                <FormLabel>Address</FormLabel>
+                                <FormLabel>Alamat Lengkap</FormLabel>
                                 <FormControl>
                                   <Input
                                     placeholder='Enter address'
@@ -321,7 +328,7 @@ const CheckoutForm = () => {
                             name='city'
                             render={({ field }) => (
                               <FormItem className='w-full'>
-                                <FormLabel>City</FormLabel>
+                                <FormLabel>Kota</FormLabel>
                                 <FormControl>
                                   <Input placeholder='Enter city' {...field} />
                                 </FormControl>
@@ -334,7 +341,7 @@ const CheckoutForm = () => {
                             name='province'
                             render={({ field }) => (
                               <FormItem className='w-full'>
-                                <FormLabel>Province</FormLabel>
+                                <FormLabel>Provinsi</FormLabel>
                                 <FormControl>
                                   <Input
                                     placeholder='Enter province'
@@ -350,7 +357,7 @@ const CheckoutForm = () => {
                             name='country'
                             render={({ field }) => (
                               <FormItem className='w-full'>
-                                <FormLabel>Country</FormLabel>
+                                <FormLabel>Negara</FormLabel>
                                 <FormControl>
                                   <Input
                                     placeholder='Enter country'
@@ -368,7 +375,7 @@ const CheckoutForm = () => {
                             name='postalCode'
                             render={({ field }) => (
                               <FormItem className='w-full'>
-                                <FormLabel>Postal Code</FormLabel>
+                                <FormLabel>Kode POS</FormLabel>
                                 <FormControl>
                                   <Input
                                     placeholder='Enter postal code'
@@ -384,7 +391,7 @@ const CheckoutForm = () => {
                             name='phone'
                             render={({ field }) => (
                               <FormItem className='w-full'>
-                                <FormLabel>Phone number</FormLabel>
+                                <FormLabel>Nomor Handphone</FormLabel>
                                 <FormControl>
                                   <Input
                                     placeholder='Enter phone number'
@@ -402,7 +409,7 @@ const CheckoutForm = () => {
                           type='submit'
                           className='rounded-full font-bold'
                         >
-                          Ship to this address
+                          Lanjutkan
                         </Button>
                       </CardFooter>
                     </Card>
@@ -485,7 +492,7 @@ const CheckoutForm = () => {
               <div className='grid  grid-cols-1 md:grid-cols-12  my-3 pb-3'>
                 <div className='flex text-md font-bold  col-span-5'>
                   <span className='w-8'>2 </span>
-                  <span>Items and shipping</span>
+                  <span>Barang dan Pengiriman</span>
                 </div>
                 <div className='col-span-5'>
                   <p>
@@ -515,7 +522,7 @@ const CheckoutForm = () => {
                       setIsDeliveryDateSelected(false)
                     }}
                   >
-                    Change
+                    Ganti
                   </Button>
                 </div>
               </div>
@@ -523,7 +530,7 @@ const CheckoutForm = () => {
               <>
                 <div className='flex text-primary text-md font-bold my-2'>
                   <span className='w-8'>2 </span>
-                  <span>Periksa Pesanan Anda</span>
+                  <span>Periksa Pesanan dan Pilih Jasa Pengiriman</span>
                 </div>
                 <Card className='md:ml-8'>
                   <CardContent className='p-4'>
@@ -572,7 +579,7 @@ const CheckoutForm = () => {
                                     </SelectItem>
                                   ))}
                                   <SelectItem key='delete' value='0'>
-                                    Delete
+                                    Hapus
                                   </SelectItem>
                                 </SelectContent>
                               </Select>
@@ -582,7 +589,7 @@ const CheckoutForm = () => {
                       </div>
                       <div>
                         <div className=' font-bold'>
-                          <p className='mb-2'> Pilih Jasa Pengiriman</p>
+                          <p className='mb-2'>Jasa Pengiriman</p>
 
                           <ul>
                             <RadioGroup
@@ -605,28 +612,33 @@ const CheckoutForm = () => {
                                     className='pl-2 space-y-2 cursor-pointer'
                                     htmlFor={`address-${dd.name}`}
                                   >
-
                                     <div className='font-semibold space-x-2'>
                                       <span>{dd.name}</span>
-                                      <span className='text-green-700 '>{
-                                        formatDateTime(
-                                          calculateFutureDate(dd.daysToDeliver)
-                                        ).dateOnly
-                                      }</span>
+                                      <div className='flex gap-1 items-center pt-2'>
+                                        <p>{dd.desc}</p>
+                                        <i className='text-xs'>diterima</i>
+                                        <p className='text-green-700 '>{
+                                          formatDateTime(
+                                            calculateFutureDate(dd.daysToDeliver)
+                                          ).dateOnly
+                                        }</p>
+                                        <div>
+                                          {(dd.freeShippingMinPrice > 0 &&
+                                            itemsPrice >= dd.freeShippingMinPrice
+                                            ? 0
+                                            : dd.shippingPrice) === 0 ? (
+                                            'Free'
+                                          ) : (
+                                            <ProductPrice
+                                              price={dd.shippingPrice}
+                                              plain
+                                            />
+                                          )}
+                                        </div>
+                                      </div>
+
                                     </div>
-                                    <div>
-                                      {(dd.freeShippingMinPrice > 0 &&
-                                        itemsPrice >= dd.freeShippingMinPrice
-                                        ? 0
-                                        : dd.shippingPrice) === 0 ? (
-                                        'FREE Shipping'
-                                      ) : (
-                                        <ProductPrice
-                                          price={dd.shippingPrice}
-                                          plain
-                                        />
-                                      )}
-                                    </div>
+
                                   </Label>
                                 </div>
                               ))}
@@ -641,7 +653,7 @@ const CheckoutForm = () => {
             ) : (
               <div className='flex text-muted-foreground text-lg font-bold my-4 py-3'>
                 <span className='w-8'>2 </span>
-                <span>Items and shipping</span>
+                <span>Barang dan Pengiriman</span>
               </div>
             )}
           </div>
@@ -650,11 +662,11 @@ const CheckoutForm = () => {
               <div className='block md:hidden'>
                 <CheckoutSummary />
               </div>
-
+              {/* BUTTON PLACE ORDER */}
               <Card className='hidden md:block '>
                 <CardContent className='p-4 flex flex-col md:flex-row justify-between items-center gap-3'>
                   <Button onClick={handlePlaceOrder} className='rounded-full'>
-                    Place Your Order
+                    Lanjutkan Pembayaran
                   </Button>
                   <div className='flex-1'>
                     <p className='font-bold text-lg'>
@@ -662,14 +674,14 @@ const CheckoutForm = () => {
                     </p>
                     <p className='text-xs'>
                       {' '}
-                      By placing your order, you agree to {APP_NAME}&apos;s <Link href='/page/privacy-policy'>
-                        privacy notice
-                      </Link> and
-                      <Link href='/page/conditions-of-use'>
+                      Dengan melakukan pemesanan, Anda menyetujui {' '}<Link href='/privacy-policy'>
+                        Kebijakan Privasi
+                      </Link> dan
+                      <Link href='/conditions-of-use'>
                         {' '}
-                        conditions of use
+                        ketentuan Penggunaan
                       </Link>
-                      .
+                      {' '}{APP_NAME}.
                     </p>
                   </div>
                 </CardContent>

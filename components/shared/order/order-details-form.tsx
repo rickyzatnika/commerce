@@ -58,14 +58,14 @@ export default function OrderDetailsForm({
 
             {isDelivered ? (
               <Badge>
-                Delivered at {formatDateTime(deliveredAt!).dateTime}
+                Dikirim pada {' '}{formatDateTime(deliveredAt!).dateTime}
               </Badge>
             ) : (
               <div>
                 {' '}
                 <Badge variant='destructive'>Not delivered</Badge>
                 <div>
-                  Expected delivery at{' '}
+                  Perkiraan pengiriman pada{' '}
                   {formatDateTime(expectedDeliveryDate!).dateTime}
                 </div>
               </div>
@@ -173,7 +173,7 @@ export default function OrderDetailsForm({
                 className={cn(buttonVariants(), 'w-full')}
                 href={`/checkout/${order._id}`}
               >
-                Pay Order
+                Bayar
               </Link>
             )}
           </CardContent>

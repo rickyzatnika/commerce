@@ -12,6 +12,9 @@ const config: Config = withUt({
   ],
   theme: {
     extend: {
+      animation: {
+        'ping-slow': 'ping 1.5s linear infinite',
+      },
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',

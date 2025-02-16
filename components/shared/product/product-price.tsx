@@ -50,7 +50,6 @@ const ProductPrice = ({
           <span className='text-xs align-super'>{floatValue}</span>
         </div>
         <div className='text-muted-foreground text-xs py-2'>
-          Was:{' '}
           <span className='line-through'>{formatCurrency(listPrice)}</span>
         </div>
       </div>
@@ -66,7 +65,6 @@ const ProductPrice = ({
         </div>
       </div>
       <div className='text-muted-foreground text-xs py-2'>
-        List price:{' '}
         <span className='line-through'>{formatCurrency(listPrice)}</span>
       </div>
     </div>

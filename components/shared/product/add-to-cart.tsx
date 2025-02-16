@@ -43,7 +43,7 @@ export default function AddToCart({
                   router.push('/cart')
                 }}
               >
-                Go to Cart
+                Lihat Keranjang
               </Button>
             ),
           })
@@ -55,7 +55,7 @@ export default function AddToCart({
         }
       }}
     >
-      Add to Cart
+      + Keranjang
     </Button>
   ) : (
     <div className='w-full space-y-2'>
@@ -90,7 +90,7 @@ export default function AddToCart({
           }
         }}
       >
-        Add to Cart
+        + Keranjang
       </Button>
       <Button
         variant='secondary'
@@ -107,7 +107,7 @@ export default function AddToCart({
         }}
         className='w-full rounded-full '
       >
-        Buy Now
+        Beli
       </Button>
     </div>
   )
