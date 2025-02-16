@@ -6,31 +6,145 @@ import Link from 'next/link'
 
 import { Button } from '@/components/ui/button'
 import { APP_NAME } from '@/lib/constants'
+import Image from 'next/image'
+
+
+
+const data = [
+  {
+    id: '1',
+    src: '/icons/bca.png',
+  },
+  {
+    id: '2',
+    src: '/icons/bni.png',
+  },
+  {
+    id: '3',
+    src: '/icons/bri.png',
+  },
+  {
+    id: '4',
+    src: '/icons/permata.png',
+  },
+  {
+    id: '5',
+    src: '/icons/mandiri.png',
+  },
+  {
+    id: '6',
+    src: '/icons/shopepay.png',
+  },
+  {
+    id: '7',
+    src: '/icons/spay.png',
+  },
+  {
+    id: '8',
+    src: '/icons/gopay.png',
+  },
+  {
+    id: '9',
+    src: '/icons/dana.png',
+  },
+  {
+    id: '10',
+    src: '/icons/indomart.png',
+  },
+  {
+    id: '11',
+    src: '/icons/alfamart2.png',
+  },
+  {
+    id: '12',
+    src: '/icons/kredivo.png',
+  },
+  {
+    id: '13',
+    src: '/icons/mc.png',
+  },
+  {
+    id: '14',
+    src: '/icons/visa.png',
+  },
+
+]
+
+
+
+
+
 
 export default function Footer() {
   return (
-    <footer className='bg-black  text-white underline-link'>
-      <div className='w-full'>
+    <footer className="text-white  w-full mt-24">
+      <div className="bg-gray-50 text-black py-16 px-6 md:px-12 lg:px-24">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-y-8 gap-x-6">
+
+          {/* Brand & Deskripsi (Lebih Lebar) */}
+          <div className="lg:col-span-2 px-0 md:px-4">
+            <h1 className="text-2xl font-bold">{APP_NAME}</h1>
+            <p className="text-sm mt-3 leading-relaxed">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, enim. Sit necessitatibus est quod.
+              Deserunt ipsam qui vitae exercitationem voluptates placeat blanditiis.
+            </p>
+          </div>
+
+          {/* Metode Pembayaran */}
+          <div>
+            <h3 className="text-md font-semibold mb-3">Metode Pembayaran</h3>
+            <div className="grid grid-cols-4 md:grid-cols-3 lg:grid-cols-4 gap-2">
+              {data.map((d) => (
+                <Image key={d.id} src={d.src} alt="logo" width={60} height={40} className="object-contain bg-white p-1 shadow" />
+              ))}
+            </div>
+          </div>
+
+          {/* Partner Kami */}
+          <div className='mx-auto w-full md:w-fit'>
+            <h3 className="text-md font-semibold mb-3">Partner Kami</h3>
+            <div className="space-y-2 flex flex-row md:flex-col items-start gap-3">
+              <Image src="/icons/midtrans.png" alt='logo-midtrans' width={100} height={75} priority={true} className='bg-white p-1' />
+              <Image src="/icons/depe.png" alt='logo-midtrans' width={100} height={75} priority={true} className='bg-white p-1' />
+            </div>
+          </div>
+
+          {/* Layanan Pelanggan */}
+          <div>
+            <h3 className="text-md font-semibold mb-3">Layanan Pelanggan</h3>
+            <div className="flex flex-col space-y-2 text-sm">
+              <Link href="/page/help" className="hover:underline">Pusat Bantuan</Link>
+              <Link href="/page/help" className="hover:underline">Customer Service</Link>
+              <Link href="/page/help" className="hover:underline">Hubungi Kami</Link>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      {/* Section Bawah */}
+      <div className="bg-black text-gray-200 py-8 px-6 relative antialiased">
+        {/* Tombol Scroll ke Atas */}
         <Button
-          variant='ghost'
-          className='w-full bg-gray-100 text-gray-700 rounded-none '
+          variant="ghost"
+          className="bg-gray-200 text-gray-900 rounded-md absolute top-4 right-4 md:right-10"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
-          <ChevronUp className='mr-2 h-4 w-4' />
-          Back to top
+          <ChevronUp />
         </Button>
-      </div>
-      <div className='p-4'>
-        <div className='flex justify-center  gap-3 text-sm'>
-          <Link href='/page/conditions-of-use'>Conditions of Use</Link>
-          <Link href='/page/privacy-policy'> Privacy Notice</Link>
-          <Link href='/page/help'>Help</Link>
+
+        {/* Links Footer */}
+        <div className="flex flex-col items-center space-y-2 md:flex-row md:justify-center md:space-x-6 md:space-y-0 text-sm">
+          <Link href="/conditions-of-use" className="hover:underline">Conditions of Use</Link>
+          <Link href="privacy-policy" className="hover:underline">Privacy Notice</Link>
+          <Link href="/help" className="hover:underline">Help</Link>
         </div>
-        <div className='flex justify-center text-sm'>
-          <p> © 2000-2024, {APP_NAME}, Inc. or its affiliates</p>
-        </div>
-        <div className='mt-8 flex justify-center text-sm text-gray-400'>
-          123, Main Street, Anytown, CA, Zip 12345 | +1 (123) 456-7890
+
+        {/* Copyright */}
+        <div className="text-center text-sm mt-4">
+          <p>© 2000-2024, {APP_NAME}, Inc. or its affiliates</p>
+          <p className=" mt-2">Jl. Cigadung Barat No.123/152C, Jakarta, Indonesia</p>
         </div>
       </div>
     </footer>

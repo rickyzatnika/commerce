@@ -22,7 +22,7 @@ import {
 import {
   calculateFutureDate,
   formatDateTime,
-  timeUntilMidnight,
+
 } from '@/lib/utils'
 import { ShippingAddressSchema } from '@/lib/validator'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -483,7 +483,7 @@ const CheckoutForm = () => {
           <div>
             {isDeliveryDateSelected && deliveryDateIndex != undefined ? (
               <div className='grid  grid-cols-1 md:grid-cols-12  my-3 pb-3'>
-                <div className='flex text-lg font-bold  col-span-5'>
+                <div className='flex text-md font-bold  col-span-5'>
                   <span className='w-8'>2 </span>
                   <span>Items and shipping</span>
                 </div>
@@ -521,37 +521,22 @@ const CheckoutForm = () => {
               </div>
             ) : isAddressSelected ? (
               <>
-                <div className='flex text-primary  text-lg font-bold my-2'>
+                <div className='flex text-primary text-md font-bold my-2'>
                   <span className='w-8'>2 </span>
-                  <span>Review items and shipping</span>
+                  <span>Periksa Pesanan Anda</span>
                 </div>
                 <Card className='md:ml-8'>
                   <CardContent className='p-4'>
-                    <p className='mb-2'>
-                      <span className='text-lg font-bold text-green-700'>
-                        Arriving{' '}
-                        {
-                          formatDateTime(
-                            calculateFutureDate(
-                              AVAILABLE_DELIVERY_DATES[deliveryDateIndex!]
-                                .daysToDeliver
-                            )
-                          ).dateOnly
-                        }
-                      </span>{' '}
-                      If you order in the next {timeUntilMidnight().hours} hours
-                      and {timeUntilMidnight().minutes} minutes.
-                    </p>
                     <div className='grid md:grid-cols-2 gap-6'>
                       <div>
                         {items.map((item, _index) => (
                           <div key={_index} className='flex gap-4 py-2'>
-                            <div className='relative w-16 h-16'>
+                            <div className='relative w-20 md:w-40 h-20 md:h-40'>
                               <Image
                                 src={item.image}
                                 alt={item.name}
                                 fill
-                                sizes='20vw'
+                                sizes='40vw'
                                 style={{
                                   objectFit: 'contain',
                                 }}
@@ -597,14 +582,11 @@ const CheckoutForm = () => {
                       </div>
                       <div>
                         <div className=' font-bold'>
-                          <p className='mb-2'> Choose a shipping speed:</p>
+                          <p className='mb-2'> Pilih Jasa Pengiriman</p>
 
                           <ul>
                             <RadioGroup
-                              value={
-                                AVAILABLE_DELIVERY_DATES[deliveryDateIndex!]
-                                  .name
-                              }
+                              value={AVAILABLE_DELIVERY_DATES[deliveryDateIndex!].name}
                               onValueChange={(value) =>
                                 setDeliveryDateIndex(
                                   AVAILABLE_DELIVERY_DATES.findIndex(
@@ -623,12 +605,14 @@ const CheckoutForm = () => {
                                     className='pl-2 space-y-2 cursor-pointer'
                                     htmlFor={`address-${dd.name}`}
                                   >
-                                    <div className='text-green-700 font-semibold'>
-                                      {
+
+                                    <div className='font-semibold space-x-2'>
+                                      <span>{dd.name}</span>
+                                      <span className='text-green-700 '>{
                                         formatDateTime(
                                           calculateFutureDate(dd.daysToDeliver)
                                         ).dateOnly
-                                      }
+                                      }</span>
                                     </div>
                                     <div>
                                       {(dd.freeShippingMinPrice > 0 &&

@@ -14,7 +14,7 @@ export const COLORS = ['Gold', 'Green', 'Red']
 export const THEMES = ['Light', 'Dark', 'System']
 export const PAGE_SIZE = Number(process.env.PAGE_SIZE || 9)
 export const FREE_SHIPPING_MIN_PRICE = Number(
-    process.env.FREE_SHIPPING_MIN_PRICE || 75000
+    process.env.FREE_SHIPPING_MIN_PRICE || 45000
 )
 
 export const APP_COPYRIGHT = process.env.NEXT_PUBLIC_APP_COPYRIGHT || `Copyright © 2025 ${APP_NAME}. All rights reserved.`
@@ -31,24 +31,29 @@ export const DEFAULT_PAYMENT_METHOD = "MIDTRANS (Payment Gateway)"
 
 export const AVAILABLE_DELIVERY_DATES = [
     {
-        name: 'Tomorrow',
+        name: 'JNE Express',
+        desc: '1 Hari',
         daysToDeliver: 1,
         shippingPrice: 12000,
         freeShippingMinPrice: 0,
     },
     {
-        name: 'Next 3 Days',
+        name: 'JNE Reguler',
+        desc: '3 Hari',
         daysToDeliver: 3,
         shippingPrice: 9000,
         freeShippingMinPrice: 0,
     },
     {
-        name: 'Next 5 Days',
+        name: 'GRATIS ONGKIR',
+        desc: '5 Hari',
         daysToDeliver: 5,
-        shippingPrice: 6000,
-        freeShippingMinPrice: 35,
-    },
+        shippingPrice: 0,
+        freeShippingMinPrice: 0,
+    }
+
 ]
+
 
 
 

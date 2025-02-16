@@ -65,7 +65,7 @@ export default async function Sidebar({
           {/* Shop By Category */}
           <div className='flex-1 overflow-y-auto'>
             <div className='p-4 border-b'>
-              <h2 className='text-lg font-semibold'>Shop By Department</h2>
+              <h2 className='text-lg font-semibold'>All Categories</h2>
             </div>
             <nav className='flex flex-col'>
               {categories.map((category) => (
