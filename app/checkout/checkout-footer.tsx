@@ -6,24 +6,21 @@ export default function CheckoutFooter() {
   return (
     <div className='border-t-2 space-y-3 my-4 py-4 text-sm md:text-base '>
       <p>
-        Need help? Check our <Link href='/page/help'>Help Center</Link> or{' '}
-        <Link href='/page/contact-us'>Contact Us</Link>{' '}
+        Butuh bantuan? Periksa <Link href='/help'>Pusat Bantuan kami</Link> atau{' '}
+        <Link href='/contact-us'>Hubungi Kami</Link>{' '}
       </p>
-      <p className='antialiased leading-5'>
-        For an item ordered from {APP_NAME}: When you click the &apos;Place Your
-        Order&apos; button, we will send you an e-mail acknowledging receipt of
-        your order. Your contract to purchase an item will not be complete until
-        we send you an e-mail notifying you that the item has been shipped to
-        you. By placing your order, you agree to {APP_NAME}
-        &apos;s <Link href='/page/privacy-policy'>privacy notice</Link> and
-        <Link href='/page/conditions-of-use'> conditions of use</Link>.
+      <p className='antialiased leading-relaxed'>
+        Untuk barang yang dipesan dari {APP_NAME}, Saat Anda mengklik tombol &apos;Place Your
+        Order&apos; kami akan mengirimkan email yang berisi tanda terima pesanan Anda.
+        Kontrak Anda untuk membeli suatu barang tidak akan selesai sampai kami mengirimi Anda email yang memberitahukan bahwa barang tersebut telah dikirimkan kepada Anda.
+        Dengan melakukan pemesanan, Anda menyetujui{' '}
+        <Link href='/privacy-policy'>Kebijakan Privasi</Link> dan
+        <Link href='/conditions-of-use'> ketentuan Penggunaan </Link> {APP_NAME}.
       </p>
       <p>
-        Within 30 days of delivery, you may return new, unopened merchandise in
-        its original condition. Exceptions and restrictions apply.{' '}
-        <Link href='/page/returns-policy'>
-          See {APP_NAME}&apos;s Returns Policy.
-        </Link>
+        Dalam waktu 3 hari setelah barang diterima, dan kemungkinan ada kerusakan atau tidak sesuai. Anda dapat mengembalikan barang baru yang belum dibuka dalam kondisi aslinya.{' '}
+        Syarat dan Ketentuan berlaku. Lihat <Link href='/help'>Kebijakan Pengembalian
+        </Link> Dyzstore.
       </p>
     </div>
   )
