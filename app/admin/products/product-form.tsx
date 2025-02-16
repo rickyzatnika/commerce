@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -99,7 +100,36 @@ const ProductForm = ({
       }
     }
   }
-  const images = form.watch('images')
+  const images = form.watch('images');
+
+  const handleDeleteImage = async (index: number, image: string) => {
+
+    const fileKey = image.split('/').pop();
+    if (!fileKey) {
+      alert('Invalid file key');
+      return;
+    }
+    // Kirim permintaan DELETE ke API server kita sendiri
+    const response = await fetch('/api/uploadthing/delete-image', {
+      method: 'DELETE',
+      body: JSON.stringify({ fileKey }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    // Tunggu respons dari server
+    const data = await response.json();
+    if (data.success) {
+      const updatedImages = form.getValues('images').filter((_, imgIndex) => imgIndex !== index);
+      form.setValue('images', updatedImages);
+      return
+    } else {
+      toast({
+        variant: 'destructive',
+        description: data.message,
+      })
+    }
+  };
+
 
   return (
     <Form {...form}>
@@ -319,13 +349,12 @@ const ProductForm = ({
                           <button
                             type='button'
                             className='absolute top-1 right-1 bg-red-500 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition'
-                            onClick={() => {
-                              const updatedImages = images.filter((_, imgIndex) => imgIndex !== index)
-                              form.setValue('images', updatedImages)
-                            }}
+                            title='Hapus Gambar'
+                            onClick={() => handleDeleteImage(index, image)}
                           >
-                            Hapus
+                            Delete
                           </button>
+
                         </div>
                       ))}
                       <FormControl >
