@@ -16,12 +16,12 @@ type CardItem = {
 
 export function HomeCard({ cards }: { cards: CardItem[] }) {
   return (
-    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-4'>
+    <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 md:gap-4'>
       {cards.map((card) => (
         <Card key={card.title} className='rounded-none flex flex-col'>
           <CardContent className='p-4 flex-1'>
             <h3 className='text-xl font-bold mb-4'>{card.title}</h3>
-            <div className='grid grid-cols-2 gap-4'>
+            <div className=''>
               {card.items.map((item) => (
                 <Link
                   key={item.name}
@@ -31,9 +31,9 @@ export function HomeCard({ cards }: { cards: CardItem[] }) {
                   <Image
                     src={item.image}
                     alt={item.name}
-                    className='aspect-square object-scale-down max-w-full h-auto mx-auto'
-                    height={120}
-                    width={120}
+                    className=' max-w-full h-auto mx-auto'
+                    height={150}
+                    width={150}
                   />
                   <p className='text-center text-sm whitespace-nowrap overflow-hidden text-ellipsis'>
                     {item.name}

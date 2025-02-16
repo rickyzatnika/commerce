@@ -18,13 +18,13 @@ import {
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { useToast } from '@/hooks/use-toast'
-import { createProduct, updateProduct } from '@/lib/actions/product.actions'
 import { IProduct } from '@/lib/db/models/product.model'
 import { UploadButton } from '@/lib/uploadthing'
 import { ProductInputSchema, ProductUpdateSchema } from '@/lib/validator'
 import { Checkbox } from '@/components/ui/checkbox'
 import { toSlug } from '@/lib/utils'
 import { IProductInput } from '@/types'
+import { createProduct, updateProduct } from '@/lib/actions/product.actions'
 
 const productDefaultValues: IProductInput = {
   name: '',
@@ -230,7 +230,72 @@ const ProductForm = ({
             )}
           />
         </div>
+        {/* Colors & Sizes */}
+        <div className='flex flex-col gap-5 md:flex-row'>
+          <FormField
+            control={form.control}
+            name='colors'
+            render={({ field }) => (
+              <FormItem className='w-full'>
+                <FormLabel>Colors</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder='Enter product colors (comma separated)'
+                    value={field.value.join(', ')}
+                    onChange={(e) => field.onChange(e.target.value.split(',').map(color => color.trim()))}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
+          <FormField
+            control={form.control}
+            name='sizes'
+            render={({ field }) => (
+              <FormItem className='w-full'>
+                <FormLabel>Sizes</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder='Enter product sizes (comma separated)'
+                    value={field.value.join(', ')}
+                    onChange={(e) => field.onChange(e.target.value.split(',').map(size => size.trim()))}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+
+        {/* Tags Checkbox */}
+        <div className='flex flex-col gap-3'>
+          <FormLabel>Tags</FormLabel>
+          {['todays-deal', 'featured', 'new-arrival', 'best-seller'].map((tag) => (
+            <FormField
+              key={tag}
+              control={form.control}
+              name='tags'
+              render={({ field }) => (
+                <FormItem className='flex items-center space-x-2'>
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value.includes(tag)}
+                      onCheckedChange={(checked) => {
+                        const newTags = checked
+                          ? [...field.value, tag]
+                          : field.value.filter((t) => t !== tag)
+                        field.onChange(newTags)
+                      }}
+                    />
+                  </FormControl>
+                  <FormLabel className='text-sm font-medium'>{tag}</FormLabel>
+                </FormItem>
+              )}
+            />
+          ))}
+        </div>
         <div className='flex flex-col gap-5 md:flex-row'>
           <FormField
             control={form.control}
@@ -241,15 +306,27 @@ const ProductForm = ({
                 <Card>
                   <CardContent className='space-y-2 mt-2 min-h-48'>
                     <div className='flex justify-start items-center gap-2 space-x-4'>
-                      {images.map((image: string) => (
-                        <Image
-                          key={image}
-                          src={image}
-                          alt='product image'
-                          className='w-24 h-24 object-cover object-center rounded-sm'
-                          width={100}
-                          height={100}
-                        />
+                      {images.map((image: string, index: number) => (
+                        <div key={index} className='relative group'>
+                          <Image
+                            src={image}
+                            alt='product image'
+                            className='w-24 h-24 object-cover object-center rounded-sm'
+                            width={100}
+                            height={100}
+                          />
+                          {/* Tombol hapus */}
+                          <button
+                            type='button'
+                            className='absolute top-1 right-1 bg-red-500 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition'
+                            onClick={() => {
+                              const updatedImages = images.filter((_, imgIndex) => imgIndex !== index)
+                              form.setValue('images', updatedImages)
+                            }}
+                          >
+                            Hapus
+                          </button>
+                        </div>
                       ))}
                       <FormControl >
                         <UploadButton

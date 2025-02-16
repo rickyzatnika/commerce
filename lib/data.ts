@@ -9,7 +9,7 @@ const products: IProductInput[] = [
     name: '',
     slug: toSlug(''),
     category: '',
-    images: [],
+    images: [""],
     tags: [],
     isPublished: true,
     price: 0,
@@ -71,7 +71,7 @@ const data: Data = {
 
     {
       name: 'New Arrivals',
-      href: '/search?tag=new',
+      href: '/search?tag=new-arrival',
     },
     {
       name: 'Featured Products',
@@ -80,15 +80,6 @@ const data: Data = {
     {
       name: 'Best Sellers',
       href: '/search?tag=best-seller',
-    },
-
-    {
-      name: 'Customer Service',
-      href: '/customer-service',
-    },
-    {
-      name: 'Blogs',
-      href: '/blogs',
     },
     {
       name: 'About Us',

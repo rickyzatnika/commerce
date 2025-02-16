@@ -22,7 +22,7 @@ export async function getAllCategories() {
 }
 export async function getProductsForCard({
   tag,
-  limit = 4,
+  limit = 1,
 }: {
   tag: string
   limit?: number
