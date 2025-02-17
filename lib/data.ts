@@ -99,14 +99,14 @@ const data: Data = {
       title: '',
       buttonCaption: 'Shop Now',
       image: '/images/banner-1.jpg',
-      url: '/search?category=T-Shirts',
+      url: '/search?category=T-Shirt',
       isPublished: true,
     },
     {
       title: '',
       buttonCaption: 'Shop Now',
       image: '/images/banner-2.jpg',
-      url: '/search?category=T-Shirts',
+      url: '/search?category=T-Shirt',
       isPublished: true,
     },
 
