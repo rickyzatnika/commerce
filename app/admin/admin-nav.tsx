@@ -22,18 +22,7 @@ const links = [
     title: 'Users',
     href: '/admin/users',
   },
-  {
-    title: 'Pages',
-    href: '/admin/web-pages',
-  },
-  {
-    title: 'Carousel',
-    href: '/admin/carousels',
-  },
-  {
-    title: 'Settings',
-    href: '/admin/settings',
-  },
+
 ]
 export function AdminNav({
   className,
