@@ -1,4 +1,4 @@
-import Image from 'next/image'
+
 import Link from 'next/link'
 import React from 'react'
 
@@ -10,6 +10,7 @@ import { formatNumber, generateId, round2 } from '@/lib/utils'
 import ProductPrice from './product-price'
 import ImageHover from './image-hover'
 import AddToCart from './add-to-cart'
+import Image from 'next/image'
 
 const ProductCard = ({
   product,
@@ -24,7 +25,7 @@ const ProductCard = ({
 }) => {
   const ProductImage = () => (
     <Link href={`/product/${product.slug}`}>
-      <div className='relative h-52'>
+      <div className='relative w-fit mx-auto '>
         {product.images.length > 1 ? (
           <ImageHover
             src={product.images[0]}
@@ -32,13 +33,14 @@ const ProductCard = ({
             alt={product.name}
           />
         ) : (
-          <div className='relative h-52'>
+          <div className='relative w-fit mx-auto  '>
             <Image
               src={product.images[0]}
               alt={product.name}
-              fill
-              sizes='80vw'
-              className='object-contain'
+              priority={true}
+              width={200}
+              height={75}
+              className='object-contain '
             />
           </div>
         )}
@@ -46,7 +48,7 @@ const ProductCard = ({
     </Link>
   )
   const ProductDetails = () => (
-    <div className='flex-1 space-y-2'>
+    <div className='flex-1 pb-2'>
       <p className='font-bold'>{product.brand}</p>
       <Link
         href={`/product/${product.slug}`}
@@ -69,6 +71,7 @@ const ProductCard = ({
         price={product.price}
         listPrice={product.listPrice}
         forListing
+
       />
     </div>
   )
@@ -107,8 +110,8 @@ const ProductCard = ({
       )}
     </div>
   ) : (
-    <Card className='flex flex-col  '>
-      <CardHeader className='p-3'>
+    <Card className='flex flex-col justify-center  '>
+      <CardHeader className='flex flex-col space-y-2 justify-center'>
         <ProductImage />
       </CardHeader>
       {!hideDetails && (

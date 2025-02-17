@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import Image from 'next/image'
 import Link from 'next/link'
 import Search from './search'
@@ -19,15 +20,18 @@ export default async function Header() {
           <div className='flex items-center'>
             <Link
               href='/'
-              className='flex items-center header-button font-extrabold text-2xl m-1 '
+              className='flex gap-1 flex-col items-center header-button font-extrabold text-2xl m-1 '
             >
-              <Image
-                src='/icons/lg.png'
-                width={40}
-                height={40}
-                alt={`${APP_NAME} logo`}
-              />
-              {APP_NAME}
+              <div className='flex gap-1 items-center'>
+                <Image
+                  src='/icons/lg.png'
+                  width={30}
+                  height={10}
+                  alt={`${APP_NAME} logo`}
+                />
+                {APP_NAME}
+              </div>
+              <span className='text-xs tracking-wide pl-1 font-semibold'>Look Different</span>
             </Link>
           </div>
           <div className='hidden md:block flex-1 max-w-xl'>

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 'use client'
 
 import { ChevronUp } from 'lucide-react'
@@ -83,7 +84,7 @@ export default function Footer() {
 
           {/* Brand & Deskripsi (Lebih Lebar) */}
           <div className="lg:col-span-2 px-0 md:px-4">
-            <h1 className="text-2xl font-bold">{APP_NAME}</h1>
+            <h1 className="text-2xl font-bold">{APP_NAME} "Look Different"</h1>
             <p className="text-sm mt-3 leading-relaxed">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, enim. Sit necessitatibus est quod.
               Deserunt ipsam qui vitae exercitationem voluptates placeat blanditiis.

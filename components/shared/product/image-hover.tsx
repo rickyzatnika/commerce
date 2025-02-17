@@ -32,16 +32,18 @@ const ImageHover = ({
       <Image
         src={src}
         alt={alt}
-        fill
-        sizes='80vw'
+        priority={true}
+        width={200}
+        height={75}
         className={`object-contain transition-opacity duration-200 ${isHovered ? 'opacity-0' : 'opacity-100'
           }`}
       />
       <Image
         src={hoverSrc}
         alt={alt}
-        fill
-        sizes='80vw'
+        priority={true}
+        width={200}
+        height={75}
         className={`absolute inset-0 object-contain transition-opacity duration-200 ${isHovered ? 'opacity-100' : 'opacity-0'
           }`}
       />

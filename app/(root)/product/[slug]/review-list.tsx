@@ -146,7 +146,10 @@ export default function ReviewList({
       form.setValue('rating', review.rating)
     }
     setOpen(true)
-  }
+  };
+
+
+
   return (
     <div className='space-y-2'>
       {reviews.length === 0 && <div>No reviews yet</div>}

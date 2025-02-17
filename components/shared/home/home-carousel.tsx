@@ -17,6 +17,7 @@ export function HomeCarousel({
   items,
 }: {
   items: {
+
     image: string
     url: string
     title: string
@@ -37,20 +38,18 @@ export function HomeCarousel({
     >
       <CarouselContent>
         {items.map((item) => (
-          <CarouselItem key={item.title}>
+          <CarouselItem key={item.image}>
             <Link href={item.url}>
-              <div className='flex aspect-[16/6] items-center justify-center p-6 relative -m-1'>
+              <div className='flex aspect-[16/7] items-center justify-center p-6 relative -m-1'>
                 <Image
                   src={item.image}
                   alt={item.title}
                   fill
                   className='object-cover'
-                  priority
+                  priority={true}
                 />
-                <div className='absolute w-1/3 left-16 md:left-32 top-1/2 transform -translate-y-1/2'>
-                  <h2 className='text-xl md:text-6xl font-bold mb-4 text-primary'>
-                    {item.title}
-                  </h2>
+
+                <div className='absolute hidden bottom-0'>
                   <Button className='hidden md:block'>
                     {item.buttonCaption}
                   </Button>
@@ -60,6 +59,7 @@ export function HomeCarousel({
           </CarouselItem>
         ))}
       </CarouselContent>
+      <Image src="/images/branding_line.png" width={1200} height={100} alt='line' className='w-full ' />
       <CarouselPrevious className='left-0 md:left-12' />
       <CarouselNext className='right-0 md:right-12' />
     </Carousel>

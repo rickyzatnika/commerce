@@ -1,14 +1,19 @@
-import { SearchIcon } from "lucide-react";
-import { Input } from "@/components/ui/input";
+import { SearchIcon } from 'lucide-react'
+
+import { Input } from '@/components/ui/input'
 
 
-const Search = () => {
+
+export default async function Search() {
+
+
+
   return (
-    <form action='/search' method='GET' className='flex items-stretch h-10 '>
+    <form action='/search' method='GET' className='flex  items-stretch h-10 '>
 
       <Input
-        className='flex-1 rounded-l-3xl rounded-none dark:border-gray-200 bg-gray-100 text-black text-base h-full'
-        placeholder="Search..."
+        className='flex-1 rounded-none dark:border-gray-200 bg-gray-100 text-black text-base h-full'
+        placeholder={('Search...')}
         name='q'
         type='search'
       />
@@ -21,5 +26,3 @@ const Search = () => {
     </form>
   )
 }
-
-export default Search
