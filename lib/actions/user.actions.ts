@@ -130,7 +130,7 @@ export async function updateUserByAdmin(user: z.infer<typeof UserUpdateSchema>) 
 
     if (user.password && user.confirmPassword) {
       if (user.password !== user.confirmPassword) {
-        throw new Error('Password dan konfirmasi password tidak cocok');
+        throw new Error('Password dan konfirmasi password tidak sama');
       }
       const hashedPassword = await bcrypt.hash(user.password, 5);
       dbUser.password = hashedPassword;
@@ -141,7 +141,6 @@ export async function updateUserByAdmin(user: z.infer<typeof UserUpdateSchema>) 
     dbUser.name = user.name
     dbUser.email = user.email
     dbUser.role = user.role
-
 
     const updatedUser = await dbUser.save()
     revalidatePath('/admin/users')
