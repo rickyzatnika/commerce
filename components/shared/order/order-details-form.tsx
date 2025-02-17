@@ -114,7 +114,7 @@ export default function OrderDetailsForm({
                     <TableCell>
                       <span className='px-2'>{item.quantity}</span>
                     </TableCell>
-                    <TableCell className='text-right'>Rp{formatCurrency(item.price)}</TableCell>
+                    <TableCell className='text-right'>{formatCurrency(item.price)}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
