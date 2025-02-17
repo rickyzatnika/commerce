@@ -13,7 +13,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { IOrder } from '@/lib/db/models/order.model'
-import { cn, formatDateTime } from '@/lib/utils'
+import { cn, formatCurrency, formatDateTime } from '@/lib/utils'
 import { buttonVariants } from '@/components/ui/button'
 import ProductPrice from '../product/product-price'
 import ActionButton from '../action-button'
@@ -114,7 +114,7 @@ export default function OrderDetailsForm({
                     <TableCell>
                       <span className='px-2'>{item.quantity}</span>
                     </TableCell>
-                    <TableCell className='text-right'>Rp{item.price}</TableCell>
+                    <TableCell className='text-right'>Rp{formatCurrency(item.price)}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
