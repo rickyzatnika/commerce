@@ -59,7 +59,6 @@ export function HomeCarousel({
           </CarouselItem>
         ))}
       </CarouselContent>
-      <Image src="/images/branding_line.png" width={1200} height={100} alt='line' className='w-full ' />
       <CarouselPrevious className='left-0 md:left-12' />
       <CarouselNext className='right-0 md:right-12' />
     </Carousel>

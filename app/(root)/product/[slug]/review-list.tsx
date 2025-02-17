@@ -294,7 +294,7 @@ export default function ReviewList({
           {reviews.map((review: IReviewDetails) => (
             <Card key={review._id}>
               <CardHeader>
-                <div className='flex-between'>
+                <div className='flex justify-between'>
                   <CardTitle>{review.title}</CardTitle>
                   <div className='italic text-sm flex'>
                     <Check className='h-4 w-4' /> Verified Purchase
