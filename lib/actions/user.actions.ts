@@ -1,7 +1,7 @@
 'use server'
 import bcrypt from 'bcryptjs'
 import { auth, signIn, signOut } from '@/auth'
-import { IUserName, IUserSignIn, IUserSignUp } from '@/types'
+import { IUserSignIn, IUserSignUp, IUserUpdate } from '@/types'
 import { redirect } from 'next/navigation'
 import { UserSignUpSchema, UserUpdateSchema } from '../validator'
 import { connectToDatabase } from '../db'
@@ -44,22 +44,35 @@ export async function registerUser(userSignUp: IUserSignUp) {
   }
 }
 
-// UPDATE
-export async function updateUserName(user: IUserName) {
+
+// UPDATE BY USER
+export async function updateUsers(user: IUserUpdate) {
   try {
-    await connectToDatabase()
-    const session = await auth()
-    const currentUser = await User.findById(session?.user?.id)
-    if (!currentUser) throw new Error('User not found')
-    currentUser.name = user.name
-    const updatedUser = await currentUser.save()
+    await connectToDatabase();
+    const session = await auth();
+    const currentUser = await User.findById(session?.user?.id);
+    if (!currentUser) throw new Error('User not found');
+
+    if (user.password && user.confirmPassword) {
+      if (user.password !== user.confirmPassword) {
+        throw new Error('Password dan konfirmasi password tidak cocok');
+      }
+      currentUser.password = await bcrypt.hash(user.password, 5);
+    } else {
+      currentUser.password = currentUser.password;
+    }
+
+    currentUser.name = user.name;
+    currentUser.email = user.email;
+
+    const updatedUser = await currentUser.save();
     return {
       success: true,
       message: 'User updated successfully',
       data: JSON.parse(JSON.stringify(updatedUser)),
-    }
+    };
   } catch (error) {
-    return { success: false, message: formatError(error) }
+    return { success: false, message: formatError(error) };
   }
 }
 
@@ -105,14 +118,31 @@ export async function getAllUsers({
 }
 
 
-export async function updateUser(user: z.infer<typeof UserUpdateSchema>) {
+
+
+
+// Update UserByAdmin
+export async function updateUserByAdmin(user: z.infer<typeof UserUpdateSchema>) {
   try {
     await connectToDatabase()
     const dbUser = await User.findById(user._id)
     if (!dbUser) throw new Error('User not found')
+
+    if (user.password && user.confirmPassword) {
+      if (user.password !== user.confirmPassword) {
+        throw new Error('Password dan konfirmasi password tidak cocok');
+      }
+      const hashedPassword = await bcrypt.hash(user.password, 5);
+      dbUser.password = hashedPassword;
+    } else {
+      dbUser.password = dbUser.password;
+    }
+
     dbUser.name = user.name
     dbUser.email = user.email
     dbUser.role = user.role
+
+
     const updatedUser = await dbUser.save()
     revalidatePath('/admin/users')
     return {
@@ -121,10 +151,12 @@ export async function updateUser(user: z.infer<typeof UserUpdateSchema>) {
       data: JSON.parse(JSON.stringify(updatedUser)),
     }
   } catch (error) {
+    console.error(error); // tambahkan log untuk memeriksa kesalahan
     return { success: false, message: formatError(error) }
   }
 }
 
+// GET USER BY ID
 export async function getUserById(userId: string) {
   await connectToDatabase()
   const user = await User.findById(userId)

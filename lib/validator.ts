@@ -191,8 +191,6 @@ export const UserSignInSchema = z.object({
   password: Password,
 })
 
-
-
 export const UserSignUpSchema = UserSignInSchema.extend({
   name: UserName,
   confirmPassword: Password,
@@ -201,15 +199,11 @@ export const UserSignUpSchema = UserSignInSchema.extend({
   path: ['confirmPassword'],
 })
 
-
-
-export const UserNameSchema = z.object({
-  name: UserName,
-})
-
 export const UserUpdateSchema = z.object({
   _id: MongoId,
-  name: UserName,
-  email: Email,
-  role: UserRole,
-})
+  name: z.string().min(2, 'Nama tidak valid'),
+  email: z.string().email('Email tidak valid'),
+  role: z.string().min(1, 'Role tidak valid'),
+  password: z.string().optional(),
+  confirmPassword: z.string().optional(),
+});

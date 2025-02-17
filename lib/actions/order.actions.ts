@@ -232,8 +232,53 @@ export async function getMyOrders({
 }
 
 
+// GET SHIPPING ADDRESSES
+export async function getUserShippingAddress() {
+  await connectToDatabase()
+  const session = await auth()
+  if (!session) {
+    throw new Error('User is not authenticated')
+  }
 
+  const latestOrder = await Order.findOne(
+    { user: session?.user?.id },
+    { shippingAddress: 1 } // Ambil hanya shippingAddress
+  ).sort({ createdAt: -1 }) // Ambil order terbaru
 
+  return latestOrder ? JSON.parse(JSON.stringify(latestOrder.shippingAddress)) : null
+}
+
+// UPDATE SHIPPING ADDRESS
+export async function updateShippingAddress({
+  newAddress,
+}: {
+  newAddress: {
+    fullName: string
+    street: string
+    city: string
+    postalCode: string
+    country: string
+    province: string
+    phone: string
+  }
+}) {
+  await connectToDatabase()
+  const session = await auth()
+  if (!session) {
+    throw new Error('User is not authenticated')
+  }
+
+  const latestOrder = await Order.findOne({ user: session?.user?.id }).sort({ createdAt: -1 })
+
+  if (!latestOrder) {
+    return { success: false, message: 'Tidak ada order ditemukan' }
+  }
+
+  latestOrder.shippingAddress = newAddress
+  await latestOrder.save()
+
+  return { success: true, message: 'Alamat berhasil diperbarui' }
+}
 
 
 // GET ORDERS BY USER

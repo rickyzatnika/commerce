@@ -16,7 +16,7 @@ import { formatDateTime, formatId } from '@/lib/utils'
 import BrowsingHistoryList from '@/components/shared/browsing-history-list'
 import ProductPrice from '@/components/shared/product/product-price'
 
-const PAGE_TITLE = 'Your Orders'
+const PAGE_TITLE = 'Orders'
 export const metadata: Metadata = {
   title: PAGE_TITLE,
 }
@@ -31,9 +31,9 @@ export default async function OrdersPage(props: {
   return (
     <div>
       <div className='flex gap-2'>
-        <Link href='/account'>Your Account</Link>
+        <Link href='/account'>Account</Link>
         <span>›</span>
-        <span>{PAGE_TITLE}</span>
+        <span >{PAGE_TITLE}</span>
       </div>
       <h1 className='h1-bold pt-4'>{PAGE_TITLE}</h1>
       <div className='overflow-x-auto'>
@@ -52,7 +52,7 @@ export default async function OrdersPage(props: {
             {orders.data.length === 0 && (
               <TableRow>
                 <TableCell colSpan={6} className=''>
-                  You have no orders.
+                  <i className='font-bold'>Belum ada transaksi pembelian.</i>
                 </TableCell>
               </TableRow>
             )}

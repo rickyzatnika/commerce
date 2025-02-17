@@ -3,36 +3,30 @@ import { SessionProvider } from 'next-auth/react'
 
 import { auth } from '@/auth'
 
-import { ProfileForm } from './profile-form'
+
 import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
-import { APP_NAME } from '@/lib/constants'
+import { ShippingAddressForm } from './addressForm'
 
-const PAGE_TITLE = 'Manage Profile'
+const PAGE_TITLE = 'Alamat Pengiriman'
 export const metadata: Metadata = {
   title: PAGE_TITLE,
 }
 
-export default async function ProfilePage() {
+export default async function AddressPage() {
   const session = await auth()
   return (
     <div className='mb-24'>
       <SessionProvider session={session}>
-        <div className='flex gap-2 '>
+        <div className='flex gap-2 mb-6'>
           <Link href='/account'>Account</Link>
           <span>›</span>
-          <Link href='/account/manage'>{PAGE_TITLE}</Link>
-
+          <Link href='/account/addresses'>Addresses</Link>
         </div>
-        <h1 className='h1-bold py-4'>{PAGE_TITLE}</h1>
+
         <Card className='max-w-2xl'>
           <CardContent className='p-4 flex justify-between flex-wrap'>
-            <p className='text-sm py-2'>
-              If you want to change the name associated with your {APP_NAME}
-              &apos;s account, you may do so below. Be sure to click the Save
-              Changes button when you are done.
-            </p>
-            <ProfileForm />
+            <ShippingAddressForm />
           </CardContent>
         </Card>
       </SessionProvider>

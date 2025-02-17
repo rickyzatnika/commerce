@@ -23,23 +23,29 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { useToast } from '@/hooks/use-toast'
-import { updateUser } from '@/lib/actions/user.actions'
+import { updateUserByAdmin } from '@/lib/actions/user.actions'
 import { USER_ROLES } from '@/lib/constants'
 import { IUser } from '@/lib/db/models/user.model'
 import { UserUpdateSchema } from '@/lib/validator'
 
 const UserEditForm = ({ user }: { user: IUser }) => {
   const router = useRouter()
+  const { toast } = useToast()
+
 
   const form = useForm<z.infer<typeof UserUpdateSchema>>({
     resolver: zodResolver(UserUpdateSchema),
-    defaultValues: user,
+    defaultValues: {
+      ...user,
+      password: '',
+      confirmPassword: '',
+    }
   })
 
-  const { toast } = useToast()
   async function onSubmit(values: z.infer<typeof UserUpdateSchema>) {
     try {
-      const res = await updateUser({
+      console.log(values.password, values.confirmPassword); // tambahkan log untuk memeriksa nilai password
+      const res = await updateUserByAdmin({
         ...values,
         _id: user._id,
       })
@@ -92,6 +98,42 @@ const UserEditForm = ({ user }: { user: IUser }) => {
                 <FormLabel>Email</FormLabel>
                 <FormControl>
                   <Input placeholder='Enter user email' {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+        <div className='w-full flex flex-col gap-4'>
+          <FormField
+            control={form.control}
+            name='password'
+            render={({ field }) => (
+              <FormItem className='w-full'>
+                <FormLabel className='font-bold'>Password</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder='Password'
+                    {...field}
+                    className='input-field'
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name='confirmPassword'
+            render={({ field }) => (
+              <FormItem className='w-full'>
+                <FormLabel className='font-bold'>Konfirmasi Password</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder='Konfirmasi Password'
+                    {...field}
+                    className='input-field'
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
