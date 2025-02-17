@@ -293,11 +293,12 @@ export default function ReviewList({
         <div className='md:col-span-3 flex flex-col gap-3'>
           {reviews.map((review: IReviewDetails) => (
             <Card key={review._id}>
-              <CardHeader>
-                <div className='flex justify-between'>
+              <CardHeader className='flex flex-col gap-3'>
+                <div className='w-full flex-between'>
                   <CardTitle>{review.title}</CardTitle>
                   <div className='italic text-sm flex'>
-                    <Check className='h-4 w-4' /> Verified Purchase
+                    <Check className='h-4 w-4' />
+                    <span>Verified Purchase</span>
                   </div>
                 </div>
                 <CardDescription>{review.comment}</CardDescription>
