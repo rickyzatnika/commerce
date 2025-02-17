@@ -4,7 +4,7 @@
 import ProductPrice from '@/components/shared/product/product-price'
 import { Card, CardContent } from '@/components/ui/card'
 import useColorStore from '@/hooks/use-color-store'
-import { formatDateTime } from '@/lib/utils'
+import { formatCurrency, formatDateTime } from '@/lib/utils'
 import { useTheme } from 'next-themes'
 import React from 'react'
 import {
@@ -67,7 +67,7 @@ export default function SalesAreaChart({ data }: { data: any[] }) {
       <AreaChart data={data}>
         <CartesianGrid horizontal={true} vertical={false} stroke='' />
         <XAxis dataKey='date' tick={<CustomXAxisTick />} interval={3} />
-        <YAxis fontSize={12} tickFormatter={(value: number) => `Rp${value}`} />
+        <YAxis fontSize={10} tickFormatter={(value: number) => `${formatCurrency(value)}`} />
         <Tooltip content={<CustomTooltip />} />
         <Area
           type='monotone'

@@ -43,7 +43,7 @@ export function AdminNav({
           href={item.href}
           className={cn(
             '',
-            pathname.includes(item.href) ? '' : 'text-muted-foreground'
+            pathname.includes(item.href) ? 'border-b border-[#FACC15]' : 'text-muted-foreground text-gray-400 hover:text-gray-300'
           )}
         >
           {item.title}
