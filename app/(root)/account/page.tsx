@@ -5,7 +5,7 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import React from 'react'
 
-const PAGE_TITLE = 'Your Account'
+const PAGE_TITLE = 'Account'
 export const metadata: Metadata = {
   title: PAGE_TITLE,
 }
