@@ -11,10 +11,11 @@ import {
 } from '@/components/ui/table'
 import { getMyOrders } from '@/lib/actions/order.actions'
 import { IOrder } from '@/lib/db/models/order.model'
-import { formatDateTime, formatId } from '@/lib/utils'
+import { formatId } from '@/lib/utils'
 import BrowsingHistoryList from '@/components/shared/browsing-history-list'
 import ProductPrice from '@/components/shared/product/product-price'
 import moment from 'moment'
+import 'moment/locale/id';
 
 const PAGE_TITLE = 'Pesanan Saya'
 export const metadata: Metadata = {
@@ -28,6 +29,9 @@ export default async function OrdersPage(props: {
   const orders = await getMyOrders({
     page,
   })
+
+  moment.locale('id');
+
   return (
     <div>
       <div className='flex gap-2'>
@@ -64,24 +68,25 @@ export default async function OrdersPage(props: {
                   </Link>
                 </TableCell>
                 <TableCell>
-                  {moment(order.createdAt!).format('L')}
+                  {moment(order.createdAt!).format('D MMMM YYYY')}
                 </TableCell>
                 <TableCell>
                   <ProductPrice price={order.totalPrice} plain />
                 </TableCell>
                 <TableCell>
                   {order.isPaid && order.paidAt
-                    ? formatDateTime(order.paidAt).dateTime
+
+                    ? moment(order.paidAt!).format('D MMMM YYYY, HH.mm')
                     : 'No'}
                 </TableCell>
                 <TableCell>
                   {order.isDelivered && order.deliveredAt
-                    ? formatDateTime(order.deliveredAt).dateTime
+                    ? moment(order.deliveredAt!).format('D MMMM YYYY')
                     : 'No'}
                 </TableCell>
                 <TableCell>
                   <Link href={`/account/orders/${order._id}`}>
-                    <span className='px-2'>Details</span>
+                    <span className='px-2'>Lihat Detail</span>
                   </Link>
                 </TableCell>
               </TableRow>

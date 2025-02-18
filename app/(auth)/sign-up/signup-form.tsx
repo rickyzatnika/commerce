@@ -73,15 +73,15 @@ export default function SignUpForm() {
     <Form {...form}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <input type='hidden' name='callbackUrl' value={callbackUrl} />
-        <div className='space-y-6'>
+        <div className='space-y-3'>
           <FormField
             control={control}
             name='name'
             render={({ field }) => (
               <FormItem className='w-full'>
-                <FormLabel>Name</FormLabel>
+                <FormLabel>Nama Lengkap</FormLabel>
                 <FormControl>
-                  <Input placeholder='Enter name address' {...field} />
+                  <Input placeholder='masukan nama lengkap' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -95,7 +95,7 @@ export default function SignUpForm() {
               <FormItem className='w-full'>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input placeholder='Enter email address' {...field} />
+                  <Input placeholder='masukkan alamat email' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -111,7 +111,7 @@ export default function SignUpForm() {
                 <FormControl>
                   <Input
                     type='password'
-                    placeholder='Enter password'
+                    placeholder='Password'
                     {...field}
                   />
                 </FormControl>
@@ -124,11 +124,11 @@ export default function SignUpForm() {
             name='confirmPassword'
             render={({ field }) => (
               <FormItem className='w-full'>
-                <FormLabel>Confirm Password</FormLabel>
+                <FormLabel>Konfirmasi Password</FormLabel>
                 <FormControl>
                   <Input
                     type='password'
-                    placeholder='Confirm Password'
+                    placeholder='korfirmasi password'
                     {...field}
                   />
                 </FormControl>
@@ -136,19 +136,17 @@ export default function SignUpForm() {
               </FormItem>
             )}
           />
-          <div>
-            <Button type='submit'>Sign Up</Button>
+          <div >
+            <Button className='w-full' type='submit' >Daftar</Button>
           </div>
           <div className='text-sm'>
-            By creating an account, you agree to {APP_NAME}&apos;s{' '}
-            <Link href='/page/conditions-of-use'>Conditions of Use</Link> and{' '}
-            <Link href='/page/privacy-policy'> Privacy Notice. </Link>
+            Dengan mendaftar, Anda menyetujui <Link href="/conditions-of-use">Ketentuan Penggunaan</Link> dan  <Link href='/privacy-policy'>Kebijakan Privasi</Link>. {APP_NAME}.{' '}
           </div>
           <Separator className='mb-4' />
           <div className='text-sm'>
-            Already have an account?{' '}
+            Sudah punya akun?{' '}
             <Link className='link' href={`/sign-in?callbackUrl=${callbackUrl}`}>
-              Sign In
+              Masuk
             </Link>
           </div>
         </div>

@@ -12,11 +12,11 @@ export function GoogleSignInForm() {
       <Button disabled={pending} className='w-full flex gap-1 items-center' variant='outline'>
         {pending ? 'Redirecting to Google...' : <>
           <div className='flex items-center gap-1'>
-            <p>Sign In with </p>
-            <Image src="/icons/google.png" alt='google' width={14} height={14} priority />
+            <p>Masuk dengan </p>
+            <Image src="/icons/google.png" alt='google' width={20} height={20} priority />
 
           </div>
-          <span className='-ml-1'>oogle</span>
+          <span className='-ml-0.5'>oogle</span>
         </>}
       </Button>
     )

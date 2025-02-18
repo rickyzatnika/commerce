@@ -27,11 +27,11 @@ export default function ThemeSwitcher() {
       <DropdownMenuTrigger className='header-button h-[41px]'>
         {theme === 'dark' && isMounted ? (
           <div className='flex items-center gap-1'>
-            <Moon className='h-4 w-4' /> Dark <ChevronDownIcon />
+            <Moon className='h-4 w-4' /> Gelap <ChevronDownIcon />
           </div>
         ) : (
           <div className='flex items-center gap-1'>
-            <Sun className='h-4 w-4' /> Light
+            <Sun className='h-4 w-4' /> Terang
             <ChevronDownIcon />
           </div>
         )}
@@ -39,10 +39,10 @@ export default function ThemeSwitcher() {
       <DropdownMenuContent className='w-40'>
         <DropdownMenuRadioGroup value={theme} onValueChange={changeTheme}>
           <DropdownMenuRadioItem className='cursor-pointer' value='dark'>
-            <Moon className='h-4 w-4 mr-1' /> Dark
+            <Moon className='h-4 w-4 mr-1' /> Gelap
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem className='cursor-pointer' value='light'>
-            <Sun className='h-4 w-4 mr-1' /> Light
+            <Sun className='h-4 w-4 mr-1' /> Terang
           </DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
         <DropdownMenuSeparator />

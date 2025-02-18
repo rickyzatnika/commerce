@@ -61,7 +61,7 @@ export default function CredentialsSignInForm() {
     <Form {...form}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <input type='hidden' name='callbackUrl' value={callbackUrl} />
-        <div className='space-y-6'>
+        <div className='space-y-4'>
           <FormField
             control={control}
             name='email'
@@ -69,7 +69,7 @@ export default function CredentialsSignInForm() {
               <FormItem className='w-full'>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input placeholder='Enter email address' {...field} />
+                  <Input placeholder='masukkan alamat email' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -85,7 +85,7 @@ export default function CredentialsSignInForm() {
                 <FormControl>
                   <Input
                     type='password'
-                    placeholder='Enter password'
+                    placeholder='masukkan password'
                     {...field}
                   />
                 </FormControl>
@@ -95,12 +95,10 @@ export default function CredentialsSignInForm() {
           />
 
           <div>
-            <Button type='submit'>Sign In</Button>
+            <Button className='w-full' type='submit'>Masuk</Button>
           </div>
           <div className='text-sm'>
-            By signing in, you agree to {APP_NAME}&apos;s{' '}
-            <Link href='/page/conditions-of-use'>Conditions of Use</Link> and{' '}
-            <Link href='/page/privacy-policy'>Privacy Notice.</Link>
+            Dengan Masuk, Anda menyetujui <Link href="/conditions-of-use">Ketentuan Penggunaan</Link> dan  <Link href='/privacy-policy'>Kebijakan Privasi</Link>. {APP_NAME}.{' '}
           </div>
         </div>
       </form>

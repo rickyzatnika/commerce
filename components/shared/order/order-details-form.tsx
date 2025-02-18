@@ -13,11 +13,14 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { IOrder } from '@/lib/db/models/order.model'
-import { cn, formatCurrency, formatDateTime } from '@/lib/utils'
+import { cn, formatCurrency } from '@/lib/utils'
 import { buttonVariants } from '@/components/ui/button'
 import ProductPrice from '../product/product-price'
 import ActionButton from '../action-button'
 import { deliverOrder, updateOrderToPaid } from '@/lib/actions/order.actions'
+import moment from 'moment'
+import 'moment/locale/id';
+import { Check } from 'lucide-react'
 
 export default function OrderDetailsForm({
   order,
@@ -46,7 +49,7 @@ export default function OrderDetailsForm({
       <div className='overflow-x-auto md:col-span-2 space-y-4'>
         <Card>
           <CardContent className='p-4 gap-4'>
-            <h2 className='text-xl pb-4'>Shipping Address</h2>
+            <h2 className='text-xl pb-4'>Status Pengiriman</h2>
             <p>
               {shippingAddress.fullName} {shippingAddress.phone}
             </p>
@@ -57,16 +60,16 @@ export default function OrderDetailsForm({
             </p>
 
             {isDelivered ? (
-              <Badge>
-                Dikirim pada {' '}{formatDateTime(deliveredAt!).dateTime}
+              <Badge className=' mt-2'>
+                <Check className='h-4 w-4 pr-1' />{' '}  Dikirim pada {' '}{moment(deliveredAt).format('D MMMM YYYY')}
               </Badge>
             ) : (
               <div>
                 {' '}
-                <Badge variant='destructive'>Not delivered</Badge>
+                <Badge variant='destructive'>Belum dikirim</Badge>
                 <div>
                   Perkiraan pengiriman pada{' '}
-                  {formatDateTime(expectedDeliveryDate!).dateTime}
+                  {moment(expectedDeliveryDate).format('D MMMM YYYY')}
                 </div>
               </div>
             )}
@@ -74,24 +77,26 @@ export default function OrderDetailsForm({
         </Card>
         <Card>
           <CardContent className='p-4 gap-4'>
-            <h2 className='text-xl pb-4'>Payment Method</h2>
-            <p>{paymentMethod}</p>
+            <h2 className='text-xl pb-2'>Status Pembayaran</h2>
             {isPaid ? (
-              <Badge>Paid at {formatDateTime(paidAt!).dateTime}</Badge>
+              <div className='flex items-center'>
+
+                <Badge className='bg-green-500'><Check className='h-4 w-4 pr-1' />{' '} Dibayar pada {moment(paidAt!).format('D MMMM YYYY, HH:mm')}</Badge>
+              </div>
             ) : (
-              <Badge variant='destructive'>Not paid</Badge>
+              <Badge variant='destructive'>Belum dibayar</Badge>
             )}
           </CardContent>
         </Card>
         <Card>
-          <CardContent className='p-4   gap-4'>
-            <h2 className='text-xl pb-4'>Order Items</h2>
+          <CardContent className='p-4 gap-4'>
+            <h2 className='text-xl pb-4'>Barang Pesanan</h2>
             <Table>
               <TableHeader>
                 <TableRow>
+                  <TableHead>Nama Barang</TableHead>
                   <TableHead>Item</TableHead>
-                  <TableHead>Quantity</TableHead>
-                  <TableHead>Price</TableHead>
+                  <TableHead>Harga</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -114,7 +119,7 @@ export default function OrderDetailsForm({
                     <TableCell>
                       <span className='px-2'>{item.quantity}</span>
                     </TableCell>
-                    <TableCell className='text-right'>{formatCurrency(item.price)}</TableCell>
+                    <TableCell >{formatCurrency(item.price)}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -125,23 +130,23 @@ export default function OrderDetailsForm({
       <div>
         <Card>
           <CardContent className='p-4  space-y-4 gap-4'>
-            <h2 className='text-xl pb-4'>Order Summary</h2>
+            <h2 className='text-xl pb-4'>Rincian Pesanan</h2>
             <div className='flex justify-between'>
-              <div>Items</div>
+              <div>Harga Barang :</div>
               <div>
                 {' '}
                 <ProductPrice price={itemsPrice} plain />
               </div>
             </div>
             <div className='flex justify-between'>
-              <div>Tax</div>
+              <div>Pajak 12% :</div>
               <div>
                 {' '}
                 <ProductPrice price={taxPrice} plain />
               </div>
             </div>
             <div className='flex justify-between'>
-              <div>Shipping</div>
+              <div>Biaya Pengiriman :</div>
               <div>
                 {' '}
                 <ProductPrice price={shippingPrice} plain />

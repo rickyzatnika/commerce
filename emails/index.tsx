@@ -11,19 +11,20 @@ export const sendPurchaseReceipt = async ({ order }: { order: IOrder }) => {
     await resend.emails.send({
         from: `${SENDER_NAME} <${SENDER_EMAIL}>`,
         to: (order.user as { email: string }).email,
-        subject: `Order Confirmation`,
+        subject: `Korfirmasi Pemesanan`,
         react: <PurchaseReceiptEmail order={order} />,
     })
 }
 
 export const sendAskReviewOrderItems = async ({ order }: { order: IOrder }) => {
-    const oneDayFromNow = new Date(Date.now() + 1000 * 60 * 60 * 24).toISOString()
+    // const oneDayFromNow = new Date(Date.now() + 1000 * 60 * 60 * 24).toISOString()
+    const fourDaysFromNow = new Date(Date.now() + 1000 * 60 * 60 * 24 * 4).toISOString()
     console.log('order', order)
     await resend.emails.send({
         from: `${SENDER_NAME} <${SENDER_EMAIL}>`,
         to: (order.user as { email: string }).email,
-        subject: 'Review your order items',
+        subject: 'Berikan Ulasan untuk produk yang Anda beli',
         react: <AskReviewOrderItemsEmail order={order} />,
-        scheduledAt: oneDayFromNow,
+        scheduledAt: fourDaysFromNow,
     })
 }

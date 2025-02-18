@@ -16,7 +16,7 @@ import {
 
 import { formatCurrency } from '@/lib/utils'
 import { IOrder } from '@/lib/db/models/order.model'
-import { SERVER_URL } from '@/lib/constants'
+import { APP_NAME, SERVER_URL } from '@/lib/constants'
 
 type OrderInformationProps = {
   order: IOrder
@@ -69,12 +69,12 @@ export default async function PurchaseReceiptEmail({
 }: OrderInformationProps) {
   return (
     <Html>
-      <Preview>View order receipt</Preview>
+      <Preview>Tanda Terima Pesanan</Preview>
       <Tailwind>
         <Head />
         <Body className='font-sans bg-white'>
           <Container className='max-w-xl'>
-            <Heading>Purchase Receipt</Heading>
+            <Heading>Tanda Terima Pembelian</Heading>
             <Section>
               <Row>
                 <Column>
@@ -85,7 +85,7 @@ export default async function PurchaseReceiptEmail({
                 </Column>
                 <Column>
                   <Text className='mb-0 text-gray-500 whitespace-nowrap text-nowrap mr-4'>
-                    Purchased On
+                    Dibeli Pada
                   </Text>
                   <Text className='mt-0 mr-4'>
                     {dateFormatter.format(order.createdAt)}
@@ -93,7 +93,7 @@ export default async function PurchaseReceiptEmail({
                 </Column>
                 <Column>
                   <Text className='mb-0 text-gray-500 whitespace-nowrap text-nowrap mr-4'>
-                    Price Paid
+                    Harga yang Dibayar
                   </Text>
                   <Text className='mt-0 mr-4'>
                     {formatCurrency(order.totalPrice)}
@@ -131,9 +131,9 @@ export default async function PurchaseReceiptEmail({
                 </Row>
               ))}
               {[
-                { name: 'Items', price: order.itemsPrice },
-                { name: 'Tax', price: order.taxPrice },
-                { name: 'Shipping', price: order.shippingPrice },
+                { name: 'Harga Produk', price: order.itemsPrice },
+                { name: 'Pajak 12%', price: order.taxPrice },
+                { name: 'Ongkos Kirim', price: order.shippingPrice },
                 { name: 'Total', price: order.totalPrice },
               ].map(({ name, price }) => (
                 <Row key={name} className='py-1'>
@@ -143,6 +143,11 @@ export default async function PurchaseReceiptEmail({
                   </Column>
                 </Row>
               ))}
+            </Section>
+            <Section>
+              <Text className='mb-0 text-center py-4 text-gray-900 whitespace-nowrap text-nowrap '>
+                Terima kasih telah berbelanja di toko kami &quot;{APP_NAME}&quot;! Kami tunggu kedatangan Anda berikutnya. 😊✨
+              </Text>
             </Section>
           </Container>
         </Body>
