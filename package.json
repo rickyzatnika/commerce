@@ -39,6 +39,7 @@
     "embla-carousel-react": "^8.5.2",
     "lucide-react": "^0.475.0",
     "midtrans-client": "^1.4.2",
+    "moment": "^2.30.1",
     "mongodb": "^6.13.0",
     "mongoose": "^8.10.0",
     "next": "^15.1.7",

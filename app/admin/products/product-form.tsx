@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -70,6 +69,15 @@ const ProductForm = ({
 
   const { toast } = useToast()
   async function onSubmit(values: IProductInput) {
+
+
+    if (values.tags.length === 0 || values.sizes.length === 0 || values.colors.length === 0) {
+      return toast({
+        variant: 'destructive',
+        description: "Tags, size, and color is required!",
+      })
+    }
+
     if (type === 'Create') {
       const res = await createProduct(values)
       if (!res.success) {
@@ -90,6 +98,7 @@ const ProductForm = ({
         return
       }
       const res = await updateProduct({ ...values, _id: productId })
+
       if (!res.success) {
         toast({
           variant: 'destructive',
@@ -301,8 +310,8 @@ const ProductForm = ({
 
         {/* Tags Checkbox */}
         <div className='flex flex-col gap-3'>
-          <FormLabel>Tags</FormLabel>
-          {['todays-deal', 'featured', 'new-arrival', 'best-seller'].map((tag) => (
+          <FormLabel>Tags <i className='text-xs text-red-500'>*Pilih beberapa tag untuk ditampilkan di halaman depan dan pencarian*</i></FormLabel>
+          {['promo-hari-ini', 'produk-unggulan', 'produk-terbaru', 'produk-terlaris'].map((tag) => (
             <FormField
               key={tag}
               control={form.control}

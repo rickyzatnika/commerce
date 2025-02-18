@@ -62,8 +62,8 @@ export default async function HomePage() {
   //   },
   // ]
 
-  const todaysDeals = await getProductsByTag({ tag: 'todays-deal' })
-  const bestSellingProducts = await getProductsByTag({ tag: 'best-seller' })
+  const todaysDeals = await getProductsByTag({ tag: 'promo-hari-ini' })
+  const bestSellingProducts = await getProductsByTag({ tag: 'produk-terlaris' })
 
   return (
     <>
@@ -72,14 +72,14 @@ export default async function HomePage() {
         {/* <HomeCard cards={cards} /> */}
         <Card className='w-full rounded-none'>
           <CardContent className='p-4 items-center gap-3'>
-            <ProductSlider title={"Today's Deals"} products={todaysDeals} />
+            <ProductSlider title={"Promo Hari Ini"} products={todaysDeals} />
           </CardContent>
         </Card>
 
         <Card className='w-full rounded-none'>
           <CardContent className='p-4 items-center gap-3'>
             <ProductSlider
-              title='Best Selling Products'
+              title='Produk Terlaris'
               products={bestSellingProducts}
               hideDetails
             />

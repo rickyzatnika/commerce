@@ -30,7 +30,7 @@ export default async function Sidebar({
       <DrawerContent className='w-[350px] mt-0 top-0'>
         <div className='flex flex-col h-full'>
           {/* User Sign In Section */}
-          <div className='dark bg-gray-800 text-foreground flex items-center justify-between  '>
+          <div className='dark bg-gray-900 text-foreground flex items-center justify-between  '>
             <DrawerHeader>
               <DrawerTitle className='flex items-center'>
                 <UserCircle className='h-6 w-6 mr-2' />
@@ -38,7 +38,7 @@ export default async function Sidebar({
                   <DrawerClose asChild>
                     <Link href='/account'>
                       <span className='text-lg font-semibold'>
-                        Hello, {session.user.name}
+                        Hi, {session.user.name}
                       </span>
                     </Link>
                   </DrawerClose>
@@ -46,7 +46,7 @@ export default async function Sidebar({
                   <DrawerClose asChild>
                     <Link href='/sign-in'>
                       <span className='text-lg font-semibold'>
-                        Hello, sign in
+                        Masuk/Daftar
                       </span>
                     </Link>
                   </DrawerClose>
@@ -55,9 +55,8 @@ export default async function Sidebar({
               <DrawerDescription></DrawerDescription>
             </DrawerHeader>
             <DrawerClose asChild>
-              <Button variant='ghost' size='icon' className='mr-2'>
+              <Button variant='default' size='icon' className='mr-2'>
                 <X className='h-5 w-5' />
-                <span className='sr-only'>Close</span>
               </Button>
             </DrawerClose>
           </div>
@@ -65,7 +64,7 @@ export default async function Sidebar({
           {/* Shop By Category */}
           <div className='flex-1 overflow-y-auto'>
             <div className='p-4 border-b'>
-              <h2 className='text-lg font-semibold'>All Categories</h2>
+              <h2 className='text-lg font-semibold'>Semua Kategori</h2>
             </div>
             <nav className='flex flex-col'>
               {categories.map((category) => (
@@ -85,11 +84,11 @@ export default async function Sidebar({
           {/* Setting and Help */}
           <div className='border-t flex flex-col '>
             <div className='p-4'>
-              <h2 className='text-lg font-semibold'>Help & Settings</h2>
+              <h2 className='text-lg font-semibold'>Bantuan & Pengaturan</h2>
             </div>
             <DrawerClose asChild>
               <Link href='/account' className='item-button'>
-                Your account
+                Profile Account
               </Link>
             </DrawerClose>{' '}
             <DrawerClose asChild>
@@ -103,12 +102,12 @@ export default async function Sidebar({
                   className='w-full justify-start item-button text-base'
                   variant='ghost'
                 >
-                  Sign out
+                  Keluar
                 </Button>
               </form>
             ) : (
               <Link href='/sign-in' className='item-button'>
-                Sign in
+                Masuk
               </Link>
             )}
           </div>

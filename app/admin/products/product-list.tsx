@@ -112,6 +112,7 @@ const ProductList = () => {
           <Table>
             <TableHeader>
               <TableRow>
+                <TableHead>No</TableHead>
                 <TableHead>Id</TableHead>
                 <TableHead>Name</TableHead>
                 <TableHead className='text-right'>Price</TableHead>
@@ -124,8 +125,9 @@ const ProductList = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {data?.products.map((product: IProduct) => (
+              {data?.products.map((product: IProduct, index: number) => (
                 <TableRow key={product._id}>
+                  <TableCell>{index + 1 + (page - 1) * 9}.</TableCell>
                   <TableCell>{formatId(product._id)}</TableCell>
                   <TableCell>
                     <Link href={`/admin/products/${product._id}`}>

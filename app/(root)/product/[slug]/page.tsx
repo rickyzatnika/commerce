@@ -88,6 +88,7 @@ export default async function ProductDetails(props: {
                 </div>
               </div>
             </div>
+
             <div>
               <SelectVariant
                 product={product}
@@ -95,10 +96,14 @@ export default async function ProductDetails(props: {
                 color={color || product.colors[0]}
               />
             </div>
+            <div className='py-3'>
+              <span>Stok Tersedia : </span>
+              <span className='px-1 py-0.5 rounded-lg w-fit '>{product.countInStock} item</span>
+            </div>
             <Separator className='my-2' />
             <div className='flex flex-col gap-2'>
-              <p className='p-bold-20 text-grey-600'>Description:</p>
-              <p className='p-medium-16 lg:p-regular-18'>
+              <p className='p-bold-20 text-grey-600'>Deskripsi Produk :</p>
+              <p className='p-medium-16 lg:p-regular-18 mb-4 md:mb-0'>
                 {product.description}
               </p>
             </div>
@@ -114,7 +119,9 @@ export default async function ProductDetails(props: {
                   </div>
                 )}
                 {product.countInStock !== 0 ? (
-                  <div className='text-green-700 text-xl'>In Stock</div>
+                  <div className=' text-base'>
+                    Stok : {product.countInStock} item
+                  </div>
                 ) : (
                   <div className='text-destructive text-xl'>
                     Out of Stock

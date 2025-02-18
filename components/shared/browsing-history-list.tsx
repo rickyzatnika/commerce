@@ -16,12 +16,12 @@ export default function BrowsingHistoryList({
       <div className='bg-background'>
         <Separator className={cn('mb-4', className)} />
         <ProductList
-          title={"Related to items that you've viewed"}
+          title={"Produk terkait dengan yang telah Anda lihat"}
           type='related'
         />
         <Separator className='mb-4' />
         <ProductList
-          title={'Your browsing history'}
+          title={'Riwayat Penjelajahan Anda '}
           hideDetails
           type='history'
         />

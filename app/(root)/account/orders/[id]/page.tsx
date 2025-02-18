@@ -34,13 +34,13 @@ export default async function OrderDetailsPage(props: {
   return (
     <>
       <div className='flex gap-2'>
-        <Link href='/account'>Your Account</Link>
+        <Link href='/account'>Account</Link>
         <span>›</span>
-        <Link href='/account/orders'>Your Orders</Link>
+        <Link href='/account/orders'>Orders</Link>
         <span>›</span>
         <span>Order {formatId(order._id)}</span>
       </div>
-      <h1 className='h1-bold py-4'>Order {formatId(order._id)}</h1>
+      <h1 className='h1-bold py-4'>Order id {formatId(order._id)}</h1>
       <OrderDetailsForm
         order={order}
         isAdmin={session?.user?.role === 'Admin' || false}

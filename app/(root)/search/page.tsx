@@ -16,11 +16,11 @@ import Rating from '@/components/shared/product/rating'
 import CollapsibleOnMobile from '@/components/shared/collapsible-on-mobile'
 
 const sortOrders = [
-  { value: 'price-low-to-high', name: 'Price: Low to high' },
-  { value: 'price-high-to-low', name: 'Price: High to low' },
-  { value: 'newest-arrivals', name: 'Newest arrivals' },
-  { value: 'avg-customer-review', name: 'Avg. customer review' },
-  { value: 'best-selling', name: 'Best selling' },
+  { value: 'price-low-to-high', name: 'Harga Terendah' },
+  { value: 'price-high-to-low', name: 'Harga Tertinggi' },
+  { value: 'produk-terbaru', name: 'Produk Terbaru' },
+  { value: 'avg-customer-review', name: 'Rata-rata Ulasan' },
+  { value: 'produk-terlaris', name: 'Produk Terlaris' },
 ]
 
 // const prices = [
@@ -98,7 +98,7 @@ export default async function SearchPage(props: {
     tag = 'all',
     price = 'all',
     rating = 'all',
-    sort = 'best-selling',
+    sort = 'produk-terlaris',
     page = '1',
   } = searchParams
 
@@ -118,21 +118,21 @@ export default async function SearchPage(props: {
   return (
     <div>
       <div className='mb-2 py-2 md:border-b flex-between flex-col md:flex-row '>
-        <div className='flex items-center'>
+        <div className='flex items-center capitalize mb-2'>
           {data.totalProducts === 0
             ? 'No'
-            : `${data.from}-${data.to} of ${data.totalProducts}`}{' '}
-          results
+            : `${data.from}-${data.to} dari ${data.totalProducts}`}{' '}
+          Hasil pencarian
           {(q !== 'all' && q !== '') ||
             (category !== 'all' && category !== '') ||
             (tag !== 'all' && tag !== '') ||
             rating !== 'all' ||
             price !== 'all'
-            ? ` for `
+            ? ` untuk `
             : null}
           {q !== 'all' && q !== '' && '"' + q + '"'}
           {category !== 'all' && category !== '' && `  Category: ` + category}
-          {tag !== 'all' && tag !== '' && `   Tag: ` + tag}
+          {tag !== 'all' && tag !== '' && `   Tag : ` + tag}
           {price !== 'all' && `    Price: ` + price}
           {rating !== 'all' && `   Rating: ` + rating + ` & up`}
           &nbsp;
@@ -156,9 +156,9 @@ export default async function SearchPage(props: {
       </div>
       <div className='bg-card grid md:grid-cols-5 md:gap-4'>
         <CollapsibleOnMobile title='Filters'>
-          <div className='space-y-4'>
+          <div className='space-y-4 my-3'>
             <div>
-              <div className='font-bold mb-1'>Department</div>
+              <h1 className='font-bold'>Kategori Produk</h1>
               <ul>
                 <li className='py-0.5'>
                   <Link
@@ -205,7 +205,7 @@ export default async function SearchPage(props: {
               </ul>
             </div> */}
             <div>
-              <div className='font-bold'>Customer Review</div>
+              <h3 className='font-bold'>Ulasan Pelanggan</h3>
               <ul>
                 <li>
                   <Link
@@ -256,9 +256,9 @@ export default async function SearchPage(props: {
         </CollapsibleOnMobile>
 
         <div className='md:col-span-4 space-y-4'>
-          <div>
-            <div className='font-bold text-xl'>Results</div>
-            <div>Check each product page for other buying options</div>
+          <div className='py-3'>
+            <div className='font-bold text-xl'>Hasil pencarian</div>
+            <div>Periksa setiap halaman produk untuk opsi pembelian lainnya</div>
           </div>
 
           <div className='grid grid-cols-1 gap-4 md:grid-cols-2  lg:grid-cols-3  '>

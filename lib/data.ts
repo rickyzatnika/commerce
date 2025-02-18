@@ -74,23 +74,23 @@ const data: Data = {
   headerMenus: [
 
     {
-      name: 'New Arrivals',
-      href: '/search?tag=new-arrival',
+      name: 'Produk Terbaru',
+      href: '/search?tag=produk-terbaru',
     },
     {
-      name: 'Featured Products',
-      href: '/search?tag=featured',
+      name: 'Produk Unggulan',
+      href: '/search?tag=produk-unggulan',
     },
     {
-      name: 'Best Sellers',
-      href: '/search?tag=best-seller',
+      name: 'Produk Terlaris',
+      href: '/search?tag=produk-terlaris',
     },
     {
-      name: 'About Us',
+      name: 'Tentang Kami',
       href: '/about-us',
     },
     {
-      name: 'Help',
+      name: 'Bantuan',
       href: '/help',
     },
   ],

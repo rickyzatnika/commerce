@@ -11,7 +11,6 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import useCartStore from '@/hooks/use-cart-store'
-import { APP_NAME } from '@/lib/constants'
 import { ShoppingCart } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -30,12 +29,10 @@ export default function CartPage() {
       <div className='grid grid-cols-1 md:grid-cols-4  md:gap-4'>
         {items.length === 0 ? (
           <Card className='col-span-4 rounded-none'>
-            <CardHeader className='text-3xl  '>
+            <CardHeader className='text-2xl md:text-3xl flex items-center '>
               Keranjang Belanja Anda kosong
+              <Image src="/icons/sad.png" alt='emoticon' width={75} height={50} priority={true} />
             </CardHeader>
-            <CardContent>
-              Lanjutkan berbelanja <Link href='/'>{APP_NAME}</Link>
-            </CardContent>
           </Card>
         ) : (
           <>

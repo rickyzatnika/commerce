@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-
 import Pagination from '@/components/shared/pagination'
 import {
   Table,
@@ -15,8 +14,9 @@ import { IOrder } from '@/lib/db/models/order.model'
 import { formatDateTime, formatId } from '@/lib/utils'
 import BrowsingHistoryList from '@/components/shared/browsing-history-list'
 import ProductPrice from '@/components/shared/product/product-price'
+import moment from 'moment'
 
-const PAGE_TITLE = 'Orders'
+const PAGE_TITLE = 'Pesanan Saya'
 export const metadata: Metadata = {
   title: PAGE_TITLE,
 }
@@ -31,7 +31,7 @@ export default async function OrdersPage(props: {
   return (
     <div>
       <div className='flex gap-2'>
-        <Link href='/account'>Account</Link>
+        <Link href='/account'>Profile Account</Link>
         <span>›</span>
         <span >{PAGE_TITLE}</span>
       </div>
@@ -40,11 +40,11 @@ export default async function OrdersPage(props: {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Id</TableHead>
-              <TableHead>Date</TableHead>
+              <TableHead>Order Id</TableHead>
+              <TableHead>Tanggal</TableHead>
               <TableHead>Total</TableHead>
-              <TableHead>Paid</TableHead>
-              <TableHead>Delivered</TableHead>
+              <TableHead>Dibayar</TableHead>
+              <TableHead>Dikirim</TableHead>
               <TableHead>Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -64,7 +64,7 @@ export default async function OrdersPage(props: {
                   </Link>
                 </TableCell>
                 <TableCell>
-                  {formatDateTime(order.createdAt!).dateTime}
+                  {moment(order.createdAt!).format('L')}
                 </TableCell>
                 <TableCell>
                   <ProductPrice price={order.totalPrice} plain />

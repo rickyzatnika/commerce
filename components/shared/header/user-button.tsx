@@ -22,16 +22,15 @@ export default async function UserButton() {
         <DropdownMenuTrigger className='header-button' asChild>
           <div className='flex items-center'>
             {session ?
-              <div className='flex flex-col text-xs text-left'>
-                <span>Hi, {session && session.user.name}</span>
-                <span className='font-bold'>Account & Orders</span>
+              <div className='flex gap-2'>
+                <div className='text-md'>
+                  <span>Hi, {session && session.user.name}</span>
+                </div>
+                <ChevronDown />
               </div> :
-              <div className='flex flex-col text-xs text-left'>
-                <span>Hi, Guest!!</span>
-                <span className='font-bold'>SingIn/SignUp</span>
-              </div>
+              <Link href='/login'>Masuk/Daftar</Link>
             }
-            <ChevronDown />
+
           </div>
         </DropdownMenuTrigger>
         {session ? (
@@ -66,7 +65,7 @@ export default async function UserButton() {
                   className='w-full py-4 px-2 h-4 justify-start'
                   variant='ghost'
                 >
-                  Sign out
+                  Keluar
                 </Button>
               </form>
             </DropdownMenuItem>
@@ -79,13 +78,13 @@ export default async function UserButton() {
                   className={cn(buttonVariants(), 'w-full')}
                   href='/sign-in'
                 >
-                  Sign in
+                  Masuk
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuLabel>
               <div className='font-normal'>
-                New Customer? <Link href='/sign-up'>Sign up</Link>
+                <span className='text-sm'>Belum punya akun?</span> <Link className='text-blue-500 text-md underline' href='/sign-up'>Daftar disini</Link>
               </div>
             </DropdownMenuLabel>
           </DropdownMenuContent>

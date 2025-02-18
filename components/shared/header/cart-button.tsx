@@ -24,14 +24,14 @@ export default function CartButton() {
         {isMounted && (
           <span
             className={cn(
-              `bg-black  px-1 rounded-full text-primary text-base font-bold absolute right-[30px] top-[-4px] z-10`,
+              `bg-black  px-1 rounded-full text-primary text-base font-bold absolute right-[5px] top-[-4px] z-10`,
               cartItemsCount >= 10 && 'text-sm px-0 p-[1px]'
             )}
           >
             {cartItemsCount}
           </span>
         )}
-        <span className='font-bold'>Cart</span>
+
         {
           isCartSidebarOpen && (
             <div
