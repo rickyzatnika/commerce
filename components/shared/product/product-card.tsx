@@ -49,7 +49,7 @@ const ProductCard = ({
   )
   const ProductDetails = () => (
     <div className='flex-1 pb-2'>
-      <p className='font-bold'>{product.brand}</p>
+      <p className='font-bold'>{product.name}</p>
       <Link
         href={`/product/${product.slug}`}
         className='overflow-hidden text-ellipsis'
@@ -59,9 +59,9 @@ const ProductCard = ({
           WebkitBoxOrient: 'vertical',
         }}
       >
-        {product.name}
+
       </Link>
-      <div className='flex gap-2 justify-center'>
+      <div className='flex gap-2 py-2 justify-center'>
         <Rating rating={product.avgRating} />
         <span>({formatNumber(product.numReviews)})</span>
       </div>

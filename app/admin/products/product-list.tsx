@@ -20,7 +20,8 @@ import { IProduct } from '@/lib/db/models/product.model'
 
 import React, { useEffect, useState, useTransition } from 'react'
 import { Input } from '@/components/ui/input'
-import { formatDateTime, formatId } from '@/lib/utils'
+import { formatCurrency, formatId } from '@/lib/utils'
+import moment from 'moment'
 
 type ProductListDataProps = {
   products: IProduct[]
@@ -81,14 +82,14 @@ const ProductList = () => {
       <div className='space-y-2'>
         <div className='flex-between flex-wrap gap-2'>
           <div className='flex flex-wrap items-center gap-2 '>
-            <h1 className='font-bold text-lg'>Products</h1>
+            <h1 className='font-bold text-lg'>Produk</h1>
             <div className='flex flex-wrap items-center  gap-2 '>
               <Input
                 className='w-auto'
                 type='text '
                 value={inputValue}
                 onChange={handleInputChange}
-                placeholder='Filter name...'
+                placeholder='Cari Nama produk...'
               />
 
               {isPending ? (
@@ -105,7 +106,7 @@ const ProductList = () => {
           </div>
 
           <Button asChild variant='default'>
-            <Link href='/admin/products/create'>Create Product</Link>
+            <Link href='/admin/products/create'>Buat Produk</Link>
           </Button>
         </div>
         <div>
@@ -113,15 +114,15 @@ const ProductList = () => {
             <TableHeader>
               <TableRow>
                 <TableHead>No</TableHead>
-                <TableHead>Id</TableHead>
-                <TableHead>Name</TableHead>
-                <TableHead className='text-right'>Price</TableHead>
-                <TableHead>Category</TableHead>
-                <TableHead>Stock</TableHead>
-                <TableHead>Rating</TableHead>
-                <TableHead>Published</TableHead>
-                <TableHead>Last Update</TableHead>
-                <TableHead className='w-[100px]'>Actions</TableHead>
+                <TableHead>Id Produk</TableHead>
+                <TableHead>Nama Produk</TableHead>
+                <TableHead className='text-right'>Harga</TableHead>
+                <TableHead>Kategori</TableHead>
+                <TableHead>Stok</TableHead>
+                <TableHead>Ulasan</TableHead>
+                <TableHead>Diterbitkan</TableHead>
+                <TableHead>Diperbarui</TableHead>
+                <TableHead className='w-[100px]'>Tindakan</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -134,13 +135,14 @@ const ProductList = () => {
                       {product.name}
                     </Link>
                   </TableCell>
-                  <TableCell className='text-right'>Rp{product.price}</TableCell>
+                  <TableCell className='text-right'>{formatCurrency(product.price)}</TableCell>
                   <TableCell>{product.category}</TableCell>
                   <TableCell>{product.countInStock}</TableCell>
                   <TableCell>{product.avgRating}</TableCell>
                   <TableCell>{product.isPublished ? 'Yes' : 'No'}</TableCell>
                   <TableCell>
-                    {formatDateTime(product.updatedAt).dateTime}
+
+                    {moment(product.updatedAt).subtract(1, 'days').calendar()}
                   </TableCell>
                   <TableCell className='flex gap-1'>
                     <Button asChild variant='outline' size='sm'>

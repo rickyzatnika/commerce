@@ -43,26 +43,29 @@ export default function CartPage() {
                   <span>Keranjang Belanja</span>
                 </CardHeader>
                 <CardContent className='p-4'>
-                  <div className='flex justify-end border-b mb-4'>Price</div>
+                  <i className='flex justify-end border-b mb-4'>Harga Barang</i>
 
-                  {items.map((item) => (
+                  {items.map((item, i: number) => (
                     <div
                       key={item.clientId}
                       className='flex flex-col md:flex-row justify-between py-4 border-b gap-4'
                     >
-                      <Link href={`/product/${item.slug}`}>
-                        <div className='relative w-40 h-40'>
-                          <Image
-                            src={item.image}
-                            alt={item.name}
-                            fill
-                            sizes='20vw'
-                            style={{
-                              objectFit: 'contain',
-                            }}
-                          />
-                        </div>
-                      </Link>
+                      <div className='flex gap-1 items-start'>
+                        <p>{i + 1}.</p>
+                        <Link href={`/product/${item.slug}`}>
+                          <div className='relative w-40 h-40'>
+                            <Image
+                              src={item.image}
+                              alt={item.name}
+                              fill
+                              sizes='20vw'
+                              style={{
+                                objectFit: 'contain',
+                              }}
+                            />
+                          </div>
+                        </Link>
+                      </div>
 
                       <div className='flex-1 space-y-4'>
                         <Link
@@ -71,14 +74,18 @@ export default function CartPage() {
                         >
                           {item.name}
                         </Link>
-                        <div>
+                        <div >
                           <p className='text-sm'>
-                            <span className='font-bold'>Color: </span>{' '}
+                            <span className='font-bold'>Warna : </span>{' '}
                             {item.color}
                           </p>
-                          <p className='text-sm'>
-                            <span className='font-bold'>Size: </span>{' '}
+                          <p className='text-sm py-2'>
+                            <span className='font-bold'>Ukuran : </span>{' '}
                             {item.size}
+                          </p>
+                          <p className='text-sm'>
+                            <span className='font-bold'>Stok : </span>{' '}
+                            {item.countInStock} item
                           </p>
                         </div>
                         <div className='flex gap-2 items-center'>
@@ -90,7 +97,7 @@ export default function CartPage() {
                           >
                             <SelectTrigger className='w-auto'>
                               <SelectValue>
-                                Quantity: {item.quantity}
+                                Quantity : {item.quantity}
                               </SelectValue>
                             </SelectTrigger>
                             <SelectContent position='popper'>
@@ -107,7 +114,7 @@ export default function CartPage() {
                             variant={'outline'}
                             onClick={() => removeItem(item)}
                           >
-                            Delete
+                            Hapus
                           </Button>
                         </div>
                       </div>
@@ -133,9 +140,9 @@ export default function CartPage() {
                   ))}
 
                   <div className='flex justify-end text-lg my-2'>
-                    Subtotal (
+                    Total (
                     {items.reduce((acc, item) => acc + item.quantity, 0)}{' '}
-                    Items):{' '}
+                    Item):{' '}
                     <span className='font-bold ml-1'>
                       <ProductPrice price={itemsPrice} plain />
                     </span>{' '}
