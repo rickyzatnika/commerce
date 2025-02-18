@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { APP_NAME } from '@/lib/constants'
-import React from 'react'
+
 
 const AboutUs = () => {
   return (
