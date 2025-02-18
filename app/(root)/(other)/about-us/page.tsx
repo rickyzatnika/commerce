@@ -96,7 +96,7 @@ const AboutUs = () => {
         <ul className='list-disc list-inside px-2 space-y-1 mt-2'>
           <li>📍 Instagram: @dyz.official</li>
           <li>📍 Facebook: DYZ Look Different</li>
-          <li>📍 WhatsApp: +62 812-3456-7890</li>
+          <li>📍 WhatsApp: +6281234567890</li>
           <li>📍 Email: support@dyz.com</li>
         </ul>
 
