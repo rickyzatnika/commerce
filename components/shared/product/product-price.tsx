@@ -45,7 +45,7 @@ const ProductPrice = ({
           } items-center gap-2`}
       >
         <div className={cn('text-3xl', className)}>
-          <span className='text-xs align-super'>Rp.</span>
+          <span className='text-xs align-super'>Rp</span>
           {intValue}
           <span className='text-xs align-super'>{floatValue}</span>
         </div>
