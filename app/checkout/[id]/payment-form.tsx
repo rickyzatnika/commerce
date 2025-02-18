@@ -126,13 +126,13 @@ export default function OrderPaymentForm({
               </span>
             </div>
             <Button className={`${order.isPaid == true ? 'hidden' : 'block'} w-full rounded-full mt-4`} onClick={handleMidtransPayment}>
-              {loading ? 'Loading...' : 'Bayar Sekarang'}
+              {loading ? 'tunggu sebentar...' : 'Oke, Bayar '}
             </Button>
 
             {order.isPaid === true && (
               <div className='flex gap-2 w-full justify-between pt-4'>
                 <Button className='w-full rounded-full' onClick={handleMidtransPayment}>
-                  {loading ? 'Loading...' : 'Bayar Sekarang'}
+                  {loading ? 'tunggu sebentar...' : 'Oke, Bayar'}
                 </Button>
                 <Button className='w-full rounded-full' variant='outline' onClick={() => router.push(`/account/orders/${order._id}`)}>View Order</Button>
               </div>

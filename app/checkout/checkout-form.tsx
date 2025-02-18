@@ -183,7 +183,7 @@ const CheckoutForm = () => {
             {isAddressSelected && (
               <div>
                 <Button onClick={handlePlaceOrder} className='rounded-full w-full'>
-                  Lanjutkan Pembayaran
+                  Ya, Lanjutkan
                 </Button>
                 <p className='text-xs text-center py-2'>
                   {' '}
@@ -636,7 +636,7 @@ const CheckoutForm = () => {
               <Card className='hidden md:block '>
                 <CardContent className='p-4 flex flex-col md:flex-row justify-between items-center gap-3'>
                   <Button onClick={handlePlaceOrder} className='rounded-full'>
-                    Lanjutkan Pembayaran
+                    Ya, Lanjutkan
                   </Button>
                   <div className='flex-1'>
                     <p className='font-bold text-lg'>
