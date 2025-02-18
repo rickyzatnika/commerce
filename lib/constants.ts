@@ -3,6 +3,8 @@ export const APP_SLOGAN = process.env.NEXT_PUBLIC_APP_SLOGAN || 'Spend less, enj
 export const APP_DESCRIPTION = process.env.NEXT_PUBLIC_APP_DESCRIPTION || ''
 
 
+// export const RAJA_ONGKIR_API = process.env.RAJA_ONGKIR_API || ''
+
 export const SERVER_URL =
     process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
 

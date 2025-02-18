@@ -11,7 +11,7 @@ const AboutUs = () => {
 
       <p className='text-lg font-bold w-full'>{APP_NAME} "Look Different"</p>
 
-      <div className='px-3 mb-6'>
+      <div className='px-3 mb-6 text-gray-700 dark:text-gray-300'>
         <div className='leading-relaxed'>
           <h3 className='pt-3 font-bold'>Siapa Kami?</h3>
           <p className='px-2'>
@@ -64,7 +64,7 @@ const AboutUs = () => {
 
       <div>
         <h3 className='text-lg font-bold mb-3'>Mengapa Memilih DYZ?</h3>
-        <ul className='list-disc list-inside px-2 space-y-1'>
+        <ul className='list-disc list-inside px-2 space-y-1 text-gray-700 dark:text-gray-300'>
           <li>
             ✅ Desain Eksklusif – Kami selalu menghadirkan koleksi fashion yang
             fresh dan berbeda, sesuai dengan tren terkini.
@@ -93,14 +93,14 @@ const AboutUs = () => {
           Ikuti perjalanan kami dan dapatkan informasi terbaru tentang koleksi,
           promo, serta inspirasi fashion melalui:
         </p>
-        <ul className='list-disc list-inside px-2 space-y-1 mt-2'>
+        <ul className='list-disc list-inside px-2 space-y-1 mt-2 text-gray-700 dark:text-gray-300'>
           <li>📍 Instagram: @dyz.official</li>
           <li>📍 Facebook: DYZ Look Different</li>
           <li>📍 WhatsApp: +6281234567890</li>
           <li>📍 Email: support@dyz.com</li>
         </ul>
 
-        <p className='mt-6'>
+        <p className='mt-6 text-gray-700 dark:text-gray-300'>
           Kami percaya bahwa setiap orang memiliki gaya uniknya sendiri. Bersama
           DYZ, tunjukkan perbedaan dan ekspresikan diri Anda dengan percaya
           diri!

@@ -10,6 +10,8 @@ import { Button } from '@/components/ui/button'
 import ProductPrice from '@/components/shared/product/product-price'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
 
 
 export default function OrderPaymentForm({
@@ -87,28 +89,28 @@ export default function OrderPaymentForm({
     <Card>
       <CardContent className='p-4'>
         <div>
-          <div className='text-lg font-bold'>Order Summary</div>
+          <div className='text-lg font-bold mb-3'>Rincian Pesanan</div>
           <div className='space-y-2'>
             <div className='flex justify-between'>
-              <span>Items:</span>
+              <span>Harga :</span>
               <span>
                 <ProductPrice price={itemsPrice} plain />
               </span>
             </div>
             <div className='flex justify-between'>
-              <span>Shipping & Handling:</span>
+              <span>Pengiriman & Penanganan :</span>
               <span>
                 {shippingPrice === undefined ? (
                   '--'
                 ) : shippingPrice === 0 ? (
-                  'FREE'
+                  'Free'
                 ) : (
                   <ProductPrice price={shippingPrice} plain />
                 )}
               </span>
             </div>
             <div className='flex justify-between'>
-              <span>Tax:</span>
+              <span>Pajak 12% :</span>
               <span>
                 {taxPrice === undefined ? (
                   '--'
@@ -124,13 +126,13 @@ export default function OrderPaymentForm({
               </span>
             </div>
             <Button className={`${order.isPaid == true ? 'hidden' : 'block'} w-full rounded-full mt-4`} onClick={handleMidtransPayment}>
-              {loading ? 'Loading...' : 'Pay Now'}
+              {loading ? 'Loading...' : 'Bayar Sekarang'}
             </Button>
 
             {order.isPaid === true && (
               <div className='flex gap-2 w-full justify-between pt-4'>
                 <Button className='w-full rounded-full' onClick={handleMidtransPayment}>
-                  {loading ? 'Loading...' : 'Pay Now'}
+                  {loading ? 'Loading...' : 'Bayar Sekarang'}
                 </Button>
                 <Button className='w-full rounded-full' variant='outline' onClick={() => router.push(`/account/orders/${order._id}`)}>View Order</Button>
               </div>
@@ -148,42 +150,54 @@ export default function OrderPaymentForm({
           {/* Shipping Address */}
           <div>
             <div className='grid md:grid-cols-3 my-3 pb-3'>
-              <div className='text-lg font-bold'>Shipping Address</div>
+              <div className='text-lg font-bold'>Alamat Pengiriman</div>
               <div className='col-span-2'>
                 <p>
-                  {shippingAddress.fullName} <br />
+                  <span className='capitalize'>{shippingAddress.fullName}</span> <br />
                   {shippingAddress.street} <br />
                   {`${shippingAddress.city}, ${shippingAddress.province}, ${shippingAddress.postalCode}, ${shippingAddress.country}`}
                 </p>
               </div>
             </div>
           </div>
-
-          {/* Payment Method */}
-          <div className='border-y'>
-            <div className='grid md:grid-cols-3 my-3 pb-3'>
-              <div className='text-lg font-bold'>Payment Method</div>
-              <div className='col-span-2'>
-                <p>{paymentMethod}</p>
-              </div>
-            </div>
-          </div>
-
           <div className='grid md:grid-cols-3 my-3 pb-3'>
-            <div className='flex text-lg font-bold'>Items and shipping</div>
+            <div className='flex text-lg font-bold'>Tanggal Pengiriman</div>
             <div className='col-span-2'>
               <p>
-                Delivery date: {formatDateTime(expectedDeliveryDate).dateOnly}
+                {formatDateTime(expectedDeliveryDate).dateOnly}
               </p>
+
+            </div>
+          </div>
+          <div className='grid md:grid-cols-3 my-3 pb-3'>
+            <div className='flex text-lg font-bold'>Pesanan</div>
+            <div className='col-span-2'>
+
               <ul>
                 {items.map((item) => (
-                  <li key={item.slug}>
-                    {item.name} x {item.quantity} = {item.price}
+
+                  <li key={item.slug} className='flex items-start gap-3'>
+                    <Image width={75} height={50} src={item.image} alt='produk-image' />
+                    <div className='flex flex-col gap-1'>
+                      <span>{item.name}</span>
+                      {item.quantity} item = {item.price}
+                    </div>
                   </li>
                 ))}
               </ul>
             </div>
           </div>
+          {/* Payment Method */}
+          <div className='border-y'>
+            <div className='grid md:grid-cols-3 my-3 pb-3'>
+              <div className='text-md font-bold'>Payment Support by:</div>
+              <div className='col-span-2'>
+                <Link target='_blank' href="https://midtrans.com/">{paymentMethod}</Link>
+              </div>
+            </div>
+          </div>
+
+
           <div className='block md:hidden'>
             <CheckoutSummary />
           </div>

@@ -16,7 +16,7 @@ const HelpAccordion = () => {
         <AccordionItem defaultValue="item-1" value="item-1" className="AccordionItem">
           <AccordionTrigger className="px-3 text-lg  font-bold bg-gray-900 dark:bg-white dark:text-black text-white">Bagaimana Kebijakan Pengembalian / Penukaran Produk di {APP_NAME} ?</AccordionTrigger>
           <AccordionContent className="px-4 py-2  text-md">
-            <ul className="list-disc px-4 space-y-2 text-md ">
+            <ul className="list-disc px-4 space-y-2 text-md text-gray-700 dark:text-gray-300">
               <li className="list-item">
                 Anda wajib melakukan video unboxing setelah paket diterima agar jika ada kendala pada produknya, dapat kami proses secepatnya.
               </li>
@@ -44,7 +44,7 @@ const HelpAccordion = () => {
         <AccordionItem value="item-2" className="antialiased">
           <AccordionTrigger className="px-3 text-lg  font-bold bg-gray-900 dark:bg-white dark:text-black text-white">Bagaimana Cara Mengembalikan Produk?</AccordionTrigger>
           <AccordionContent className="px-4 py-2  text-md">
-            <ul className="list-disc px-4 space-y-2 text-md ">
+            <ul className="list-disc px-4 space-y-2 text-md text-gray-700 dark:text-gray-300">
               <li className="list-item">
                 Isi Formulir Pengembalian Produk.
               </li>
@@ -65,7 +65,7 @@ const HelpAccordion = () => {
             Berapa lama estimasi waktu setelah Produk dikembalikan?
           </AccordionTrigger>
           <AccordionContent className="px-4 py-2 text-md">
-            <ul className="list-disc px-4 space-y-2 text-md">
+            <ul className="list-disc px-4 space-y-2 text-md text-gray-700 dark:text-gray-300">
               <li className="list-item">
                 Setelah produk dikembalikan, tim kami akan melakukan verifikasi dalam waktu 2-5 hari kerja untuk memastikan kondisi produk sesuai dengan kebijakan pengembalian.
               </li>

@@ -19,6 +19,9 @@ export const metadata: Metadata = {
     default: `${APP_NAME}. ${APP_SLOGAN}`,
   },
   description: APP_DESCRIPTION,
+  other: {
+    'google': 'notranslate', // Mencegah Google Translate otomatis
+  }
 }
 
 export default function RootLayout({
@@ -27,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" translate="no" suppressHydrationWarning>
       <body className={`${lato.className} antialiased `}>
         <ClientProviders>
           {children}

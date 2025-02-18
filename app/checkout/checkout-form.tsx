@@ -295,7 +295,7 @@ const CheckoutForm = () => {
                                 <FormLabel>Nama Lengkap</FormLabel>
                                 <FormControl>
                                   <Input
-                                    placeholder='Enter full name'
+                                    placeholder='masukan nama lengkap'
                                     {...field}
                                   />
                                 </FormControl>
@@ -313,7 +313,7 @@ const CheckoutForm = () => {
                                 <FormLabel>Alamat Lengkap</FormLabel>
                                 <FormControl>
                                   <Input
-                                    placeholder='Enter address'
+                                    placeholder='alamat lengkap'
                                     {...field}
                                   />
                                 </FormControl>
@@ -325,12 +325,15 @@ const CheckoutForm = () => {
                         <div className='flex flex-col gap-5 md:flex-row'>
                           <FormField
                             control={shippingAddressForm.control}
-                            name='city'
+                            name='province'
                             render={({ field }) => (
                               <FormItem className='w-full'>
-                                <FormLabel>Kota</FormLabel>
+                                <FormLabel>Provinsi</FormLabel>
                                 <FormControl>
-                                  <Input placeholder='Enter city' {...field} />
+                                  <Input
+                                    placeholder='nama provinsi'
+                                    {...field}
+                                  />
                                 </FormControl>
                                 <FormMessage />
                               </FormItem>
@@ -338,15 +341,12 @@ const CheckoutForm = () => {
                           />
                           <FormField
                             control={shippingAddressForm.control}
-                            name='province'
+                            name='city'
                             render={({ field }) => (
                               <FormItem className='w-full'>
-                                <FormLabel>Provinsi</FormLabel>
+                                <FormLabel>Kota</FormLabel>
                                 <FormControl>
-                                  <Input
-                                    placeholder='Enter province'
-                                    {...field}
-                                  />
+                                  <Input placeholder='nama kota' {...field} />
                                 </FormControl>
                                 <FormMessage />
                               </FormItem>
@@ -357,10 +357,10 @@ const CheckoutForm = () => {
                             name='country'
                             render={({ field }) => (
                               <FormItem className='w-full'>
-                                <FormLabel>Negara</FormLabel>
+                                <FormLabel>Kec. - Kel.</FormLabel>
                                 <FormControl>
                                   <Input
-                                    placeholder='Enter country'
+                                    placeholder='kecamatan - kelurahan'
                                     {...field}
                                   />
                                 </FormControl>
@@ -378,7 +378,7 @@ const CheckoutForm = () => {
                                 <FormLabel>Kode POS</FormLabel>
                                 <FormControl>
                                   <Input
-                                    placeholder='Enter postal code'
+                                    placeholder='kode pos'
                                     {...field}
                                   />
                                 </FormControl>
@@ -394,7 +394,7 @@ const CheckoutForm = () => {
                                 <FormLabel>Nomor Handphone</FormLabel>
                                 <FormControl>
                                   <Input
-                                    placeholder='Enter phone number'
+                                    placeholder='nomor handphone'
                                     {...field}
                                   />
                                 </FormControl>

@@ -152,7 +152,7 @@ export default function ReviewList({
 
   return (
     <div className='space-y-2'>
-      {reviews.length === 0 && <div>No reviews yet</div>}
+      {reviews.length === 0 && <div>Belum ada ulasan</div>}
 
       <div className='grid grid-cols-1 md:grid-cols-4 gap-8'>
         <div className='flex flex-col gap-2'>
@@ -166,9 +166,9 @@ export default function ReviewList({
           <Separator className='my-3' />
           <div className='space-y-3'>
             <h3 className='font-bold text-lg lg:text-xl'>
-              Review this product
+              Tinjau produk ini
             </h3>
-            <p className='text-sm'>Share your thoughts with other customers</p>
+            <p className='text-sm'>Bagikan pengalaman Anda dengan pelanggan lain</p>
             {userId ? (
               <Dialog open={open} onOpenChange={setOpen}>
                 <Button
@@ -176,16 +176,16 @@ export default function ReviewList({
                   variant='outline'
                   className=' rounded-full w-full'
                 >
-                  Write a customer review
+                  Tulis ulasan
                 </Button>
 
                 <DialogContent className='sm:max-w-[425px]'>
                   <Form {...form}>
                     <form method='post' onSubmit={form.handleSubmit(onSubmit)}>
                       <DialogHeader>
-                        <DialogTitle>Write a customer review</DialogTitle>
+                        <DialogTitle>Tulis ulasan</DialogTitle>
                         <DialogDescription>
-                          Share your thoughts with other customers
+                          Bagikan pengalaman Anda dengan pelanggan lain
                         </DialogDescription>
                       </DialogHeader>
                       <div className='grid gap-4 py-4'>
@@ -195,9 +195,9 @@ export default function ReviewList({
                             name='title'
                             render={({ field }) => (
                               <FormItem className='w-full'>
-                                <FormLabel>Title</FormLabel>
+                                <FormLabel>Judul Ulasan</FormLabel>
                                 <FormControl>
-                                  <Input placeholder='Enter title' {...field} />
+                                  <Input placeholder='Judul Ulasan' {...field} />
                                 </FormControl>
                                 <FormMessage />
                               </FormItem>
@@ -209,10 +209,10 @@ export default function ReviewList({
                             name='comment'
                             render={({ field }) => (
                               <FormItem className='w-full'>
-                                <FormLabel>Comment</FormLabel>
+                                <FormLabel>Tulis komentar</FormLabel>
                                 <FormControl>
                                   <Textarea
-                                    placeholder='Enter comment'
+                                    placeholder='Tulis komentar'
                                     {...field}
                                   />
                                 </FormControl>
@@ -227,14 +227,14 @@ export default function ReviewList({
                             name='rating'
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel>Rating</FormLabel>
+                                <FormLabel>Berikan Rating</FormLabel>
                                 <Select
                                   onValueChange={field.onChange}
                                   value={field.value.toString()}
                                 >
                                   <FormControl>
                                     <SelectTrigger>
-                                      <SelectValue placeholder='Select a rating' />
+                                      <SelectValue placeholder='Berikan rating' />
                                     </SelectTrigger>
                                   </FormControl>
                                   <SelectContent>
@@ -278,14 +278,14 @@ export default function ReviewList({
               </Dialog>
             ) : (
               <div>
-                Please{' '}
+
                 <Link
                   href={`/sign-in?callbackUrl=/product/${product.slug}`}
                   className='highlight-link'
                 >
                   sign in
                 </Link>{' '}
-                to write a review
+                untuk menulis ulasan
               </div>
             )}
           </div>
@@ -296,9 +296,9 @@ export default function ReviewList({
               <CardHeader className='flex flex-col gap-3'>
                 <div className='w-full flex-between'>
                   <CardTitle>{review.title}</CardTitle>
-                  <div className='italic text-sm flex'>
+                  <div className='italic text-sm flex text-green-500 items-center'>
                     <Check className='h-4 w-4' />
-                    <span>Verified Purchase</span>
+                    <span>Verified</span>
                   </div>
                 </div>
                 <CardDescription>{review.comment}</CardDescription>

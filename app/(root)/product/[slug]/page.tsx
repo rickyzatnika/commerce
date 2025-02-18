@@ -147,7 +147,7 @@ export default async function ProductDetails(props: {
       </section>
       <section className='mt-10'>
         <h2 className='h2-bold mb-2' id='reviews'>
-          Customer Reviews
+          Ulasan Pelanggan
         </h2>
         <ReviewList product={product} userId={session?.user.id} />
       </section>
