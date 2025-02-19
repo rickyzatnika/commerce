@@ -155,7 +155,7 @@ export async function getAllProducts({
       }
       : {}
   const order: Record<string, 1 | -1> =
-    sort === 'best-selling'
+    sort === 'produk-terlaris'
       ? { numSales: -1 }
       : sort === 'price-low-to-high'
         ? { price: 1 }

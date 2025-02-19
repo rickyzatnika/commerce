@@ -125,25 +125,26 @@ export default function Footer() {
 
 
       {/* Section Bawah */}
-      <div className="bg-[#080808] text-gray-200 py-8 px-6 relative antialiased">
+      <div className="bg-[#080808] py-8 px-6 relative antialiased">
         {/* Tombol Scroll ke Atas */}
         <Button
-          variant="ghost"
-          className="bg-gray-200 text-gray-900 rounded-md absolute top-4 right-4 md:right-10"
+          variant="outline"
+          size="icon"
+          className="rounded-full absolute -top-4 right-4 size-12"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           <ChevronUp />
         </Button>
 
         {/* Links Footer */}
-        <div className="flex flex-col items-center space-y-2 md:flex-row md:justify-center md:space-x-6 md:space-y-0 text-sm">
+        <div className="flex flex-col text-gray-200 items-center space-y-2 md:flex-row md:justify-center md:space-x-6 md:space-y-0 text-sm">
           <Link href="/conditions-of-use" className="hover:underline">Conditions of Use</Link>
           <Link href="privacy-policy" className="hover:underline">Privacy Notice</Link>
           <Link href="/help" className="hover:underline">Help</Link>
         </div>
 
         {/* Copyright */}
-        <div className="text-center text-sm mt-4">
+        <div className="text-center text-sm mt-4 text-gray-200 ">
           <p>© 2000-2024, {APP_NAME}, Inc. or its affiliates</p>
           <p className=" mt-2">Jl. Cigadung Barat No.123/152C, Jakarta, Indonesia</p>
         </div>
