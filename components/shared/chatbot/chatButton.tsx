@@ -95,7 +95,7 @@ const ChatButton = () => {
                 <div className='bg-muted p-4 mt-3'>
                   {session ? (
                     <div className='space-y-1' >
-                      <p className='text-md font-bold '>`Hi, ${session.user.name}`</p>
+                      <p className='text-md font-bold '>`Hi, {session.user.name}`</p>
                       <p className='text-sm'>Saya AI assisten DYZ, ada yang bisa saya bantu?</p>
                     </div>
 
