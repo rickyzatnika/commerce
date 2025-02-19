@@ -52,6 +52,8 @@ import RatingSummary from '@/components/shared/product/rating-summary'
 import { IProduct } from '@/lib/db/models/product.model'
 import { Separator } from '@/components/ui/separator'
 import { IReviewDetails } from '@/types'
+import moment from 'moment'
+
 
 const reviewFormDefaultValues = {
   title: '',
@@ -304,15 +306,17 @@ export default function ReviewList({
                 <CardDescription>{review.comment}</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className='flex space-x-4 text-sm text-muted-foreground'>
+                <div className='flex justify-between space-x-4 text-sm text-muted-foreground'>
                   <Rating rating={review.rating} />
-                  <div className='flex items-center'>
-                    <User className='mr-1 h-3 w-3' />
-                    {review.user ? review.user.name : 'Deleted User'}
-                  </div>
-                  <div className='flex items-center'>
-                    <Calendar className='mr-1 h-3 w-3' />
-                    {review.createdAt.toString().substring(0, 10)}
+                  <div className='flex flex-col sm:flex-row gap-1 sm:gap-4'>
+                    <div className='flex items-center'>
+                      <User className='mr-1 h-3 w-3' />
+                      {review.user ? review.user.name : 'Deleted User'}
+                    </div>
+                    <div className='flex text-xs items-center'>
+                      <Calendar className='mr-1 h-3 w-3' />
+                      {moment(review.createdAt).format("L")}
+                    </div>
                   </div>
                 </div>
               </CardContent>

@@ -78,14 +78,14 @@ const data = [
 
 export default function Footer() {
   return (
-    <footer className="text-white  w-full mt-24">
-      <div className="bg-gray-50 text-black py-16 px-6 md:px-12 lg:px-24">
+    <footer className="w-full">
+      <div className="py-16 px-6 md:px-12 lg:px-24">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-y-8 gap-x-6">
 
           {/* Brand & Deskripsi (Lebih Lebar) */}
           <div className="lg:col-span-2 px-0 md:px-4">
             <h1 className="text-2xl font-bold">{APP_NAME} "Look Different"</h1>
-            <p className="text-sm mt-3 leading-relaxed">
+            <p className="text-sm mt-3 leading-relaxed text-muted-foreground">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, enim. Sit necessitatibus est quod.
               Deserunt ipsam qui vitae exercitationem voluptates placeat blanditiis.
             </p>
@@ -113,10 +113,10 @@ export default function Footer() {
           {/* Layanan Pelanggan */}
           <div>
             <h3 className="text-md font-semibold mb-3">Layanan Pelanggan</h3>
-            <div className="flex flex-col space-y-2 text-sm text-gray-700 ">
-              <Link href="/help" className="hover:underline hover:text-black">Pusat Bantuan</Link>
-              <Link href="/customer-service" className="hover:underline hover:text-black">Customer Service</Link>
-              <Link href="/contact-us" className="hover:underline hover:text-black">Hubungi Kami</Link>
+            <div className="flex flex-col space-y-2 text-sm  text-muted-foreground">
+              <Link href="/help" className="hover:underline text-muted-foreground">Pusat Bantuan</Link>
+              <Link href="/customer-service" className="hover:underline text-muted-foreground">Customer Service</Link>
+              <Link href="/contact-us" className="hover:underline text-muted-foreground">Hubungi Kami</Link>
             </div>
           </div>
 
@@ -125,7 +125,7 @@ export default function Footer() {
 
 
       {/* Section Bawah */}
-      <div className="bg-black text-gray-200 py-8 px-6 relative antialiased">
+      <div className="bg-[#080808] text-gray-200 py-8 px-6 relative antialiased">
         {/* Tombol Scroll ke Atas */}
         <Button
           variant="ghost"

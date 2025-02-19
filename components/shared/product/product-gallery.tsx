@@ -7,8 +7,8 @@ import 'react-medium-image-zoom/dist/styles.css'
 export default function ProductGallery({ images }: { images: string[] }) {
   const [selectedImage, setSelectedImage] = useState(0)
   return (
-    <div className='flex gap-2 '>
-      <div className='flex flex-col  gap-2 mt-4 md:mt-8'>
+    <div className='flex flex-col-reverse '>
+      <div className='flex gap-2 md:gap-0'>
         {images.map((image, index) => (
           <button
             key={index}
@@ -18,7 +18,7 @@ export default function ProductGallery({ images }: { images: string[] }) {
             onMouseOver={() => {
               setSelectedImage(index)
             }}
-            className={`bg-white rounded-lg overflow-hidden ${selectedImage === index
+            className={`bg-white ml-0 md:ml-3 w-fit mb-2 rounded-lg overflow-hidden ${selectedImage === index
               ? 'ring-2 ring-blue-500'
               : 'ring-1 ring-gray-300'
               }`}
@@ -26,9 +26,10 @@ export default function ProductGallery({ images }: { images: string[] }) {
             <Image
               src={image}
               alt={'product image'}
-              width={48}
-              height={48}
+              width={100}
+              height={75}
               priority={true}
+              className='w-14 h-14 md:h-20 md:w-20'
             />
           </button>
         ))}
@@ -36,7 +37,7 @@ export default function ProductGallery({ images }: { images: string[] }) {
 
       <div className='w-full '>
         <Zoom>
-          <div className='relative h-[280px] md:h-[500px] mb-3'>
+          <div className='relative w-full h-[320px] md:h-[500px] mb-3'>
             <Image
               src={images[selectedImage]}
               alt={'product image'}

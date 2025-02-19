@@ -7,7 +7,6 @@ import {
   Drawer,
   DrawerClose,
   DrawerContent,
-  DrawerDescription,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
@@ -30,7 +29,7 @@ export default async function Sidebar({
       <DrawerContent className='w-[350px] mt-0 top-0'>
         <div className='flex flex-col h-full'>
           {/* User Sign In Section */}
-          <div className='dark bg-gray-900 text-foreground flex items-center justify-between  '>
+          <div className='dark bg-background dark:bg-foreground dark:text-black text-card-foreground flex items-center justify-between  '>
             <DrawerHeader>
               <DrawerTitle className='flex items-center'>
                 <UserCircle className='h-6 w-6 mr-2' />
@@ -52,21 +51,21 @@ export default async function Sidebar({
                   </DrawerClose>
                 )}
               </DrawerTitle>
-              <DrawerDescription></DrawerDescription>
+
             </DrawerHeader>
             <DrawerClose asChild>
-              <Button variant='default' size='icon' className='mr-2'>
+              <Button variant="outline" size='icon' className='mr-2 dark:text-white'>
                 <X className='h-5 w-5' />
               </Button>
             </DrawerClose>
           </div>
 
           {/* Shop By Category */}
-          <div className='flex-1 overflow-y-auto'>
+          <div className=' overflow-y-auto'>
             <div className='p-4 border-b'>
               <h2 className='text-lg font-semibold'>Semua Kategori</h2>
             </div>
-            <nav className='flex flex-col'>
+            <nav className='flex flex-col px-3'>
               {categories.map((category) => (
                 <DrawerClose asChild key={category}>
                   <Link
@@ -86,30 +85,32 @@ export default async function Sidebar({
             <div className='p-4'>
               <h2 className='text-lg font-semibold'>Bantuan & Pengaturan</h2>
             </div>
-            <DrawerClose asChild>
-              <Link href='/account' className='item-button'>
-                Profile Account
-              </Link>
-            </DrawerClose>{' '}
-            <DrawerClose asChild>
-              <Link href='/customer-service' className='item-button'>
-                Customer Service
-              </Link>
-            </DrawerClose>
-            {session ? (
-              <form action={SignOut} className='w-full'>
-                <Button
-                  className='w-full justify-start item-button text-base'
-                  variant='ghost'
-                >
-                  Keluar
-                </Button>
-              </form>
-            ) : (
-              <Link href='/sign-in' className='item-button'>
-                Masuk
-              </Link>
-            )}
+            <div className='px-3 flex flex-col'>
+              <DrawerClose asChild>
+                <Link href='/account' className='item-button'>
+                  Profile Account
+                </Link>
+              </DrawerClose>{' '}
+              <DrawerClose asChild>
+                <Link href='/customer-service' className='item-button'>
+                  Customer Service
+                </Link>
+              </DrawerClose>
+              {session ? (
+                <form action={SignOut} className='w-full'>
+                  <Button
+                    className='w-full justify-start item-button text-base'
+                    variant='ghost'
+                  >
+                    Keluar
+                  </Button>
+                </form>
+              ) : (
+                <Link href='/sign-in' className='item-button'>
+                  Masuk
+                </Link>
+              )}
+            </div>
           </div>
         </div>
       </DrawerContent>

@@ -25,7 +25,7 @@ const ImageHover = ({
 
   return (
     <div
-      className='relative h-52'
+      className='relative '
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -33,8 +33,8 @@ const ImageHover = ({
         src={src}
         alt={alt}
         priority={true}
-        width={200}
-        height={75}
+        width={500}
+        height={175}
         className={`object-contain transition-opacity duration-200 ${isHovered ? 'opacity-0' : 'opacity-100'
           }`}
       />
@@ -42,8 +42,8 @@ const ImageHover = ({
         src={hoverSrc}
         alt={alt}
         priority={true}
-        width={200}
-        height={75}
+        width={500}
+        height={175}
         className={`absolute inset-0 object-contain transition-opacity duration-200 ${isHovered ? 'opacity-100' : 'opacity-0'
           }`}
       />

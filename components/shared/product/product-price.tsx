@@ -37,17 +37,17 @@ const ProductPrice = ({
       {formatCurrency(price)}
     </div>
   ) : isDeal ? (
-    <div className='space-y-1'>
-      <div className='flex justify-center items-center gap-1 mt-2'>
-        <span className='bg-red-700 rounded-sm p-1 text-white text-sm font-semibold'>
+    <div className=''>
+      <div className='flex justify-center items-center gap-1 mt-1'>
+        <span className='bg-red-700 rounded-sm p-1 text-white text-xs font-semibold'>
           {discountPercent}% Off
         </span>
-        <span className='text-red-700 text-xs font-bold'>
+        <span className='text-red-600 text-xs font-semibold'>
           Penawaran Terbatas
         </span>
       </div>
       <div
-        className={`flex flex-col ${forListing && 'justify-center'
+        className={`flex flex-col ${forListing && ''
           } items-center`}
       >
         <div className={cn('text-2xl', className)}>
@@ -55,7 +55,7 @@ const ProductPrice = ({
           {formatCurrency(price)}
         </div>
         <div className='text-muted-foreground text-md py-2'>
-          <i className='line-through text-md text-red-700'>{formatCurrency(listPrice)}</i>
+          <i className='line-through text-sm '>{formatCurrency(listPrice)}</i>
         </div>
       </div>
     </div>
@@ -68,7 +68,7 @@ const ProductPrice = ({
           {formatCurrency(price)}
         </div>
       </div>
-      <div className='text-muted-foreground text-red-700 text-md py-2'>
+      <div className='text-muted-foreground text-sm py-2'>
         <i className='line-through'>{formatCurrency(listPrice)}</i>
       </div>
     </div>

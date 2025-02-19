@@ -38,8 +38,8 @@ const ProductCard = ({
               src={product.images[0]}
               alt={product.name}
               priority={true}
-              width={200}
-              height={75}
+              width={500}
+              height={175}
               className='object-contain '
             />
           </div>
@@ -48,7 +48,7 @@ const ProductCard = ({
     </Link>
   )
   const ProductDetails = () => (
-    <div className='flex-1 pb-2'>
+    <div className='flex-1 '>
       <p className='font-bold'>{product.name}</p>
       <Link
         href={`/product/${product.slug}`}
@@ -71,7 +71,7 @@ const ProductCard = ({
         price={product.price}
         listPrice={product.listPrice}
         forListing
-
+      // plain hilangkan diskon
       />
     </div>
   )

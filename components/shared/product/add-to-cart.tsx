@@ -31,12 +31,12 @@ export default function AddToCart({
 
   return minimal ? (
     <Button
-      className='rounded-full w-auto'
+      className='rounded-full  w-auto'
       onClick={() => {
         try {
           addItem(item, 1)
           toast({
-            description: 'Added to Cart',
+            description: 'Ditambahkan ke keranjang',
             action: (
               <Button
                 onClick={() => {
@@ -107,7 +107,7 @@ export default function AddToCart({
         }}
         className='w-full rounded-full '
       >
-        Beli
+        Beli Produk
       </Button>
     </div>
   )
