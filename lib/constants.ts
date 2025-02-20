@@ -9,7 +9,7 @@ export const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhos
 
 export const SENDER_EMAIL = process.env.SENDER_EMAIL || 'onboarding@resend.dev'
 export const SENDER_NAME = process.env.SENDER_NAME || APP_NAME + APP_SLOGAN
-
+export const SITE_KEY = process.env.SITE_KEY || "6Lcdn90qAAAAAH25i37Su6dkQ6O2BGoE8oU1vQk8"
 export const USER_ROLES = ['Admin', 'User']
 export const COLORS = ['Gold', 'Green', 'Red']
 export const THEMES = ['Light', 'Dark', 'System']

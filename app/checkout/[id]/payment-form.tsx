@@ -1,6 +1,6 @@
 'use client'
 
-
+import ReCAPTCHA from 'react-google-recaptcha'
 import { useToast } from '@/hooks/use-toast'
 import { createMidtransTransaction } from '@/lib/actions/order.actions'
 import { IOrder } from '@/lib/db/models/order.model'
@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import Image from 'next/image'
 import CheckoutSummary from './checkoutSummer'
+import { SITE_KEY } from '@/lib/constants'
 // import Link from 'next/link'
 
 
@@ -27,6 +28,7 @@ export default function OrderPaymentForm({
   const { toast } = useToast();
   const router = useRouter()
   const [loading, setLoading] = useState(false)
+  const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null);
   const {
     shippingAddress,
     items,
@@ -41,6 +43,13 @@ export default function OrderPaymentForm({
 
   const handleMidtransPayment = async () => {
     setLoading(true)
+
+    if (!recaptchaValue) {
+      return toast({
+        description: 'Please complete the reCAPTCHA.',
+        variant: 'destructive',
+      })
+    }
 
     const res = await createMidtransTransaction(order._id)
     if (!res.success)
@@ -79,6 +88,10 @@ export default function OrderPaymentForm({
       })
 
     }
+  }
+
+  const handleRecaptcha = (token: string) => {
+    setRecaptchaValue(token)
   }
 
 
@@ -123,11 +136,18 @@ export default function OrderPaymentForm({
                         {item.quantity} item = {item.price}
                       </div>
                     </li>
+
                     <li>
                       <CheckoutSummary order={order} midtransClientKey={midtransClientKey} />
                     </li>
                   </div>
                 ))}
+                <div className='my-5'>
+                  <ReCAPTCHA
+                    sitekey={SITE_KEY}
+                    onChange={handleRecaptcha}
+                  />
+                </div>
                 <li >
                   <div className='border-y w-full'>
                     <div className='grid  my-3 pb-3'>
