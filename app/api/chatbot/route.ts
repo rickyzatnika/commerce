@@ -4,8 +4,8 @@ import ChatHistory from "@/lib/db/models/chatHistory";
 import Product from "@/lib/db/models/product.model";
 import { initialMessages } from "@/lib/data";
 
-export const runtime = "nodejs";
 
+export const runtime = "nodejs";
 const generateId = () => Math.random().toString(36).slice(2, 15);
 
 export async function POST(req: NextRequest) {
@@ -93,3 +93,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: false, message: "Something went wrong", error }, { status: 500 });
   }
 }
+
+
+

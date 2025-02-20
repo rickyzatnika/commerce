@@ -7,21 +7,22 @@ import { cn } from '@/lib/utils'
 
 const links = [
   {
-    title: 'Overview',
+    title: 'Ringkasan',
     href: '/admin/overview',
   },
   {
-    title: 'Products',
+    title: 'Produk',
     href: '/admin/products',
   },
   {
-    title: 'Orders',
+    title: 'Pesanan',
     href: '/admin/orders',
   },
   {
-    title: 'Users',
+    title: 'Pengguna',
     href: '/admin/users',
   },
+
 
 ]
 export function AdminNav({
