@@ -45,25 +45,28 @@ export default function OrderPaymentForm({
     setLoading(true)
 
     if (!recaptchaValue) {
-      return toast({
+      toast({
         description: 'Please complete the reCAPTCHA.',
         variant: 'destructive',
       })
+      setLoading(false)
     }
 
     const res = await createMidtransTransaction(order._id)
-    if (!res.success)
-      return toast({
+    if (!res.success) {
+      toast({
         description: res.message,
         variant: 'destructive',
-
       })
-    const token = res.data?.token
+      setLoading(false)
+    }
+
+    const token = res.data?.token || ''
 
     if (!token) {
       console.error('Midtrans token is missing:', res.data)
       toast({ description: 'Payment token not found.', variant: 'destructive' })
-      return
+      setLoading(false)
     }
 
     // Open Midtrans Snap payment popup
@@ -84,6 +87,7 @@ export default function OrderPaymentForm({
         },
         onError: () => {
           toast({ description: 'Payment failed.', variant: 'destructive' })
+          setLoading(false)
         },
       })
 
@@ -142,7 +146,7 @@ export default function OrderPaymentForm({
                     </li>
                   </div>
                 ))}
-                <div className='my-5'>
+                <div className='my-5' >
                   <ReCAPTCHA
                     sitekey={SITE_KEY}
                     onChange={handleRecaptcha}
