@@ -11,6 +11,7 @@ import { revalidatePath } from 'next/cache'
 import { PAGE_SIZE } from '../constants'
 import { z } from 'zod'
 
+
 export async function signInWithCredentials(user: IUserSignIn) {
   return await signIn('credentials', { ...user, redirect: false })
 }
@@ -162,3 +163,7 @@ export async function getUserById(userId: string) {
   if (!user) throw new Error('User not found')
   return JSON.parse(JSON.stringify(user)) as IUser
 }
+
+
+
+

@@ -26,6 +26,8 @@ const ChatButton = () => {
   const chatIconRef = useRef<HTMLButtonElement>(null);
   const { data: session } = useSession();
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [chatId, setChatId] = useState<string | null>(null);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,15 +49,47 @@ const ChatButton = () => {
     setIsChatOpen(!isChatOpen);
   }
 
-  const { messages, input, handleInputChange, handleSubmit, isLoading, stop, reload, error } = useChat({
-    api: "/api/chatbot"
-  })
+  const { messages, setMessages, input, handleInputChange, handleSubmit, isLoading } = useChat({
+    api: "/api/chatbot",
+    onResponse: async (res) => {
+      const data = await res.json();
+
+      if (data?.chatId) {
+        console.log("✅ chatId received:", data.chatId);
+        localStorage.setItem("chatId", data.chatId);
+        setChatId(data.chatId); // Simpan di state agar tetap digunakan dalam sesi ini
+      }
+
+      if (data?.reply) {
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          {
+            id: Date.now().toString(),
+            role: "assistant",
+            content: data?.reply?.content,
+          },
+        ]);
+      }
+    }
+  });
 
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollIntoView({ behavior: "smooth" })
     }
   }, [messages]);
+
+
+  useEffect(() => {
+    const storedChatId = localStorage.getItem("chatId");
+    console.log("📢 Stored chatId from localStorage:", storedChatId);
+
+    if (storedChatId) {
+      setChatId(storedChatId);
+    }
+  }, []);
+
+
 
 
 
@@ -106,7 +140,7 @@ const ChatButton = () => {
                   )}
                 </div>
 
-                {messages.map((message, i: number) => (
+                {messages?.map((message, i: number) => (
                   <div key={i} className={`mb-4 mt-4 relative ${message.role === "user" ? "text-right" : "text-left"} `}>
                     <div className={` inline-block rounded-lg ${message.role === 'user' ? "bg-primary text-primary-foreground " : "bg-muted p-4"} p-2 `}>
                       <ReactMarkdown
@@ -143,30 +177,26 @@ const ChatButton = () => {
                 {isLoading && (
                   <div className='w-full items-center flex justify-center gap-3'>
                     <Loader2 className='animate-spin h-5 w-5 text-primary' />
-                    <button type='button' className='underline' onClick={() => stop()}>
-                      abort
-                    </button>
+
                   </div>
                 )}
-                {error && (
-                  <div className='w-full items-center flex justify-center gap-3'>
-                    <p>an error occurred!</p>
-                    <button type='button' className='underline' onClick={() => reload()}>
-                      Retry
-                    </button>
-                  </div>
-                )}
+
                 <div ref={scrollRef} />
               </ScrollArea>
             </CardContent>
             <CardFooter>
-              <form onSubmit={handleSubmit} className='w-full flex items-center space-x-1 relative'>
-                <Textarea onKeyDown={(e) => {
-                  if (e.key === "Enter" && !e.shiftKey) {
-                    e.preventDefault(); // Mencegah enter menambah baris baru
-                    handleSubmit(e); // Langsung submit form
+              <form onSubmit={(e) => {
+                e.preventDefault();
+                handleSubmit(e, {
+                  options: {
+                    body: {
+                      chatId,
+                      messages: [{ role: "user", content: input }]
+                    }
                   }
-                }} value={input} onChange={handleInputChange} className='pr-9 h-4 resize-none overflow-hidden' placeholder='tulis pesan...' />
+                });
+              }} className='w-full flex items-center space-x-1 relative'>
+                <Textarea disabled={isLoading} value={input} onChange={handleInputChange} className='pr-9 h-4 resize-none overflow-hidden' placeholder='tulis pesan...' />
                 {input &&
                   <button type='submit' className='absolute right-3' disabled={isLoading} >
                     <Send className='size-6 rotate-45' />

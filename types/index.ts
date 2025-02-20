@@ -9,7 +9,7 @@ import {
   UserSignUpSchema,
   OrderInputSchema,
   ReviewInputSchema,
-  UserUpdateSchema
+  UserUpdateSchema,
 } from '@/lib/validator'
 
 
@@ -70,3 +70,4 @@ export type IOrderList = IOrderInput & {
   }
   createdAt: Date
 }
+
