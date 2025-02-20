@@ -143,6 +143,11 @@ export default function OrderPaymentForm({
                   <ReCAPTCHA
                     sitekey={SITE_KEY}
                     onChange={handleRecaptcha}
+                    size='normal'
+                    theme='light'
+                    referrerPolicy='origin'
+
+
                   />
                 </div>
                 <li >
