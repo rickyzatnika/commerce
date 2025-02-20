@@ -9,27 +9,24 @@ export default function CheckoutLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className='p-4'>
-      <header className='bg-card mb-4 border-b pb-4'>
-        <div className='max-w-6xl mx-auto flex justify-between items-center'>
+    <div className=' p-4'>
+      <header className='bg-card mb-3 ]'>
+        <div className='max-w-6xl mx-auto flex bg-[#080808] text-white p-4 justify-between items-center'>
           <Link href='/'>
             <Image
-              src='/icons/lg-black.png'
+              src='/icons/logo2.png'
               alt='logo'
-              width={50}
+              width={100}
               height={50}
-              style={{
-                maxWidth: '100%',
-                height: 'auto',
-              }}
+              priority={true}
             />
           </Link>
           <div>
             <h1 className='text-3xl'>Checkout</h1>
           </div>
           <div>
-            <Link href='/page/help'>
-              <HelpCircle className='w-6 h-6' />
+            <Link href='/help'>
+              <HelpCircle className='w-8 h-8' />
             </Link>
           </div>
         </div>

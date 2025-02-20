@@ -9,11 +9,10 @@ import remarkGfm from 'remark-gfm'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardFooter, CardTitle } from '@/components/ui/card'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { X, MessageCircle, Send, Loader2, ArrowDownCircleIcon } from 'lucide-react'
+import { X, Send, Loader2, ArrowDownCircleIcon } from 'lucide-react'
 import { useChat } from '@ai-sdk/react'
 import { useSession } from 'next-auth/react'
 import { Textarea } from '@/components/ui/textarea'
-import { APP_NAME, APP_SLOGAN } from '@/lib/constants'
 import Image from 'next/image'
 import 'moment/locale/id';
 
@@ -95,18 +94,24 @@ const ChatButton = () => {
 
 
   return (
-    <div className='w-full ' suppressHydrationWarning>
-
+    <div className='w-full' suppressHydrationWarning>
       {showChatIcon && (
-        <div className={`${isChatOpen ? "right-0" : "right-4"} transition-opacity duration-500 ease-linear fixed z-50 translate-x-0 right-4 bottom-10`}>
-          <Button ref={chatIconRef} onClick={toggleChat} size="icon" className='rounded-full  text-white size-12 drop-shadow-lg shadow'>
-            {!isChatOpen ? (
-              <MessageCircle className='size-32' />
-            ) : (
-              <ArrowDownCircleIcon />
-            )}
-          </Button>
+        <div className='flex flex-col'>
+          <div className={`${isChatOpen ? "right-0 " : "right-4 "} flex flex-col  transition-opacity duration-500 ease-linear fixed z-50 right-4 bottom-10`}>
+            <div className='relative'>
+              <p className='relative text-[#111] font-bold mb-3 rounded-xl italic text-xs md:text-lg bg-primary right-2 w-full p-2'>Butuh Team SAR ??</p>
+              <span className='absolute -z-10 text-black font-bold mb-1  border-b-[1px]  rotate-45 w-0 h-0 bottom-0.5 bg-primary right-5 ml-auto p-2' />
+            </div>
+            <button ref={chatIconRef} onClick={toggleChat} className=' relative w-fit ml-auto rounded-full text-white p-3 bg-black drop-shadow-lg shadow'>
+              {!isChatOpen ? (
+                <Image src="/icons/lg.png" alt='logo' width={30} height={30} />
+              ) : (
+                <ArrowDownCircleIcon />
+              )}
+            </button>
+          </div>
         </div>
+
       )}
 
       {isChatOpen && (
@@ -115,10 +120,8 @@ const ChatButton = () => {
             <CardHeader className='bg-[#080808] text-white flex items-center border-b justify-between flex-row  space-y-0'>
               <CardTitle className='flex flex-col items-center'>
                 <div className='flex items-center gap-1'>
-                  <Image src="/icons/lg.png" alt="logo" width={40} height={25} priority />
-                  <p className='text-3xl'>{APP_NAME}</p>
+                  <Image src="/icons/logo2.png" alt="logo-dyz" width={100} height={75} priority={true} />
                 </div>
-                <p className='text-xs tracking-widest pl-2'>{APP_SLOGAN}</p>
               </CardTitle>
               <Button size="sm" variant="outline" className='px-2 py-0 text-black dark:text-white' onClick={toggleChat}>
                 <X className='size-4' />

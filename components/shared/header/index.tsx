@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Search from './search'
 import Menu from './menu'
-import { APP_NAME, APP_SLOGAN } from '@/lib/constants'
+import { APP_NAME } from '@/lib/constants'
 import data from '@/lib/data'
 import Sidebar from './sidebar'
 import { getAllCategories } from '@/lib/actions/product.actions'
@@ -24,14 +24,12 @@ export default async function Header() {
             >
               <div className='flex gap-1 items-center'>
                 <Image
-                  src='/icons/lg.png'
-                  width={30}
-                  height={10}
+                  src='/icons/logo2.png'
+                  width={100}
+                  height={75}
                   alt={`${APP_NAME} logo`}
                 />
-                {APP_NAME}
               </div>
-              <span className='text-xs tracking-wide pl-1 font-semibold'>{APP_SLOGAN}</span>
             </Link>
           </div>
           <div className='hidden md:block flex-1 max-w-xl'>
