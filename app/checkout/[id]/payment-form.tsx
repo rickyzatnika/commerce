@@ -57,9 +57,8 @@ export default function OrderPaymentForm({
 
     const token = res.data?.token || ''
 
-    if (!token) {
-      console.error('Midtrans token is missing:', res.data)
-      toast({ description: 'Payment token not found.', variant: 'destructive' })
+    if (!res.success) {
+      toast({ description: res.message, variant: 'destructive' })
       setLoading(false)
     }
 
