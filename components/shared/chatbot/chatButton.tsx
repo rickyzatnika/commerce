@@ -196,7 +196,26 @@ const ChatButton = () => {
                   }
                 });
               }} className='w-full flex items-center space-x-1 relative'>
-                <Textarea disabled={isLoading} value={input} onChange={handleInputChange} className='pr-9 h-4 resize-none overflow-hidden' placeholder='tulis pesan...' />
+                <Textarea
+                  placeholder='tulis pesan...'
+                  className='pr-9 h-4 resize-none overflow-hidden'
+                  disabled={isLoading}
+                  value={input}
+                  onChange={handleInputChange}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && !e.shiftKey) {
+                      e.preventDefault(); // Mencegah baris baru saat Enter ditekan
+                      handleSubmit(e, {
+                        options: {
+                          body: {
+                            chatId,
+                            messages: [{ role: "user", content: input }]
+                          }
+                        }
+                      });
+                    }
+                  }}
+                />
                 {input &&
                   <button type='submit' className='absolute right-3' disabled={isLoading} >
                     <Send className='size-6 rotate-45' />
