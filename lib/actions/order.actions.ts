@@ -128,12 +128,18 @@ const snap = new midtransClient.Snap({
   clientKey: process.env.MIDTRANS_CLIENT_KEY as string,
 })
 
-export async function createMidtransTransaction(orderId: string) {
+export async function createMidtransTransaction(orderId: string, recaptchaValue: string | null) {
   await connectToDatabase()
 
   try {
     const order = await Order.findById(orderId).populate('user', 'email');
 
+    if (!recaptchaValue) {
+      return {
+        success: false,
+        message: 'Please complete the reCAPTCHA.',
+      }
+    }
 
     if (!order) throw new Error('Order not found')
 

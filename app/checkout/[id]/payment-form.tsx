@@ -44,15 +44,9 @@ export default function OrderPaymentForm({
   const handleMidtransPayment = async () => {
     setLoading(true)
 
-    if (!recaptchaValue) {
-      toast({
-        description: 'Please complete the reCAPTCHA.',
-        variant: 'destructive',
-      })
-      setLoading(false)
-    }
 
-    const res = await createMidtransTransaction(order._id)
+
+    const res = await createMidtransTransaction(order._id, recaptchaValue)
     if (!res.success) {
       toast({
         description: res.message,
