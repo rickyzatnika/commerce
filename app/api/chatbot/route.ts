@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
     if (latestUserMessage.toLowerCase().includes("produk") || latestUserMessage.toLowerCase().includes("harga")) {
       const products = await Product.find(); // Ambil maksimal 5 produk untuk efisiensi
       if (products.length > 0) {
-        productInfo = products.map(prod => `Nama Produk: ${prod.name}, Harga: ${prod.price}`);
+        productInfo = products.map(prod => `Nama Produk: ${prod.name}, Harga: ${prod.price}, Size yang tersedia: ${prod.sizes}`);
       }
     }
 
