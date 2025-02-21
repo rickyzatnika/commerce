@@ -54,7 +54,7 @@ const ChatButton = () => {
       const data = await res.json();
 
       if (data?.chatId) {
-        console.log("✅ chatId received:", data.chatId);
+
         localStorage.setItem("chatId", data.chatId);
         setChatId(data.chatId); // Simpan di state agar tetap digunakan dalam sesi ini
       }
@@ -81,8 +81,6 @@ const ChatButton = () => {
 
   useEffect(() => {
     const storedChatId = localStorage.getItem("chatId");
-    console.log("📢 Stored chatId from localStorage:", storedChatId);
-
     if (storedChatId) {
       setChatId(storedChatId);
     }

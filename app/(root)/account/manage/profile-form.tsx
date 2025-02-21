@@ -151,7 +151,7 @@ export const ProfileForm = () => {
           disabled={form.formState.isSubmitting}
           className='button col-span-2 w-full'
         >
-          {form.formState.isSubmitting ? 'Submitting...' : 'Save Changes'}
+          {form.formState.isSubmitting ? 'menyimpan...' : 'Simpan Perubahan'}
         </Button>
       </form>
     </Form>

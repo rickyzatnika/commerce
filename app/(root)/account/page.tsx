@@ -21,9 +21,9 @@ export default function AccountPage() {
                 <PackageCheckIcon className='w-12 h-12' />
               </div>
               <div>
-                <h2 className='text-xl font-bold'>Orders</h2>
+                <h2 className='text-xl font-bold'>Pesanan Saya</h2>
                 <p className='text-muted-foreground'>
-                  Track, return, cancel an order, download invoice or buy again
+                  Lihat status pesanan, pengiriman dan pengembalian.
                 </p>
               </div>
             </CardContent>
@@ -37,9 +37,9 @@ export default function AccountPage() {
                 <User className='w-12 h-12' />
               </div>
               <div>
-                <h2 className='text-xl font-bold'>Login & security</h2>
+                <h2 className='text-xl font-bold'>Login & Security</h2>
                 <p className='text-muted-foreground'>
-                  Manage password, email and mobile number
+                  Edit password, email dan nomor handphone
                 </p>
               </div>
             </CardContent>
@@ -53,9 +53,10 @@ export default function AccountPage() {
                 <Home className='w-12 h-12' />
               </div>
               <div>
-                <h2 className='text-xl font-bold'>Addresses</h2>
+                <h2 className='text-xl font-bold'>
+                  Alamat Saya</h2>
                 <p className='text-muted-foreground'>
-                  Edit, remove or set default address
+                  Lihat alamat pengiriman, edit dan hapus
                 </p>
               </div>
             </CardContent>

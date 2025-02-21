@@ -28,9 +28,7 @@ export default async function ProfilePage() {
         <Card className='max-w-2xl'>
           <CardContent className='p-4 flex justify-between flex-wrap'>
             <p className='text-sm py-2'>
-              If you want to change the name associated with your {APP_NAME}
-              &apos;s account, you may do so below. Be sure to click the Save
-              Changes button when you are done.
+              Jika Anda ingin mengubah nama yang terkait dengan akun {APP_NAME} Anda, Anda dapat melakukannya di bawah. Pastikan untuk mengklik tombol Simpan Perubahan setelah Anda selesai.
             </p>
             <ProfileForm />
           </CardContent>

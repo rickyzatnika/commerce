@@ -199,8 +199,7 @@ export async function createMidtransTransaction(orderId: string, recaptchaValue:
       data: { token: paymentToken },
     }
   } catch (error) {
-    console.error('Midtrans Error:', error)
-    return { success: false, message: "Error saat membuat transaksi Midtrans" }
+    return { success: false, message: "Error saat membuat transaksi Midtrans", error }
   }
 }
 // ------- end MID_TRANS ENDPOINT end---------

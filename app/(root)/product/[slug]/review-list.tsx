@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Calendar, Check, StarIcon, User } from 'lucide-react'
@@ -63,14 +64,20 @@ const reviewFormDefaultValues = {
 export default function ReviewList({
   userId,
   product,
+  orderStatus,
 }: {
   userId: string | undefined
   product: IProduct
+  orderStatus: any
 }) {
   const [page, setPage] = useState(2)
   const [totalPages, setTotalPages] = useState(0)
   const [reviews, setReviews] = useState<IReviewDetails[]>([])
   const { ref, inView } = useInView({ triggerOnce: true })
+
+  const { isPaid, isDelivered } = orderStatus;
+
+
   const reload = async () => {
     try {
       const res = await getReviews({ productId: product._id, page: 1 })
@@ -165,131 +172,133 @@ export default function ReviewList({
             />
           )}
           <Separator className='my-3' />
-          <div className='space-y-3'>
-            <h3 className='font-bold text-lg lg:text-xl'>
-              Tinjau produk ini
-            </h3>
-            <p className='text-sm'>Bagikan pengalaman Anda dengan pelanggan lain</p>
-            {userId ? (
-              <Dialog open={open} onOpenChange={setOpen}>
-                <Button
-                  onClick={handleOpenForm}
-                  variant='outline'
-                  className=' rounded-full w-full'
-                >
-                  Tulis ulasan
-                </Button>
+          {isPaid && isDelivered && (
+            <div className='space-y-3'>
+              <h3 className='font-bold text-lg lg:text-xl'>
+                Tinjau produk ini
+              </h3>
+              <p className='text-sm'>Bagikan pengalaman Anda dengan pelanggan lain</p>
+              {userId ? (
+                <Dialog open={open} onOpenChange={setOpen}>
+                  <Button
+                    onClick={handleOpenForm}
+                    variant='outline'
+                    className=' rounded-full w-full'
+                  >
+                    Tulis ulasan
+                  </Button>
 
-                <DialogContent className='sm:max-w-[425px]'>
-                  <Form {...form}>
-                    <form method='post' onSubmit={form.handleSubmit(onSubmit)}>
-                      <DialogHeader>
-                        <DialogTitle>Tulis ulasan</DialogTitle>
-                        <DialogDescription>
-                          Bagikan pengalaman Anda dengan pelanggan lain
-                        </DialogDescription>
-                      </DialogHeader>
-                      <div className='grid gap-4 py-4'>
-                        <div className='flex flex-col gap-5  '>
-                          <FormField
-                            control={form.control}
-                            name='title'
-                            render={({ field }) => (
-                              <FormItem className='w-full'>
-                                <FormLabel>Judul Ulasan</FormLabel>
-                                <FormControl>
-                                  <Input placeholder='Judul Ulasan' {...field} />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-
-                          <FormField
-                            control={form.control}
-                            name='comment'
-                            render={({ field }) => (
-                              <FormItem className='w-full'>
-                                <FormLabel>Tulis komentar</FormLabel>
-                                <FormControl>
-                                  <Textarea
-                                    placeholder='Tulis komentar'
-                                    {...field}
-                                  />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-                        </div>
-                        <div>
-                          <FormField
-                            control={form.control}
-                            name='rating'
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>Berikan Rating</FormLabel>
-                                <Select
-                                  onValueChange={field.onChange}
-                                  value={field.value.toString()}
-                                >
+                  <DialogContent className='sm:max-w-[425px]'>
+                    <Form {...form}>
+                      <form method='post' onSubmit={form.handleSubmit(onSubmit)}>
+                        <DialogHeader>
+                          <DialogTitle>Tulis ulasan</DialogTitle>
+                          <DialogDescription>
+                            Bagikan pengalaman Anda dengan pelanggan lain
+                          </DialogDescription>
+                        </DialogHeader>
+                        <div className='grid gap-4 py-4'>
+                          <div className='flex flex-col gap-5  '>
+                            <FormField
+                              control={form.control}
+                              name='title'
+                              render={({ field }) => (
+                                <FormItem className='w-full'>
+                                  <FormLabel>Judul Ulasan</FormLabel>
                                   <FormControl>
-                                    <SelectTrigger>
-                                      <SelectValue placeholder='Berikan rating' />
-                                    </SelectTrigger>
+                                    <Input placeholder='Judul Ulasan' {...field} />
                                   </FormControl>
-                                  <SelectContent>
-                                    {Array.from({ length: 5 }).map(
-                                      (_, index) => (
-                                        <SelectItem
-                                          key={index}
-                                          value={(index + 1).toString()}
-                                        >
-                                          <div className='flex items-center gap-1'>
-                                            {index + 1}{' '}
-                                            <StarIcon className='h-4 w-4' />
-                                          </div>
-                                        </SelectItem>
-                                      )
-                                    )}
-                                  </SelectContent>
-                                </Select>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
 
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
+                            <FormField
+                              control={form.control}
+                              name='comment'
+                              render={({ field }) => (
+                                <FormItem className='w-full'>
+                                  <FormLabel>Tulis komentar</FormLabel>
+                                  <FormControl>
+                                    <Textarea
+                                      placeholder='Tulis komentar'
+                                      {...field}
+                                    />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                          </div>
+                          <div>
+                            <FormField
+                              control={form.control}
+                              name='rating'
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Berikan Rating</FormLabel>
+                                  <Select
+                                    onValueChange={field.onChange}
+                                    value={field.value.toString()}
+                                  >
+                                    <FormControl>
+                                      <SelectTrigger>
+                                        <SelectValue placeholder='Berikan rating' />
+                                      </SelectTrigger>
+                                    </FormControl>
+                                    <SelectContent>
+                                      {Array.from({ length: 5 }).map(
+                                        (_, index) => (
+                                          <SelectItem
+                                            key={index}
+                                            value={(index + 1).toString()}
+                                          >
+                                            <div className='flex items-center gap-1'>
+                                              {index + 1}{' '}
+                                              <StarIcon className='h-4 w-4' />
+                                            </div>
+                                          </SelectItem>
+                                        )
+                                      )}
+                                    </SelectContent>
+                                  </Select>
+
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                          </div>
                         </div>
-                      </div>
 
-                      <DialogFooter>
-                        <Button
-                          type='submit'
-                          size='lg'
-                          disabled={form.formState.isSubmitting}
-                        >
-                          {form.formState.isSubmitting
-                            ? 'Submitting...'
-                            : 'Submit'}
-                        </Button>
-                      </DialogFooter>
-                    </form>
-                  </Form>
-                </DialogContent>
-              </Dialog>
-            ) : (
-              <div>
+                        <DialogFooter>
+                          <Button
+                            type='submit'
+                            size='lg'
+                            disabled={form.formState.isSubmitting}
+                          >
+                            {form.formState.isSubmitting
+                              ? 'Submitting...'
+                              : 'Submit'}
+                          </Button>
+                        </DialogFooter>
+                      </form>
+                    </Form>
+                  </DialogContent>
+                </Dialog>
+              ) : (
+                <div>
 
-                <Link
-                  href={`/sign-in?callbackUrl=/product/${product.slug}`}
-                  className='highlight-link'
-                >
-                  sign in
-                </Link>{' '}
-                untuk menulis ulasan
-              </div>
-            )}
-          </div>
+                  <Link
+                    href={`/sign-in?callbackUrl=/product/${product.slug}`}
+                    className='highlight-link'
+                  >
+                    sign in
+                  </Link>{' '}
+                  untuk menulis ulasan
+                </div>
+              )}
+            </div>
+          )}
         </div>
         <div className='md:col-span-3 flex flex-col gap-3'>
           {reviews.map((review: IReviewDetails) => (

@@ -3,7 +3,6 @@ import {
   getProductBySlug,
   getRelatedProductsByCategory,
 } from '@/lib/actions/product.actions'
-
 import SelectVariant from '@/components/shared/product/select-variant'
 import ProductPrice from '@/components/shared/product/product-price'
 import ProductGallery from '@/components/shared/product/product-gallery'
@@ -16,6 +15,8 @@ import { generateId, round2 } from '@/lib/utils'
 import RatingSummary from '@/components/shared/product/rating-summary'
 import ReviewList from './review-list'
 import { auth } from '@/auth'
+import { getMyOrders } from '@/lib/actions/order.actions'
+import { IOrder } from '@/lib/db/models/order.model'
 
 export async function generateMetadata(props: {
   params: Promise<{ slug: string }>
@@ -46,11 +47,25 @@ export default async function ProductDetails(props: {
 
   const product = await getProductBySlug(slug)
 
+
+  // Ambil order user
+  const { data: orders } = await getMyOrders({ limit: 100, page: 1 })
+
+  // Filter hanya order yang berisi produk dengan slug ini
+
+  const orderForProduct = orders.find((order: IOrder) =>
+    order.items.some(item => item.slug === slug)
+  )
+
+
+
   const relatedProducts = await getRelatedProductsByCategory({
     category: product.category,
     productId: product._id,
     page: Number(page || '1'),
   })
+
+
 
   return (
     <div>
@@ -156,7 +171,14 @@ export default async function ProductDetails(props: {
         <h2 className='h2-bold mb-2' id='reviews'>
           Ulasan Pelanggan
         </h2>
-        <ReviewList product={product} userId={session?.user.id} />
+        <ReviewList
+          product={product}
+          userId={session?.user.id}
+          orderStatus={{
+            isPaid: orderForProduct?.isPaid ?? false,
+            isDelivered: orderForProduct?.isDelivered ?? false,
+          }}
+        />
       </section>
 
       <section className='mt-10'>
