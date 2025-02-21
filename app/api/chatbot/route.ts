@@ -39,11 +39,7 @@ export async function POST(req: NextRequest) {
         {
           parts: [
             { text: initialMessages.map(m => m.content).join("\n") },
-            {
-              text: `Berikut adalah produk kami:\n${products.map(p => `Nama: ${p.name}, Harga: ${p.price}, Deskripsi: ${p.description}, Kategori: ${p.category}, 
-                      Stok: ${p.countInStock}, Ukuran: ${p.sizes}, Warna: ${p.colors}, Gambar: ${p.images}, Rating : ${p.avgRating}, Terjual : ${p.numSales}, 
-                      Brand: ${p.brand}, Jumlah Ulasan: ${p.numReviews}, Review: ${p.reviews}}`).join("\n")} `
-            },
+            { text: `Berikut adalah produk kami:\n${products.map(p => `Nama: ${p.name}, Harga: ${p.price}, Deskripsi: ${p.description}, Kategori: ${p.category}, Gambar: ${p.images}, Stok: ${p.countInStock}, Brand: ${p.brand}, Warna: ${p.colors}, Ukuran: ${p.sizes}, Penjualan: ${p.numSales}, Rating: ${p.avgRating}`).join("\n")}` },
             ...chat.messages.map(({ content }: { content: string }) => ({ text: content }))
           ]
         }
