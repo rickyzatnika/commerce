@@ -54,7 +54,7 @@ export default async function OrdersPage(props: {
               <TableHead>Tanggal</TableHead>
               <TableHead>Total</TableHead>
               <TableHead>Pembayaran</TableHead>
-              <TableHead>Dikirim</TableHead>
+              <TableHead>Pengiriman Barang</TableHead>
               <TableHead>Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -79,12 +79,12 @@ export default async function OrdersPage(props: {
                 <TableCell>
                   <ProductPrice price={order.totalPrice} plain />
                 </TableCell>
-                <TableCell className={order.isPaid ? 'text-green-500' : 'text-red-500'} >
-                  {order.paymentResult?.status ? order.paymentResult.status : 'belum ada transaksi'}
+                <TableCell className={order.isPaid ? 'text-white bg-green-500 dark:bg-green-500/60' : 'text-red-500'} >
+                  {order.paymentResult?.status ? order.paymentResult.status : 'selesaikan pembayaran'}
                 </TableCell>
-                <TableCell>
+                <TableCell >
                   {order.isDelivered && order.deliveredAt
-                    ? moment(order.deliveredAt).format('D MMMM YYYY, HH.mm')
+                    ? <span className='italic'>Dikirim pada {moment(order.deliveredAt).format('D MMMM YYYY')}</span>
                     : 'No'}
                 </TableCell>
                 <TableCell>

@@ -70,7 +70,14 @@ export type IOrderList = IOrderInput & {
   user: {
     name: string
     email: string
+  },
+  paymentResult?: {
+    id: string
+    status: string
+    email_address: string
+    pricePaid: string
   }
+
   createdAt: Date
 }
 

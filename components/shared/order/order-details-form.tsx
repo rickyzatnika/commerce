@@ -48,7 +48,7 @@ export default function OrderDetailsForm({
     isPaid,
 
     isDelivered,
-    deliveredAt,
+    // deliveredAt,
     expectedDeliveryDate,
     paymentResult,
   } = order
@@ -68,40 +68,38 @@ export default function OrderDetailsForm({
               {shippingAddress.country}{' '}
             </p>
 
-            {isDelivered ? (
-              <Badge className=''>
-                <Check className='h-4 w-4 pr-1' />{' '}  Dikirim pada {' '}{moment(deliveredAt).format('D MMMM YYYY')}
-                <div>
-                  Perkiraan pengiriman pada{' '}
-                  {moment(expectedDeliveryDate).format('D MMMM YYYY')}
-                </div>
-              </Badge>
-            ) : (
-              <div>
-                {' '}
-                <Badge variant='destructive'>Belum dikirim</Badge>
+            {isAdmin && isDelivered &&
+              <Badge className='p-2'>Dikirim</Badge>
+            }
 
-              </div>
+
+            {!isAdmin && !isDelivered && !isPaid && <Badge variant="destructive" className='p-2'>Belum dikirim</Badge>}
+
+            {!isAdmin && isDelivered && (
+              <Badge className='p-2'>
+                <Check className='h-4 w-4 ' />Estimasi barang sampai {moment(expectedDeliveryDate).format('D MMMM YYYY')}
+              </Badge>
             )}
+
           </CardContent>
         </Card>
         <Card>
           <CardContent className='p-4 gap-4'>
             <h2 className='text-xl pb-2'>Status Pembayaran</h2>
             {isPaid && paymentResult?.status === "Pembayaran Berhasil" ? (
-              <div className="flex items-center">
-                <Badge className="bg-green-500 flex items-center gap-1">
+              <div className="flex items-center ">
+                <Badge className="bg-green-500 dark:bg-green-500/40 p-2 flex items-center gap-1">
                   <Check className="h-4 w-4" />
-                  Pembayaran Berhasil
+                  Pembayaran di setujui
                 </Badge>
               </div>
             ) : paymentResult?.status ? (
-              <Badge className="bg-orange-400 flex items-center gap-1">
+              <Badge className="bg-primary w-fit p-2 flex items-center gap-1">
                 <Check className="h-4 w-4" />
-                {paymentResult.status}
+                Menunggu Verifikasi Admin
               </Badge>
             ) : (
-              <Badge variant="destructive">Belum Dibayar</Badge>
+              <Badge variant="destructive" className='p-2'>Belum Dibayar</Badge>
             )}
           </CardContent>
         </Card>
@@ -178,26 +176,31 @@ export default function OrderDetailsForm({
             </div>
             {isAdmin && !isPaid && (
               <ActionButton
-                caption='Mark as paid'
+                caption='Setujui Pembayaran'
                 action={() => updateOrderToPaid(order._id)}
               />
             )}
             {isAdmin && isPaid && !isDelivered && (
               <ActionButton
-                caption='Mark as delivered'
+                caption='Konfirmasi Pengiriman Barang'
                 action={() => deliverOrder(order._id)}
               />
             )}
 
 
-            {!isPaid && !isAdmin && (
-              <Link
-                className={cn(buttonVariants(), 'w-full')}
-                href={`/checkout/${order._id}`}
-              >
-                Bayar
-              </Link>
-            )}
+
+            {
+              !isAdmin && paymentResult.status !== "pembayaran sedang diproses" && paymentResult.status !== "Pembayaran Berhasil" && (
+                <Link
+                  className={cn(buttonVariants(), 'w-full')}
+                  href={`/checkout/${order._id}`}
+                >
+                  Lanjutkan Pembayaran
+                </Link>
+              )
+            }
+
+
           </CardContent>
         </Card>
       </div>

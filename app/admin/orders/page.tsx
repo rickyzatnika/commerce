@@ -17,6 +17,7 @@ import { deleteOrder, getAllOrders } from '@/lib/actions/order.actions'
 import { formatDateTime, formatId } from '@/lib/utils'
 import { IOrderList } from '@/types'
 import ProductPrice from '@/components/shared/product/product-price'
+import { CheckIcon } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Admin Orders',
@@ -35,6 +36,8 @@ export default async function OrdersPage(props: {
   const orders = await getAllOrders({
     page: Number(page),
   })
+
+
   return (
     <div className='space-y-2'>
       <h1 className='h1-bold'>Orders</h1>
@@ -42,13 +45,13 @@ export default async function OrdersPage(props: {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Id</TableHead>
-              <TableHead>Date</TableHead>
-              <TableHead>Buyer</TableHead>
+              <TableHead>Order Id</TableHead>
+              <TableHead>Tanggal</TableHead>
+              <TableHead>Pembeli</TableHead>
               <TableHead>Total</TableHead>
-              <TableHead>Paid</TableHead>
-              <TableHead>Delivered</TableHead>
-              <TableHead>Actions</TableHead>
+              <TableHead>Pembayaran</TableHead>
+              <TableHead>Pengiriman</TableHead>
+              <TableHead>Tindakan</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -58,22 +61,25 @@ export default async function OrdersPage(props: {
                 <TableCell>
                   {formatDateTime(order.createdAt!).dateTime}
                 </TableCell>
-                <TableCell>
+                <TableCell className='capitalize'>
                   {order.user ? order.user.name : 'Deleted User'}
                 </TableCell>
                 <TableCell>
                   {' '}
                   <ProductPrice price={order.totalPrice} plain />
                 </TableCell>
-                <TableCell>
-                  {order.isPaid && order.paidAt
-                    ? formatDateTime(order.paidAt).dateTime
-                    : 'No'}
+                <TableCell className={`font-semibold capitalize text-white ${order.paymentResult?.status === '' ? 'bg-red-600 dark:bg-red-600/60 ' : order.paymentResult?.status === 'Pembayaran Berhasil' ? 'bg-green-600 dark:bg-green-500/60 ' : 'bg-orange-400 dark:bg-orange-400/60 '}`} >
+
+                  {order.paymentResult?.status === '' ?
+                    'Belum Dibayar' :
+                    order.paymentResult?.status === 'Pembayaran Berhasil' ? order.paymentResult?.status :
+
+                      'Menunggu verifikasi admin'}
                 </TableCell>
                 <TableCell>
                   {order.isDelivered && order.deliveredAt
-                    ? formatDateTime(order.deliveredAt).dateTime
-                    : 'No'}
+                    ? <CheckIcon size='16' className='size-6 text-green-600' />
+                    : 'no'}
                 </TableCell>
                 <TableCell className='flex gap-1'>
                   <Button asChild variant='outline' size='sm'>

@@ -23,7 +23,7 @@ export default function ActionButton({
   return (
     <Button
       type='button'
-      className={cn('rounded-full', className)}
+      className={cn('rounded-full text-[#080808]', className)}
       variant={variant}
       size={size}
       disabled={isPending}
