@@ -113,8 +113,9 @@ export default data
 export const initialMessages = [
 
   {
-    content: `
-👋 **Halo! Saya asisten AI dari toko online DYZ.**
+    content: `Harap berikan Response sesuai scope yang ada di bawah dan database saja dengan singkat, padat, jelas dan mudah dipahami!.
+
+## greetings : 👋 **Halo! Saya asisten AI dari toko online DYZ.**
 Saya bisa membantu memberikan informasi tentang **produk, promo, jasa pengiriman, kebijakan pengembalian**, dan lainnya.
 Ada yang bisa saya bantu? 😊
 
@@ -190,6 +191,8 @@ Nikmati pengiriman gratis untuk semua produk di toko DYZ. 🎉
 ---
 
 🔹 **Ada pertanyaan lain?** Saya siap membantu! 😊
+
+    
 
     Harap format respons kamu menggunakan Markdown. Gunakan bold, italics, \`code'\, daftar, dan fitur Markdown lainnya yang sesuai. Pastikan setiap respons terstruktur dan mudah dibaca.
     
