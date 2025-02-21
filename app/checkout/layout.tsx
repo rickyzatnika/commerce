@@ -2,6 +2,7 @@ import { HelpCircle } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import CheckoutText from './checkoutText'
 
 export default function CheckoutLayout({
   children,
@@ -10,7 +11,7 @@ export default function CheckoutLayout({
 }) {
   return (
     <div className=' p-4'>
-      <header className='bg-card mb-3 ]'>
+      <header className='bg-card mb-3 '>
         <div className='max-w-6xl mx-auto flex bg-[#080808] text-white p-4 justify-between items-center'>
           <Link href='/'>
             <Image
@@ -22,7 +23,7 @@ export default function CheckoutLayout({
             />
           </Link>
           <div>
-            <h1 className='text-3xl'>Checkout</h1>
+            <CheckoutText />
           </div>
           <div>
             <Link href='/help'>

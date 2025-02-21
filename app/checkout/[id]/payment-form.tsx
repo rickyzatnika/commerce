@@ -33,13 +33,11 @@ export default function OrderPaymentForm({
     shippingAddress,
     items,
     expectedDeliveryDate,
-    isPaid,
+
 
   } = order
 
-  if (isPaid) {
-    router.push(`/account/orders/${order._id}`);
-  }
+
 
   const handleMidtransPayment = async () => {
     setLoading(true)
@@ -74,7 +72,7 @@ export default function OrderPaymentForm({
         onSuccess: async () => {
           toast({ description: 'Payment successful!', variant: 'default' })
 
-          router.push(`/account/orders/${order._id}`)
+          router.push(`/checkout/finish/${order._id}`)
         },
         onPending: () => {
           toast({ description: 'Waiting for payment...', variant: 'default' })
