@@ -19,7 +19,7 @@ export default function FinishPage() {
         </div>
       </div>
 
-      <div className="text-center space-y-14">
+      <div className="text-center flex flex-col items-center justify-center space-y-14">
         {orderId ? (
           <Button className="flex items-end" variant="default" onClick={() => router.push(`/account/orders/${orderId}`)}>
             Cek status pembayaran

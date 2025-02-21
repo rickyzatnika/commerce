@@ -2,9 +2,15 @@ import { IOrderInput } from '@/types'
 import { Document, Model, model, models, Schema } from 'mongoose'
 
 export interface IOrder extends Document, IOrderInput {
-  _id: string
-  createdAt: Date
-  updatedAt: Date
+  _id: string,
+  createdAt: Date,
+  updatedAt: Date,
+  paymentResult: {
+    id: string,
+    status: string,
+    email_address: string,
+    pricePaid: string,
+  },
 }
 
 const orderSchema = new Schema<IOrder>(
@@ -13,6 +19,7 @@ const orderSchema = new Schema<IOrder>(
       type: Schema.Types.ObjectId as unknown as typeof String,
       ref: 'User',
       required: true,
+
     },
     items: [
       {
@@ -33,6 +40,12 @@ const orderSchema = new Schema<IOrder>(
         color: { type: String },
       },
     ],
+    paymentResult: {
+      id: { type: String },
+      status: { type: String },
+      email_address: { type: String },
+      pricePaid: { type: String },
+    },
     shippingAddress: {
       fullName: { type: String, required: true },
       street: { type: String, required: true },
@@ -44,7 +57,6 @@ const orderSchema = new Schema<IOrder>(
     },
     expectedDeliveryDate: { type: Date, required: true },
     paymentMethod: { type: String, required: true },
-    paymentResult: { id: String, status: String, email_address: String },
     itemsPrice: { type: Number, required: true },
     shippingPrice: { type: Number, required: true },
     taxPrice: { type: Number, required: true },

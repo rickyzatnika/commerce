@@ -19,8 +19,8 @@ const sortOrders = [
   { value: 'price-low-to-high', name: 'Harga Terendah' },
   { value: 'price-high-to-low', name: 'Harga Tertinggi' },
   { value: 'produk-terbaru', name: 'Produk Terbaru' },
-  { value: 'avg-customer-review', name: 'Rata-rata Ulasan' },
-  { value: 'produk-terlaris', name: 'Produk Terlaris' },
+  { value: 'avg-customer-review', name: 'Rata-rata Ulasan' }
+
 ]
 
 // const prices = [

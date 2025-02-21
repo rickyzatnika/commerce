@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Metadata } from 'next'
 import Link from 'next/link'
 import Pagination from '@/components/shared/pagination'
@@ -24,13 +25,16 @@ export const metadata: Metadata = {
   title: PAGE_TITLE,
 }
 export default async function OrdersPage(props: {
-  searchParams: Promise<{ page: string }>
+  searchParams: Promise<{ page: string }>,
 }) {
   const searchParams = await props.searchParams
   const page = Number(searchParams.page) || 1
   const orders = await getMyOrders({
     page,
+
   })
+
+
 
   moment.locale('id');
 
@@ -49,7 +53,7 @@ export default async function OrdersPage(props: {
               <TableHead>Order Id</TableHead>
               <TableHead>Tanggal</TableHead>
               <TableHead>Total</TableHead>
-              <TableHead>Dibayar</TableHead>
+              <TableHead>Pembayaran</TableHead>
               <TableHead>Dikirim</TableHead>
               <TableHead>Actions</TableHead>
             </TableRow>
@@ -70,20 +74,17 @@ export default async function OrdersPage(props: {
                   </Link>
                 </TableCell>
                 <TableCell>
-                  {moment(order.createdAt!).format('D MMMM YYYY')}
+                  {moment(order.createdAt).format('D MMMM YYYY')}
                 </TableCell>
                 <TableCell>
                   <ProductPrice price={order.totalPrice} plain />
                 </TableCell>
-                <TableCell>
-                  {order.isPaid && order.paidAt
-
-                    ? moment(order.paidAt!).format('D MMMM YYYY, HH.mm')
-                    : 'No'}
+                <TableCell className={order.isPaid ? 'text-green-500' : 'text-red-500'} >
+                  {order.paymentResult?.status ? order.paymentResult.status : 'belum ada transaksi'}
                 </TableCell>
                 <TableCell>
                   {order.isDelivered && order.deliveredAt
-                    ? moment(order.deliveredAt!).format('D MMMM YYYY')
+                    ? moment(order.deliveredAt).format('D MMMM YYYY, HH.mm')
                     : 'No'}
                 </TableCell>
                 <TableCell>

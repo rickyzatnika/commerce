@@ -41,7 +41,15 @@ const ProductCard = ({
               className='object-contain '
             />
           </div>
+
         )}
+        <div className='text-right'>
+          {!product?.numSales ? (
+            ""
+          ) : (
+            <i className='text-xs mr-2 bg-red-700 text-white text-right  p-1 rounded-md font-semibold'> Terjual {product.numSales}</i>
+          )}
+        </div>
       </div>
     </Link>
   )
@@ -59,11 +67,7 @@ const ProductCard = ({
       >
 
       </Link>
-      {!product?.numSales ? (
-        ""
-      ) : (
-        <i className='text-xs shadow bg-primary p-1 rounded-md font-semibold'> Terjual {product.numSales}</i>
-      )}
+
       <div className='flex gap-2 py-2 justify-center'>
         <Rating rating={product.avgRating} />
         <span>({formatNumber(product.numReviews)})</span>
