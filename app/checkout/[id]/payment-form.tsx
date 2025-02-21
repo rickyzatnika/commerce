@@ -144,7 +144,6 @@ export default function OrderPaymentForm({
                     sitekey={SITE_KEY}
                     onChange={handleRecaptcha}
                     size='normal'
-                    theme='light'
                     referrerPolicy='origin'
 
 
