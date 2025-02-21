@@ -1,10 +1,8 @@
 
 import Link from 'next/link'
 import React from 'react'
-
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { IProduct } from '@/lib/db/models/product.model'
-
 import Rating from './rating'
 import { formatNumber, generateId, round2 } from '@/lib/utils'
 import ProductPrice from './product-price'
@@ -52,7 +50,7 @@ const ProductCard = ({
       <p className='font-bold'>{product.name}</p>
       <Link
         href={`/product/${product.slug}`}
-        className='overflow-hidden text-ellipsis'
+        className='overflow-hidden text-ellipsis mb-1'
         style={{
           display: '-webkit-box',
           WebkitLineClamp: 2,
@@ -61,6 +59,11 @@ const ProductCard = ({
       >
 
       </Link>
+      {!product?.numSales ? (
+        ""
+      ) : (
+        <i className='text-xs shadow bg-primary p-1 rounded-md font-semibold'> Terjual {product.numSales}</i>
+      )}
       <div className='flex gap-2 py-2 justify-center'>
         <Rating rating={product.avgRating} />
         <span>({formatNumber(product.numReviews)})</span>

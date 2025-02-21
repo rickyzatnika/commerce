@@ -153,7 +153,7 @@ const CheckoutForm = () => {
               </span>
             </div>
             <div className='flex justify-between'>
-              <span className='text-sm'> Pajak 12% :</span>
+              <span className='text-sm'> Biaya Layanan :</span>
               <span>
                 {taxPrice === undefined ? (
                   '--'
@@ -587,7 +587,7 @@ const CheckoutForm = () => {
                                       <div className='flex gap-1 items-center pt-2'>
                                         <p>{dd.desc}</p>
                                         <i className='text-xs'>diterima</i>
-                                        <p className='text-green-700 '>{
+                                        <p className='text-green-700 text-xs md:text-sm'>{
                                           formatDateTime(
                                             calculateFutureDate(dd.daysToDeliver)
                                           ).dateOnly
