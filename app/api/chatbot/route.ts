@@ -38,8 +38,8 @@ export async function POST(req: NextRequest) {
       const messagesForAI = [
         {
           parts: [
-            { text: initialMessages.map(m => m.content).join("\n") },
-            { text: `Berikut adalah produk kami:\n${products.map(p => `Nama: ${p.name}, Harga: ${p.price}, Deskripsi: ${p.description}, Kategori: ${p.category}, Gambar: ${p.images}, Stok: ${p.countInStock}, Brand: ${p.brand}, Warna: ${p.colors}, Ukuran: ${p.sizes}, Penjualan: ${p.numSales}, Rating: ${p.avgRating}`).join("\n")}` },
+            { text: initialMessages.map(m => m.content) },
+            { text: `Berikut adalah produk kami: ${products.map(p => `Nama: ${p.name}, Harga: ${p.price}, Deskripsi: ${p.description}, Kategori: ${p.category}, Gambar: ${p.images}, Stok: ${p.countInStock}, Brand: ${p.brand}, Warna: ${p.colors}, Ukuran: ${p.sizes}, Penjualan: ${p.numSales}, Rating: ${p.avgRating},`)}` },
             ...chat.messages.map(({ content }: { content: string }) => ({ text: content }))
           ]
         }
