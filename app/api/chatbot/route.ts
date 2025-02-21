@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
     if (latestUserMessage.toLowerCase().includes("produk") || latestUserMessage.toLowerCase().includes("harga")) {
       const products = await Product.find(); // Ambil maksimal 5 produk untuk efisiensi
       if (products.length > 0) {
-        productInfo = products.map(p => `semua data produk, termasuk paling rekomendasi: ${p.name}, Harga: ${p.price}, Size/Ukuran yang tersedia: ${p.sizes}, Warna yang tersedia: ${p.colors}, Kategori: ${p.category}, Deskripsi: ${p.description}, Stok Tersedia : ${p.countInStock}, Rating: ${p.avgRating}, Jumlah Review: ${p.numReviews}, Brand : ${p.brand}`);
+        productInfo = products.map(p => `semua data produk, termasuk paling rekomendasi: ${p.name}, Harga: ${p.price}, Size/Ukuran yang tersedia: ${p.sizes}, Warna yang tersedia: ${p.colors}, Kategori: ${p.category}, Deskripsi: ${p.description}, Produk Terjual : ${p.numSales}, Stok Tersedia : ${p.countInStock}, Rating: ${p.avgRating}, Jumlah Review: ${p.numReviews}, Brand : ${p.brand}`);
       }
     }
 
