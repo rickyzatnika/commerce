@@ -88,18 +88,20 @@ export default function OrderDetailsForm({
         <Card>
           <CardContent className='p-4 gap-4'>
             <h2 className='text-xl pb-2'>Status Pembayaran</h2>
-            {isPaid &&
-              (
-                <div className='flex items-center'>
-                  <Badge className='bg-green-500'><Check className='h-4 w-4 pr-1' />Pembayaran Berhasil</Badge>
-                </div>
-
-              )
-            }
-            {!paymentResult && !isPaid ? (
-              <Badge variant='destructive'>Belum dibayar</Badge>
+            {isPaid && paymentResult?.status === "Pembayaran Berhasil" ? (
+              <div className="flex items-center">
+                <Badge className="bg-green-500 flex items-center gap-1">
+                  <Check className="h-4 w-4" />
+                  Pembayaran Berhasil
+                </Badge>
+              </div>
+            ) : paymentResult?.status ? (
+              <Badge className="bg-orange-400 flex items-center gap-1">
+                <Check className="h-4 w-4" />
+                {paymentResult.status}
+              </Badge>
             ) : (
-              <Badge className='bg-green-500'><Check className='h-4 w-4 pr-1' />{paymentResult?.status}</Badge>
+              <Badge variant="destructive">Belum Dibayar</Badge>
             )}
           </CardContent>
         </Card>
