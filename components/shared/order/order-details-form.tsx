@@ -62,24 +62,25 @@ export default function OrderDetailsForm({
             <p>
               {shippingAddress.fullName} {shippingAddress.phone}
             </p>
-            <p>
+            <p className='mb-2'>
               {shippingAddress.street}, {shippingAddress.city},{' '}
               {shippingAddress.province}, {shippingAddress.postalCode},{' '}
               {shippingAddress.country}{' '}
             </p>
 
             {isDelivered ? (
-              <Badge className=' mt-2'>
+              <Badge className=''>
                 <Check className='h-4 w-4 pr-1' />{' '}  Dikirim pada {' '}{moment(deliveredAt).format('D MMMM YYYY')}
+                <div>
+                  Perkiraan pengiriman pada{' '}
+                  {moment(expectedDeliveryDate).format('D MMMM YYYY')}
+                </div>
               </Badge>
             ) : (
               <div>
                 {' '}
                 <Badge variant='destructive'>Belum dikirim</Badge>
-                <div>
-                  Perkiraan pengiriman pada{' '}
-                  {moment(expectedDeliveryDate).format('D MMMM YYYY')}
-                </div>
+
               </div>
             )}
           </CardContent>
@@ -87,14 +88,19 @@ export default function OrderDetailsForm({
         <Card>
           <CardContent className='p-4 gap-4'>
             <h2 className='text-xl pb-2'>Status Pembayaran</h2>
-            {isPaid && paymentResult?.status === "Pembayaran Berhasil" ? (
-              <div className='flex items-center'>
-                <Badge className='bg-green-500'><Check className='h-4 w-4 pr-1' />{paymentResult?.status}</Badge>
-              </div>
-            ) : (
-              <Badge variant='destructive'>{paymentResult?.status}</Badge>
-            )
+            {isPaid &&
+              (
+                <div className='flex items-center'>
+                  <Badge className='bg-green-500'><Check className='h-4 w-4 pr-1' />Pembayaran Berhasil</Badge>
+                </div>
+
+              )
             }
+            {!paymentResult && !isPaid ? (
+              <Badge variant='destructive'>Belum dibayar</Badge>
+            ) : (
+              <Badge className='bg-green-500'><Check className='h-4 w-4 pr-1' />{paymentResult?.status}</Badge>
+            )}
           </CardContent>
         </Card>
         <Card>
