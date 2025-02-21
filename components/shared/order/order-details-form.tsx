@@ -36,7 +36,6 @@ export default function OrderDetailsForm({
     taxPrice,
     shippingPrice,
     totalPrice,
-    paymentMethod,
     isPaid,
     paidAt,
     isDelivered,
@@ -159,7 +158,7 @@ export default function OrderDetailsForm({
                 <ProductPrice price={totalPrice} plain />
               </div>
             </div>
-            {isAdmin && !isPaid && paymentMethod === 'Cash On Delivery' && (
+            {isAdmin && !isPaid && (
               <ActionButton
                 caption='Mark as paid'
                 action={() => updateOrderToPaid(order._id)}
@@ -173,7 +172,7 @@ export default function OrderDetailsForm({
             )}
 
 
-            {!isPaid && (
+            {!isPaid && !isAdmin && (
               <Link
                 className={cn(buttonVariants(), 'w-full')}
                 href={`/checkout/${order._id}`}

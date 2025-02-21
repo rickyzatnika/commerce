@@ -133,7 +133,8 @@ export async function createMidtransTransaction(orderId: string, recaptchaValue:
 
   try {
     const order = await Order.findById(orderId)
-      .populate('user', 'email').populate('items.product')
+      .populate('user', 'email')
+      .populate('items.product')
 
     if (!recaptchaValue) {
       return {
@@ -193,20 +194,6 @@ export async function createMidtransTransaction(orderId: string, recaptchaValue:
 
     await order.save()
     await sendPurchaseReceipt({ order });
-
-    // ✅ Update numSales jika pembayaran berhasil
-    if (order.isPaid) {
-      for (const item of order.items) {
-        const product = item.product as { _id: string } | string; // Paksa TypeScript mengenali tipe
-
-        if (!product || typeof product === 'string') continue; // Jika masih ObjectId, lewati
-
-        await Product.findByIdAndUpdate(product._id, {
-          $inc: { numSales: 1 }, // Tambah jumlah penjualan produk
-        });
-      }
-    }
-
     return {
       success: true,
       message: '✅ Midtrans order created successfully',
@@ -554,7 +541,32 @@ export async function getAllOrders({
   }
 }
 
+export async function updateNumSales(orderId: string) {
+  await connectToDatabase();
+  try {
+    const order = await Order.findById(orderId).populate('items.product');
+    if (!order) throw new Error('Order not found');
 
+    // Pastikan order sudah dibayar dan belum di-update sebelumnya
+    if (!order.isPaid) return;
+
+    for (const item of order.items) {
+      const product = item.product as { _id: string } | string;
+
+      if (!product || typeof product === 'string') continue; // Jika masih ObjectId, lewati
+
+      await Product.findByIdAndUpdate(product._id, {
+        $inc: { numSales: 1 }, // Tambah jumlah penjualan produk
+      });
+    }
+
+    // Tandai bahwa order ini sudah diperbarui agar tidak diproses ulang
+    order.isPaid = true;
+    await order.save();
+  } catch (error) {
+    console.error('Error updating numSales:', error);
+  }
+}
 
 
 //  EMAIL
@@ -570,6 +582,7 @@ export async function updateOrderToPaid(orderId: string) {
     order.isPaid = true
     order.paidAt = new Date()
     await order.save()
+
     if (!process.env.MONGODB_URI?.startsWith('mongodb://localhost'))
       await updateProductStock(order._id)
     if (order.user.email) await sendPurchaseReceipt({ order })
@@ -633,3 +646,5 @@ export async function deliverOrder(orderId: string) {
     return { success: false, message: formatError(err) }
   }
 }
+
+

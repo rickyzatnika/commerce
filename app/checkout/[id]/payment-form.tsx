@@ -71,8 +71,9 @@ export default function OrderPaymentForm({
     snapScript.onload = () => {
       setLoading(false)
       window.snap.pay(token, {
-        onSuccess: () => {
+        onSuccess: async () => {
           toast({ description: 'Payment successful!', variant: 'default' })
+
           router.push(`/account/orders/${order._id}`)
         },
         onPending: () => {

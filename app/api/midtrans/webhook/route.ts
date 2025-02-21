@@ -1,4 +1,5 @@
 
+import { updateNumSales } from "@/lib/actions/order.actions";
 import Order from "@/lib/db/models/order.model";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -37,6 +38,7 @@ export async function POST(req: NextRequest) {
     if (transaction_status === "settlement") {
       updatedStatus = "paid";
       order.isPaid = true;
+      await updateNumSales(order._id);
       order.paidAt = new Date();
     } else if (transaction_status === "expire") {
       updatedStatus = "expired";
