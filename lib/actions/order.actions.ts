@@ -185,12 +185,12 @@ export async function createMidtransTransaction(orderId: string, recaptchaValue:
     const paymentToken = midtransOrder.token || ''
 
 
-    order.paymentResult = {
-      id: paymentToken,
-      email_address: userEmail,
-      status: '',
-      pricePaid: '0',
-    }
+    // order.paymentResult = {
+    //   id: paymentToken,
+    //   email_address: userEmail,
+    //   status: '',
+    //   pricePaid: '0',
+    // }
 
     await order.save()
     await sendPurchaseReceipt({ order });
@@ -562,7 +562,7 @@ export async function updateNumSales(orderId: string) {
     }
 
     // Tandai bahwa order ini sudah diperbarui agar tidak diproses ulang
-    order.isPaid = true;
+    // order.isPaid = true;
     await order.save();
   } catch (error) {
     console.error('Error updating numSales:', error);
