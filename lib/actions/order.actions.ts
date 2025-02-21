@@ -569,6 +569,9 @@ export async function updateNumSales(orderId: string) {
 }
 
 
+
+
+
 //  EMAIL
 
 export async function updateOrderToPaid(orderId: string) {
@@ -581,6 +584,15 @@ export async function updateOrderToPaid(orderId: string) {
     if (order.isPaid) throw new Error('Order is already paid')
     order.isPaid = true
     order.paidAt = new Date()
+
+    order.paymentResult ??= {
+      status: "",
+      id: "",
+      email_address: "",
+      pricePaid: "",
+    };
+    order.paymentResult.status = "Pembayaran Berhasil";
+
     await order.save()
     await updateNumSales(orderId);
     if (!process.env.MONGODB_URI?.startsWith('mongodb://localhost'))

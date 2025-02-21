@@ -43,7 +43,6 @@ export async function POST(req: NextRequest) {
       updatedStatus = "pending";
     } else if (transaction_status === "capture" && fraud_status === "accept") {
       updatedStatus = "Pembayaran Berhasil";
-      order.isPaid = true;
       order.paidAt = new Date();
     } else if (transaction_status === "capture" && fraud_status !== "accept") {
       updatedStatus = "on-hold";
