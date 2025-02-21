@@ -162,7 +162,7 @@ export default async function ProductDetails(props: {
       <section className='mt-10'>
         <ProductSlider
           products={relatedProducts.data}
-          title={`Produk Terlaris `}
+          title={`Produk Terlaris`}
         />
       </section>
 
