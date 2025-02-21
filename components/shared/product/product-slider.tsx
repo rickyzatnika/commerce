@@ -46,6 +46,9 @@ export default function ProductSlider({
                 hideBorder
                 product={product}
               />
+              <div>
+                <p>{product?.numSales}</p>
+              </div>
             </CarouselItem>
           ))}
         </CarouselContent>

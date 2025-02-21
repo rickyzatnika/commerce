@@ -132,7 +132,8 @@ export async function createMidtransTransaction(orderId: string, recaptchaValue:
   await connectToDatabase()
 
   try {
-    const order = await Order.findById(orderId).populate('user', 'email');
+    const order = await Order.findById(orderId)
+      .populate('user', 'email').populate('items.product')
 
     if (!recaptchaValue) {
       return {
@@ -192,6 +193,19 @@ export async function createMidtransTransaction(orderId: string, recaptchaValue:
 
     await order.save()
     await sendPurchaseReceipt({ order });
+
+    // ✅ Update numSales jika pembayaran berhasil
+    if (order.isPaid) {
+      for (const item of order.items) {
+        const product = item.product as { _id: string } | string; // Paksa TypeScript mengenali tipe
+
+        if (!product || typeof product === 'string') continue; // Jika masih ObjectId, lewati
+
+        await Product.findByIdAndUpdate(product._id, {
+          $inc: { numSales: 1 }, // Tambah jumlah penjualan produk
+        });
+      }
+    }
 
     return {
       success: true,
@@ -565,6 +579,8 @@ export async function updateOrderToPaid(orderId: string) {
     return { success: false, message: formatError(err) }
   }
 }
+
+
 const updateProductStock = async (orderId: string) => {
   const session = await mongoose.connection.startSession()
 

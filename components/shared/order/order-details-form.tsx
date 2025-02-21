@@ -139,7 +139,7 @@ export default function OrderDetailsForm({
               </div>
             </div>
             <div className='flex justify-between'>
-              <div>Pajak 12% :</div>
+              <div>Biaya Layanan :</div>
               <div>
                 {' '}
                 <ProductPrice price={taxPrice} plain />
