@@ -582,7 +582,7 @@ export async function updateOrderToPaid(orderId: string) {
     order.isPaid = true
     order.paidAt = new Date()
     await order.save()
-
+    await updateNumSales(orderId);
     if (!process.env.MONGODB_URI?.startsWith('mongodb://localhost'))
       await updateProductStock(order._id)
     if (order.user.email) await sendPurchaseReceipt({ order })

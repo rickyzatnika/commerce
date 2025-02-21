@@ -1,5 +1,4 @@
 
-import { updateNumSales } from "@/lib/actions/order.actions";
 import Order from "@/lib/db/models/order.model";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -7,8 +6,6 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const { order_id } = body;
-
-
 
     //  1. Ambil data transaksi dari Midtrans langsung
     const midtransResponse = await fetch(`https://api.sandbox.midtrans.com/v2/${order_id}/status`, {
@@ -26,19 +23,17 @@ export async function POST(req: NextRequest) {
     }
 
     //  3. Ambil order dari database
-    const order = await Order.findById(order_id);
+    const order = await Order.findById(order_id)
     if (!order) {
       return NextResponse.json({ success: false, message: "Order not found" }, { status: 404 });
     }
 
     //  4. Update status pembayaran
-    let updatedStatus = "pending";
+    let updatedStatus = "";
     const { transaction_status, fraud_status } = midtransData;
 
     if (transaction_status === "settlement") {
-      updatedStatus = "paid";
-      order.isPaid = true;
-      await updateNumSales(order._id);
+      updatedStatus = "pembayaran sedang diproses";
       order.paidAt = new Date();
     } else if (transaction_status === "expire") {
       updatedStatus = "expired";
@@ -47,7 +42,7 @@ export async function POST(req: NextRequest) {
     } else if (transaction_status === "pending") {
       updatedStatus = "pending";
     } else if (transaction_status === "capture" && fraud_status === "accept") {
-      updatedStatus = "paid";
+      updatedStatus = "Pembayaran Berhasil";
       order.isPaid = true;
       order.paidAt = new Date();
     } else if (transaction_status === "capture" && fraud_status !== "accept") {

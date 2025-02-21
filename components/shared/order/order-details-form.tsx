@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import Image from 'next/image'
@@ -22,12 +23,20 @@ import moment from 'moment'
 import 'moment/locale/id';
 import { Check } from 'lucide-react'
 
+type ResultProps = {
+  id: string
+  status: string
+  email_address: string
+  pricePaid: string
+}
+
 export default function OrderDetailsForm({
   order,
   isAdmin,
 }: {
   order: IOrder
   isAdmin: boolean
+  paymentResult?: ResultProps
 }) {
   const {
     shippingAddress,
@@ -37,10 +46,11 @@ export default function OrderDetailsForm({
     shippingPrice,
     totalPrice,
     isPaid,
-    paidAt,
+
     isDelivered,
     deliveredAt,
     expectedDeliveryDate,
+    paymentResult,
   } = order
 
   return (
@@ -77,14 +87,14 @@ export default function OrderDetailsForm({
         <Card>
           <CardContent className='p-4 gap-4'>
             <h2 className='text-xl pb-2'>Status Pembayaran</h2>
-            {isPaid ? (
+            {isPaid && paymentResult?.status === "Pembayaran Berhasil" ? (
               <div className='flex items-center'>
-
-                <Badge className='bg-green-500'><Check className='h-4 w-4 pr-1' />{' '} Dibayar pada {moment(paidAt!).format('D MMMM YYYY, HH:mm')}</Badge>
+                <Badge className='bg-green-500'><Check className='h-4 w-4 pr-1' />{paymentResult?.status}</Badge>
               </div>
             ) : (
-              <Badge variant='destructive'>Belum dibayar</Badge>
-            )}
+              <Badge variant='destructive'>{paymentResult?.status}</Badge>
+            )
+            }
           </CardContent>
         </Card>
         <Card>

@@ -32,6 +32,7 @@ const OrderDetailsPage = async (props: {
       </div>
       <OrderDetailsForm
         order={order}
+        paymentResult={order.paymentResult}
         isAdmin={session?.user?.role === 'Admin' || false}
       />
     </main>
