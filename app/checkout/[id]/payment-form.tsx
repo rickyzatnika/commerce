@@ -72,7 +72,7 @@ export default function OrderPaymentForm({
         onSuccess: async () => {
           toast({ description: 'Payment successful!', variant: 'default' })
 
-          router.push(`/checkout/finish/${order._id}`)
+          router.push(`/checkout/finish/?order_id=${order._id}`)
         },
         onPending: () => {
           toast({ description: 'Waiting for payment...', variant: 'default' })
