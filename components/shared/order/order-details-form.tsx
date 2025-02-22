@@ -176,6 +176,8 @@ export default function OrderDetailsForm({
             </div>
             {isAdmin && !isPaid && (
               <ActionButton
+                isAdmin={isAdmin}
+                isPaid={isPaid}
                 caption='Setujui Pembayaran'
                 action={() => updateOrderToPaid(order._id)}
               />

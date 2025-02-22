@@ -11,10 +11,14 @@ export default function ActionButton({
   className = 'w-full',
   variant = 'default',
   size = 'default',
+  isAdmin,
+  isPaid
 }: {
   caption: string
   action: () => Promise<{ success: boolean; message: string }>
   className?: string
+  isAdmin?: boolean
+  isPaid?: boolean
   variant?: 'default' | 'outline' | 'destructive'
   size?: 'default' | 'sm' | 'lg'
 }) {
@@ -26,7 +30,7 @@ export default function ActionButton({
       className={cn('rounded-full text-[#080808]', className)}
       variant={variant}
       size={size}
-      disabled={isPending}
+      disabled={isPending || (isAdmin && !isPaid)}
       onClick={() =>
         startTransition(async () => {
           const res = await action()
