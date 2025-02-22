@@ -5,6 +5,10 @@ import { Button } from '@/components/ui/button'
 import { useToast } from '@/hooks/use-toast'
 import { cn } from '@/lib/utils'
 
+interface ResultProps {
+  status: string
+}
+
 export default function ActionButton({
   caption,
   action,
@@ -12,13 +16,13 @@ export default function ActionButton({
   variant = 'default',
   size = 'default',
   isAdmin,
-  isPaid
+  paymentResult
 }: {
   caption: string
   action: () => Promise<{ success: boolean; message: string }>
   className?: string
   isAdmin?: boolean
-  isPaid?: boolean
+  paymentResult?: ResultProps
   variant?: 'default' | 'outline' | 'destructive'
   size?: 'default' | 'sm' | 'lg'
 }) {
@@ -30,7 +34,7 @@ export default function ActionButton({
       className={cn('rounded-full text-[#080808]', className)}
       variant={variant}
       size={size}
-      disabled={isPending || (isAdmin && !isPaid)}
+      disabled={isPending || (isAdmin && paymentResult?.status === '')}
       onClick={() =>
         startTransition(async () => {
           const res = await action()

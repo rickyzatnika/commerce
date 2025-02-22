@@ -177,7 +177,7 @@ export default function OrderDetailsForm({
             {isAdmin && !isPaid && (
               <ActionButton
                 isAdmin={isAdmin}
-                isPaid={isPaid}
+                paymentResult={paymentResult}
                 caption='Setujui Pembayaran'
                 action={() => updateOrderToPaid(order._id)}
               />
