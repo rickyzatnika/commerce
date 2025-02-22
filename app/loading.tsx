@@ -11,7 +11,7 @@ export default function LoadingPage() {
 
     return (
         <div className='w-full flex flex-col items-center justify-center min-h-screen '>
-            <Image src={theme === 'light' ? '/images/black.svg' : '/images/white.svg'} alt='loading' width={100} height={75} style={{ width: '100px', height: '100px' }} priority={true} />
+            <Image src={theme === 'light' ? '/images/black.svg' : '/images/white.svg'} alt='loading' width={100} height={75} style={{ width: 'auto', height: 'auto' }} priority={true} />
         </div>
     )
 }

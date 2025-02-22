@@ -34,8 +34,6 @@ export default async function OrdersPage(props: {
 
   })
 
-
-
   moment.locale('id');
 
   return (
@@ -88,9 +86,22 @@ export default async function OrdersPage(props: {
                     : 'No'}
                 </TableCell>
                 <TableCell>
-                  <Link href={`/account/orders/${order._id}`}>
-                    <span className='px-2'>Lihat Detail</span>
-                  </Link>
+                  {
+                    order.isDelivered && order.isPaid ? (
+                      <div className='flex gap-1'>
+                        <Link href={`/account/orders/${order._id}`}>
+                          <span className='px-2'>Detail</span>
+                        </Link>
+                        <Link href={`/product/${order.items[0].slug}/#review`}>
+                          <span className='px-2'>Review</span>
+                        </Link>
+                      </div>
+                    ) : (
+                      <Link href={`/account/orders/${order._id}`}>
+                        <span className='px-2'>Detail</span>
+                      </Link>
+                    )
+                  }
                 </TableCell>
               </TableRow>
             ))}

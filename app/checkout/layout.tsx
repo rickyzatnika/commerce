@@ -17,8 +17,9 @@ export default function CheckoutLayout({
             <Image
               src='/icons/logo2.png'
               alt='logo'
-              width={100}
-              height={50}
+              width={50}
+              height={25}
+              style={{ width: 'auto', height: 'auto' }}
               priority={true}
             />
           </Link>
@@ -27,7 +28,7 @@ export default function CheckoutLayout({
           </div>
           <div>
             <Link href='/help'>
-              <HelpCircle className='w-8 h-8' />
+              <HelpCircle className='w-6 md:w-8 h-6 md:h-8' />
             </Link>
           </div>
         </div>

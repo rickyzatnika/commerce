@@ -12,7 +12,7 @@ const CheckoutText = () => {
     const isFinish = pathname === '/checkout/finish';
 
     return (
-        <div className={isFinish ? 'hidden' : 'flex font-bold mr-6 text-4xl'} >Checkout</div>
+        <div className={isFinish ? 'hidden' : 'flex font-bold mr-6 text-lg md:text-4xl'} >Checkout</div>
     )
 }
 

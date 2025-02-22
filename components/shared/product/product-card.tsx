@@ -22,7 +22,7 @@ const ProductCard = ({
   hideAddToCart?: boolean
 }) => {
   const ProductImage = () => (
-    <Link href={`/product/${product.slug}`}>
+    <Link as={`/product/${product.slug}`} href={`/product/${product.slug}`}>
       <div className='relative w-fit mx-auto '>
         {product.images.length > 1 ? (
           <ImageHover
@@ -38,6 +38,7 @@ const ProductCard = ({
               priority={true}
               width={500}
               height={175}
+              style={{ width: 'auto', height: 'auto' }}
               className='object-contain '
             />
           </div>

@@ -10,8 +10,7 @@ export default function CheckoutFooter() {
         <Link href='/contact-us'>Hubungi Kami</Link>{' '}
       </p>
       <p className='antialiased leading-relaxed'>
-        Untuk barang yang dipesan dari {APP_NAME}, Saat Anda mengklik tombol &apos;Place Your
-        Order&apos; kami akan mengirimkan email yang berisi tanda terima pesanan Anda.
+        Untuk barang yang dipesan dari {APP_NAME}, Saat Anda mengklik tombol &apos;Lanjutkan&apos; kami akan mengirimkan email yang berisi tanda terima pesanan Anda.
         Kontrak Anda untuk membeli suatu barang tidak akan selesai sampai kami mengirimi Anda email yang memberitahukan bahwa barang tersebut telah dikirimkan kepada Anda.
         Dengan melakukan pemesanan, Anda menyetujui{' '}
         <Link href='/privacy-policy'>Kebijakan Privasi</Link> dan

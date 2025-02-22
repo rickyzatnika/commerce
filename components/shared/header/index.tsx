@@ -25,8 +25,9 @@ export default async function Header() {
               <div className='flex gap-1 items-center'>
                 <Image
                   src='/icons/logo2.png'
-                  width={100}
-                  height={75}
+                  width={75}
+                  height={25}
+                  style={{ width: 'auto', height: 'auto' }}
                   alt={`${APP_NAME} logo`}
                 />
               </div>

@@ -29,11 +29,9 @@ const reviewSchema = new Schema<IReview>(
     },
     title: {
       type: String,
-      required: true,
     },
     comment: {
       type: String,
-      required: true,
     },
   },
   {

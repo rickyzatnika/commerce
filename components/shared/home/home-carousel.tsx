@@ -39,7 +39,7 @@ export function HomeCarousel({
       <CarouselContent>
         {items.map((item) => (
           <CarouselItem key={item.image}>
-            <Link href={item.url}>
+            <Link as={item.url} href={item.url}>
               <div className='flex aspect-[16/7] items-center justify-center p-6 relative -m-1'>
                 <Image
                   src={item.image}

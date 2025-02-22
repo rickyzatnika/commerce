@@ -8,7 +8,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { APP_NAME } from '@/lib/constants'
 import Image from 'next/image'
-import { useTheme } from 'next-themes'
+
 
 
 
@@ -79,7 +79,7 @@ const data = [
 
 export default function Footer() {
 
-  const { theme } = useTheme()
+
 
   return (
     <footer className="w-full">
@@ -88,7 +88,7 @@ export default function Footer() {
 
           {/* Brand & Deskripsi (Lebih Lebar) */}
           <div className="lg:col-span-2 px-0 md:px-4">
-            <Image src="/images/dyz.png" alt='logo-dyz' width={125} height={100} priority={true} />
+            <Image style={{ width: 'auto', height: 'auto' }} src="/images/dyz.png" alt='logo-dyz' width={125} height={100} priority={true} />
             <p className="text-sm mt-3 leading-relaxed text-muted-foreground">
               Adalah brand fashion yang hadir dengan gaya yang unik dan berani, yang membuat kalian tampil beda, sesua dengan TAG LINE brand ini sendiri “LOOK DIFFERENT”
             </p>
@@ -107,10 +107,10 @@ export default function Footer() {
           {/* Partner Kami */}
           <div className='mx-auto w-full md:w-fit'>
             <h3 className="text-md font-semibold mb-3">Partner Kami</h3>
-            <div className="space-y-0 md:space-y-2 flex justify-center flex-row md:flex-col items-center md:items-start gap-1 md:gap-3">
-              <Image src="/icons/midtrans.png" alt='logo-midtrans' width={100} height={75} priority={true} className='bg-white p-1' />
-              <Image src={`${theme === 'dark' ? '/images/dp-white.png' : '/images/dp.png'}`} alt='logo-dpproject' width={75} height={50} priority={true} className=' p-1 py-3' />
-              <Image src="/images/sponsor.png" alt='logo-quickartdesign' width={100} height={75} priority={true} className='bg-white p-1 py-3' />
+            <div className="space-y-0 md:space-y-2 flex flex-col items-start ">
+              <Image style={{ width: 'auto', height: 'auto' }} src="/icons/midtrans.png" alt='logo-midtrans' width={100} height={75} priority={true} className='bg-white p-1' />
+              <Image style={{ width: 'auto', height: 'auto' }} src="/images/sponsor.png" alt='logo-quickartdesign' width={100} height={75} priority={true} className='bg-white p-1 py-3' />
+              <Image style={{ width: 'auto', height: 'auto' }} src="/images/dp.png" alt='logo-dpproject' width={50} height={25} priority={true} className='bg-white  p-1 ' />
             </div>
           </div>
 

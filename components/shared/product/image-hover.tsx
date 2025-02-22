@@ -35,6 +35,7 @@ const ImageHover = ({
         priority={true}
         width={500}
         height={175}
+        style={{ width: 'auto', height: 'auto' }}
         className={`object-contain transition-opacity duration-200 ${isHovered ? 'opacity-0' : 'opacity-100'
           }`}
       />
@@ -44,6 +45,7 @@ const ImageHover = ({
         priority={true}
         width={500}
         height={175}
+        style={{ width: 'auto', height: 'auto' }}
         className={`absolute inset-0 object-contain transition-opacity duration-200 ${isHovered ? 'opacity-100' : 'opacity-0'
           }`}
       />

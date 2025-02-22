@@ -183,7 +183,7 @@ const CheckoutForm = () => {
             {isAddressSelected && (
               <div>
                 <Button onClick={handlePlaceOrder} className='rounded-full w-full'>
-                  Ya, Lanjutkan
+                  Lanjutkan
                 </Button>
                 <p className='text-xs text-center py-2'>
                   {' '}
@@ -224,7 +224,7 @@ const CheckoutForm = () => {
                     {`${shippingAddress.city}, ${shippingAddress.province}, ${shippingAddress.postalCode}, ${shippingAddress.country}`}
                   </p>
                 </div>
-                <div className='col-span-2'>
+                <div className='col-span-2 my-2 md:my0 text-sm'>
                   <Button
                     variant={'outline'}
                     onClick={() => {
@@ -232,7 +232,7 @@ const CheckoutForm = () => {
                       setIsDeliveryDateSelected(true)
                     }}
                   >
-                    Ganti
+                    Ganti Alamat
                   </Button>
                 </div>
               </div>
@@ -636,7 +636,7 @@ const CheckoutForm = () => {
               <Card className='hidden md:block '>
                 <CardContent className='p-4 flex flex-col md:flex-row justify-between items-center gap-3'>
                   <Button onClick={handlePlaceOrder} className='rounded-full'>
-                    Ya, Lanjutkan
+                    Lanjutkan
                   </Button>
                   <div className='flex-1'>
                     <p className='font-bold text-lg'>

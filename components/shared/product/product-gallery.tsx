@@ -42,7 +42,7 @@ export default function ProductGallery({ images }: { images: string[] }) {
               src={images[selectedImage]}
               alt={'product image'}
               fill
-              sizes='90vw'
+              sizes='(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 50vw'
               className='object-contain'
               priority={true}
             />
