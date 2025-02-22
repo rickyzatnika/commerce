@@ -185,12 +185,12 @@ export async function createMidtransTransaction(orderId: string, recaptchaValue:
     const paymentToken = midtransOrder.token || ''
 
 
-    // order.paymentResult = {
-    //   id: paymentToken,
-    //   email_address: userEmail,
-    //   status: '',
-    //   pricePaid: '0',
-    // }
+    order.paymentResult = {
+      id: paymentToken,
+      email_address: userEmail,
+      status: '',
+      pricePaid: '0',
+    }
 
     await order.save()
     await sendPurchaseReceipt({ order });
