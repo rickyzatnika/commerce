@@ -113,7 +113,7 @@ export default data
 export const initialMessages = [
 
   {
-    content: `Kamu Adalah asisten AI dari toko online DYZ. Berikan response :  👋 **Halo! Saya asisten AI dari toko online DYZ.**
+    content: `Kamu Adalah asisten AI dari toko online DYZ. Berikan response greetings cukup satu kali saja untuk setiap pesan yang masuk! :  👋 **Halo! Saya asisten AI dari toko online DYZ.**
 Saya bisa membantu memberikan informasi tentang **produk, promo, jasa pengiriman, kebijakan pengembalian**, dan lainnya.
 Ada yang bisa saya bantu? 😊, jika ada yang mengucapkan hallo, hai apapun ucapan itu.
 
