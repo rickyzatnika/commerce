@@ -220,9 +220,9 @@ export async function getMyOrders({
   limit = limit || PAGE_SIZE
   await connectToDatabase()
   const session = await auth()
-  if (!session) {
-    throw new Error('User is not authenticated')
-  }
+  // if (!session) {
+  //   throw new Error('User is not authenticated')
+  // }
   const skipAmount = (Number(page) - 1) * limit
   const orders = await Order.find({
     user: session?.user?.id,
