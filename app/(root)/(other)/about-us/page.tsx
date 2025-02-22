@@ -15,37 +15,30 @@ const AboutUs = () => {
         <div className='leading-relaxed'>
           <h3 className='pt-3 font-bold'>Siapa Kami?</h3>
           <p className='px-2'>
-            DYZ "Look Different" adalah brand fashion yang menghadirkan gaya
-            unik dan berbeda bagi setiap individu. Berawal dari sebuah toko
-            sederhana di kota kecil pada tahun 2018, kini kami berkembang
-            menjadi platform e-commerce yang menyediakan kemudahan bagi
-            pelanggan setia untuk berbelanja dengan nyaman dan aman secara
-            online.
+            DYZ "Look Different" Adalah brand fashion yang hadir dengan gaya yang unik dan berani, yang membuat kalian tampil beda, sesua dengan TAG LINE brand ini sendiri “LOOK DIFFERENT”. Berawal dari ide sang pemilik brand ini yang pernah menajalankan bisnis yang sama pada tahun 2014 dengan nama brand “NUABI MERCH”, yang harus bangkrut pada tahun 2021. Di akhir tahun 2024, muncul kembali ide untuk menjalankan kembali bisnis nya, namun kini hadir dengan nama dan tema yang berbeda, berawal hanya dari berjualan online di beberapa sosial media miliknya, dan kini berkembang menjadi platform e-commerce yang menyediakan kemudahan bagi pelanggan setia untuk berbelanja dengan nyaman dan aman secara online.
+
           </p>
         </div>
 
         <div className='leading-relaxed'>
           <h3 className='pt-3 font-bold'>Alamat Kami</h3>
           <p className='px-2'>
-            Jl. Cigadung Barat No.123, Bandung, Jawa Barat 40234, Indonesia.
+            Jl. Alfa 1 Cigadung, Dago - Bandung, Jawa Barat 40191, Indonesia
           </p>
         </div>
 
         <div className='leading-relaxed'>
           <h3 className='pt-3 font-bold'>Visi Kami</h3>
           <p className='px-2'>
-            Menjadi brand fashion yang memberikan inspirasi dan inovasi dalam
-            gaya berpakaian, serta memberikan pengalaman berbelanja terbaik bagi
-            pelanggan.
+            Menjadi brand fashion yang memberikan inspirasi dan inovasi dalam gaya berpakaian, serta memberikan pengalaman berbelanja terbaik bagi pelanggan.
           </p>
         </div>
 
         <div className='leading-relaxed'>
           <h3 className='pt-3 font-bold'>Misi Kami</h3>
-          <ul className='list-disc list-inside px-2'>
+          <ul className='list-item list-inside px-2'>
             <li>
-              Menyediakan produk fashion berkualitas tinggi dengan desain yang
-              unik dan berbeda.
+              Menyediakan produk fashion berkualitas tinggi dengan desain yang unik dan berbeda.
             </li>
             <li>
               Memberikan layanan pelanggan yang responsif dan profesional.
@@ -94,20 +87,17 @@ const AboutUs = () => {
           promo, serta inspirasi fashion melalui:
         </p>
         <ul className='list-disc list-inside px-2 space-y-1 mt-2 text-gray-700 dark:text-gray-300'>
-          <li>📍 Instagram: @dyz.official</li>
-          <li>📍 Facebook: DYZ Look Different</li>
-          <li>📍 WhatsApp: +6281234567890</li>
-          <li>📍 Email: support@dyz.com</li>
+          <li>Instagram: @dyzlookdifferent</li>
+          <li>WhatsApp: +62 8516 1055 339</li>
+          <li>Email: support@dyzstore.id</li>
         </ul>
 
         <p className='mt-6 text-gray-700 dark:text-gray-300'>
-          Kami percaya bahwa setiap orang memiliki gaya uniknya sendiri. Bersama
-          DYZ, tunjukkan perbedaan dan ekspresikan diri Anda dengan percaya
-          diri!
+          Kami percaya bahwa setiap orang memiliki gaya uniknya sendiri. Bersama DYZ, tunjukkan perbedaan dan ekspresikan diri anda dengan percaya diri!
         </p>
 
         <p className='mt-6 font-bold'>
-          – Be Different, Be You.
+          “DIFFERENT WITH THEM”
         </p>
       </div>
     </div>

@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { APP_NAME } from '@/lib/constants'
 import Image from 'next/image'
+import { useTheme } from 'next-themes'
 
 
 
@@ -77,6 +78,9 @@ const data = [
 
 
 export default function Footer() {
+
+  const { theme } = useTheme()
+
   return (
     <footer className="w-full">
       <div className="py-16 px-6 md:px-12 lg:px-24">
@@ -84,9 +88,9 @@ export default function Footer() {
 
           {/* Brand & Deskripsi (Lebih Lebar) */}
           <div className="lg:col-span-2 px-0 md:px-4">
-            <h1 className="text-2xl font-bold">{APP_NAME} "Look Different"</h1>
+            <Image src="/images/dyz.png" alt='logo-dyz' width={125} height={100} priority={true} />
             <p className="text-sm mt-3 leading-relaxed text-muted-foreground">
-              adalah Brand fashion yang menghadirkan gaya unik dan berbeda bagi setiap individu khususnya pria.
+              Adalah brand fashion yang hadir dengan gaya yang unik dan berani, yang membuat kalian tampil beda, sesua dengan TAG LINE brand ini sendiri “LOOK DIFFERENT”
             </p>
           </div>
 
@@ -103,9 +107,10 @@ export default function Footer() {
           {/* Partner Kami */}
           <div className='mx-auto w-full md:w-fit'>
             <h3 className="text-md font-semibold mb-3">Partner Kami</h3>
-            <div className="space-y-2 flex flex-row md:flex-col items-start gap-3">
+            <div className="space-y-0 md:space-y-2 flex justify-center flex-row md:flex-col items-center md:items-start gap-1 md:gap-3">
               <Image src="/icons/midtrans.png" alt='logo-midtrans' width={100} height={75} priority={true} className='bg-white p-1' />
-              <Image src="/icons/depe.png" alt='logo-midtrans' width={100} height={75} priority={true} className='bg-white p-1 py-3' />
+              <Image src={`${theme === 'dark' ? '/images/dp-white.png' : '/images/dp.png'}`} alt='logo-dpproject' width={75} height={50} priority={true} className=' p-1 py-3' />
+              <Image src="/images/sponsor.png" alt='logo-quickartdesign' width={100} height={75} priority={true} className='bg-white p-1 py-3' />
             </div>
           </div>
 
@@ -145,7 +150,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="text-center text-sm mt-4 text-gray-200 ">
           <p>© 2000-2024, {APP_NAME}, Inc. or its affiliates</p>
-          <p className=" mt-2">Jl. Cigadung Barat No.123/152C, Jakarta, Indonesia</p>
+          <p className=" mt-2">Jl. Alfa 1 Cigadung, Dago - Bandung, Jawa Barat 40191, Indonesia</p>
         </div>
       </div>
     </footer>
