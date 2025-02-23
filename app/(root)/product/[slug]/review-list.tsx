@@ -72,8 +72,8 @@ export default function ReviewList({
 }) {
   const [page, setPage] = useState(2)
   const [totalPages, setTotalPages] = useState(0)
-  const [reviews, setReviews] = useState<IReviewDetails[]>([])
   const { ref, inView } = useInView({ triggerOnce: true })
+  const [reviews, setReviews] = useState<IReviewDetails[]>([])
 
   const { isPaid, isDelivered } = orderStatus;
 
@@ -120,6 +120,8 @@ export default function ReviewList({
   }, [inView])
 
   type CustomerReview = z.infer<typeof ReviewInputSchema>
+
+
   const form = useForm<CustomerReview>({
     resolver: zodResolver(ReviewInputSchema),
     defaultValues: reviewFormDefaultValues,

@@ -13,6 +13,7 @@ import {
   OrderInputSchema,
   ReviewInputSchema,
   UserUpdateSchema,
+  ReturnInputSchema,
 } from '@/lib/validator'
 
 
@@ -52,7 +53,6 @@ export type IReviewDetails = IReviewInput & {
   }
 }
 
-export type OrderItem = z.infer<typeof OrderItemSchema>
 export type Cart = z.infer<typeof CartSchema>
 export type ShippingAddress = z.infer<typeof ShippingAddressSchema>
 
@@ -63,8 +63,9 @@ export type IUserSignIn = z.infer<typeof UserSignInSchema>
 export type IUserUpdate = z.infer<typeof UserUpdateSchema>
 export type IUserSignUp = z.infer<typeof UserSignUpSchema>
 
+// order
 export type IOrderInput = z.infer<typeof OrderInputSchema>
-
+export type OrderItem = z.infer<typeof OrderItemSchema>
 export type IOrderList = IOrderInput & {
   _id: string
   user: {
@@ -80,4 +81,9 @@ export type IOrderList = IOrderInput & {
 
   createdAt: Date
 }
+
+
+// Return
+export type IReturnInput = z.infer<typeof ReturnInputSchema>
+
 

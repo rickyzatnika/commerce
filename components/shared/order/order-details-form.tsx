@@ -15,13 +15,14 @@ import {
 } from '@/components/ui/table'
 import { IOrder } from '@/lib/db/models/order.model'
 import { cn, formatCurrency } from '@/lib/utils'
-import { buttonVariants } from '@/components/ui/button'
+import { Button, buttonVariants } from '@/components/ui/button'
 import ProductPrice from '../product/product-price'
 import ActionButton from '../action-button'
 import { deliverOrder, updateOrderToPaid } from '@/lib/actions/order.actions'
 import moment from 'moment'
 import 'moment/locale/id';
 import { Check } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 type ResultProps = {
   id: string
@@ -38,6 +39,9 @@ export default function OrderDetailsForm({
   isAdmin: boolean
   paymentResult?: ResultProps
 }) {
+
+  const router = useRouter();
+
   const {
     shippingAddress,
     items,
@@ -112,6 +116,7 @@ export default function OrderDetailsForm({
                   <TableHead>Nama Barang</TableHead>
                   <TableHead>Item</TableHead>
                   <TableHead>Harga</TableHead>
+                  {isPaid && paymentResult?.status === "Pembayaran Berhasil" && <TableHead>Review</TableHead>}
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -135,6 +140,13 @@ export default function OrderDetailsForm({
                       <span className='px-2'>{item.quantity}</span>
                     </TableCell>
                     <TableCell >{formatCurrency(item.price)}</TableCell>
+                    {isPaid && isDelivered && paymentResult?.status === "Pembayaran Berhasil" && (
+                      <TableCell >
+                        <Button onClick={() => router.push(`/product/${item.slug}`)}>
+                          Review
+                        </Button>
+                      </TableCell>
+                    )}
                   </TableRow>
                 ))}
               </TableBody>

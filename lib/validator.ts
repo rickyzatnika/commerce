@@ -17,8 +17,7 @@ const Price = (field: string) =>
       `${field} must have exactly two decimal places (e.g., 49.99)`
     )
 
-// Product
-
+// REVIEW INPUT --------------------------------------------
 export const ReviewInputSchema = z.object({
   product: MongoId,
   user: MongoId,
@@ -32,8 +31,19 @@ export const ReviewInputSchema = z.object({
     .max(5, 'Rating must be at most 5'),
 })
 
+// RETURN FORM ----------------------------------------------
+export const ReturnInputSchema = z.object({
+
+  name: z.string().min(3, 'Name must be at least 3 characters'),
+  email: z.string().email('Email is invalid'),
+  phone: z.string().min(1, 'Phone number is required'),
+  prodName: z.string().min(1, 'Product name is required'),
+  reason: z.string().min(1, 'Reason is required'),
+  qty: z.string().min(1, 'Quantity is required'),
+})
 
 
+//PRODUCT -------------------------------------------------
 export const ProductInputSchema = z.object({
   name: z.string().min(3, 'Name must be at least 3 characters'),
   slug: z.string().min(3, 'Slug must be at least 3 characters'),
@@ -74,7 +84,7 @@ export const ProductUpdateSchema = ProductInputSchema.extend({
 })
 
 
-// Order Item
+// ORDER ITEM ----------------------------------------------
 export const OrderItemSchema = z.object({
   clientId: z.string().min(1, 'clientId is required'),
   product: z.string().min(1, 'Product is required'),
@@ -105,7 +115,6 @@ export const ShippingAddressSchema = z.object({
   country: z.string().min(1, 'Country is required'),
 })
 
-// Order
 export const OrderInputSchema = z.object({
   user: z.union([
     MongoId,
@@ -143,7 +152,7 @@ export const OrderInputSchema = z.object({
   paidAt: z.date().optional(),
 })
 
-
+// CART ----------------------------------------------
 export const CartSchema = z.object({
   items: z
     .array(OrderItemSchema)
@@ -158,7 +167,7 @@ export const CartSchema = z.object({
   expectedDeliveryDate: z.optional(z.date()),
 })
 
-// USER
+// USER ----------------------------------------------
 const UserName = z
   .string()
   .min(2, { message: 'Username must be at least 2 characters' })

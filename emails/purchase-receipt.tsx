@@ -132,7 +132,7 @@ export default async function PurchaseReceiptEmail({
               ))}
               {[
                 { name: 'Harga Produk', price: order.itemsPrice },
-                { name: 'Pajak 12%', price: order.taxPrice },
+                { name: 'Biaya Layanan', price: order.taxPrice },
                 { name: 'Ongkos Kirim', price: order.shippingPrice },
                 { name: 'Total', price: order.totalPrice },
               ].map(({ name, price }) => (

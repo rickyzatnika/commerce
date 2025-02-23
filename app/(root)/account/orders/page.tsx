@@ -10,6 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+import { Button } from '@/components/ui/button'
 import { getMyOrders } from '@/lib/actions/order.actions'
 import { IOrder } from '@/lib/db/models/order.model'
 import { formatId } from '@/lib/utils'
@@ -90,15 +91,16 @@ export default async function OrdersPage(props: {
                     order.isDelivered && order.isPaid ? (
                       <div className='flex gap-1'>
                         <Link href={`/account/orders/${order._id}`}>
-                          <span className='px-2'>Detail</span>
+                          <Button variant="default" className='px-2'>Detail</Button>
                         </Link>
-                        <Link href={`/product/${order.items[0].slug}/#review`}>
-                          <span className='px-2'>Review</span>
+
+                        <Link href={`/account/orders/return/${order._id}`}>
+                          <Button variant="default" className='px-2'>Retur</Button>
                         </Link>
                       </div>
                     ) : (
                       <Link href={`/account/orders/${order._id}`}>
-                        <span className='px-2'>Detail</span>
+                        <Button variant="default" className='px-2'>Detail</Button>
                       </Link>
                     )
                   }
