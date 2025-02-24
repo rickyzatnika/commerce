@@ -40,6 +40,7 @@ export const ReturnInputSchema = z.object({
   prodName: z.string().min(1, 'Product name is required'),
   reason: z.string().min(1, 'Reason is required'),
   qty: z.string().min(1, 'Quantity is required'),
+  isReturn: z.boolean().default(false),
 })
 
 

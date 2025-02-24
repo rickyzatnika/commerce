@@ -94,7 +94,7 @@ export default async function OrdersPage(props: {
                           <Button variant="default" className='px-2'>Detail</Button>
                         </Link>
 
-                        <Link href={`/account/orders/return/${order._id}`}>
+                        <Link href={`/account/orders/${order._id}/return`}>
                           <Button variant="default" className='px-2'>Retur</Button>
                         </Link>
                       </div>

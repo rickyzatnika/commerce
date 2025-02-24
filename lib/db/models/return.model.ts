@@ -27,6 +27,10 @@ const reviewSchema = new Schema<IReturn>(
     qty: {
       type: String,
     },
+    isReturn: {
+      type: Boolean,
+      default: false
+    },
   },
   {
     timestamps: true,
